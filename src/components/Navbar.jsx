@@ -1,3 +1,5 @@
+import logo from '../assets/bmw.svg';
+
 const Navbar = () => {
   return (
     <>
@@ -11,7 +13,10 @@ const Navbar = () => {
         >
           {' '}
           {/* Logo */}
-          <div className=" ml-4 mr-8 bg-blue-200 rounded-full h-[50px] w-[50px]"></div>
+          <img
+            src={logo}
+            className=" ml-4 mr-8  rounded-full h-[50px] w-[50px]"
+          ></img>
           {/* Navlink Container */}
           <div className="300 h-full w-[70%] flex items-center justify-evenly">
             <div className="h-full 2 border-b-2   transition-all duration-500 hover:border-blue-600 flex justify-center items-center ">
