@@ -11,7 +11,24 @@ const Navbar = () => {
         >
           {/* Logo */}
           <div className="bg-white rounded-full h-[50px] w-[50px]"></div>
-          <div className="bg-slate-300 h-[45px] w-[70%]"></div>
+          {/* Navlink Container */}
+          <div className="bg-slate-300 h-full w-[70%] flex items-center justify-evenly">
+            <div className="h-full bg-slate-200 border-b-2   transition-all duration-500 hover:border-blue-600 flex justify-center items-center ">
+              <h1>Losadae</h1>
+            </div>
+            <div className="h-full bg-slate-200 border-b-2   transition-all duration-500 hover:border-blue-600 flex justify-center items-center ">
+              <h1>Losadae</h1>
+            </div>
+            <div className="h-full bg-slate-200 border-b-2   transition-all duration-500 hover:border-blue-600 flex justify-center items-center ">
+              <h1>Losadae</h1>
+            </div>
+            <div className="h-full bg-slate-200 border-b-2   transition-all duration-500 hover:border-blue-600 flex justify-center items-center ">
+              <h1>Losadae</h1>
+            </div>
+            <div className="h-full bg-slate-200 border-b-2   transition-all duration-500 hover:border-blue-600 flex justify-center items-center ">
+              <h1>Losadae</h1>
+            </div>
+          </div>
         </div>
         <div className="bg-slate-800 w-[200px] h-full"></div>
       </div>
