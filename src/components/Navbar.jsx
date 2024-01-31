@@ -18,22 +18,8 @@ const Navbar = () => {
             className=' ml-4 mr-8  rounded-full h-[50px] w-[50px]'
           ></img>
           {/* Navlink Container */}
-          <div className='300 h-full w-[70%] flex items-center justify-evenly'>
-            <div className='h-full 2 border-b-2   transition-all duration-500 hover:border-blue-600 flex justify-center items-center '>
-              <h1>Losadae</h1>
-            </div>
-            <div className='h-full  border-b-2   transition-all duration-500 hover:border-blue-600 flex justify-center items-center '>
-              <h1>Losadae</h1>
-            </div>
-            <div className='h-full  border-b-2   transition-all duration-500 hover:border-blue-600 flex justify-center items-center '>
-              <h1>Losadae</h1>
-            </div>
-            <div className='h-full border-b-2   transition-all duration-500 hover:border-blue-600 flex justify-center items-center '>
-              <h1>Losadae</h1>
-            </div>
-            <div className='h-full 200 border-b-2   transition-all duration-500 hover:border-blue-600 flex justify-center items-center '>
-              <h1>Losadae</h1>
-            </div>
+          <div className='300 h-full w-[70%] flex items-center '>
+            <h2 className='text-2xl'> ADMIN PANEL</h2>
           </div>
         </div>
         <div className='bg-slate-200 w-[200px] h-full'></div>
