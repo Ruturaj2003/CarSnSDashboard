@@ -18,8 +18,11 @@ const Table = () => {
             {Array.from({ length: 20 }).map((_, rowIndex) => (
               <tr key={rowIndex} className="hover:bg-gray-300 font-tableD">
                 {Array.from({ length: 6 }).map((_, cellIndex) => (
-                  <td key={cellIndex} className="pl-8 py-2">
-                    {`Row ${rowIndex + 1}, Cell ${cellIndex + 1}`}
+                  <td
+                    key={cellIndex}
+                    className="pl-8 py-2 overflow-hidden overflow-ellipsis"
+                  >
+                    {`Row ${rowIndex + 1},  Cell ${cellIndex + 1}`}
                   </td>
                 ))}
               </tr>
