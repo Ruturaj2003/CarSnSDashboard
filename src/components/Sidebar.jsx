@@ -20,7 +20,7 @@ const Sidebar = () => {
   return (
     <div
       id="sidebar"
-      className=" sidebar w-[20%] h-[600px] flex items-center flex-col mt-5"
+      className="  sidebar w-[20%] h-[600px] flex items-center flex-col mt-5"
     >
       {linkTexts.map((text, index) => (
         <a
