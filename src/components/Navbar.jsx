@@ -3,7 +3,7 @@ import logo from '../assets/bmw.svg';
 const Navbar = () => {
   return (
     <>
-      <div className="h-16 mt-[-30px] mr-16 ml-16  flex items-center justify-between  ">
+      <div className="h-16 mt-[10px] mr-16 ml-16  flex items-center justify-between  ">
         <div
           className="
       w-[55%] h-full   
