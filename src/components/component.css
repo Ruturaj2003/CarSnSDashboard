@@ -1,0 +1,20 @@
+.sidebar {
+  width: 20%;
+  height: 600px;
+  background-color: #add8e6; /* Light blue color */
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 5px;
+}
+
+.sidebar a {
+  margin: 10px;
+  font-size: 2rem;
+  text-decoration: none;
+  color: #000080; /* Navy color */
+}
+
+.sidebar a.active {
+  text-decoration: underline;
+}
