@@ -1,6 +1,6 @@
 const Table = () => {
   return (
-    <div className="bg-blue-100 pr-8 pt-10 pb-12 pl-12 rounded-xl mt-5 mr-16 w-full h-[600px] ">
+    <div className="bg-blue-100    rounded-xl mt-5 mr-16 w-full h-[600px] ">
       <div id="TableData" className="h-full w-full bg-slate-200 overflow-auto">
         <table className="border-collapse w-full shadow-md rounded overflow-hidden bg-white">
           <thead>
