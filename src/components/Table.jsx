@@ -15,8 +15,11 @@ const Table = () => {
           </thead>
           <tbody>
             {/* Sample data */}
-            {Array.from({ length: 20 }).map((_, rowIndex) => (
-              <tr key={rowIndex} className="hover:bg-gray-300 font-tableD">
+            {Array.from({ length: 5 }).map((_, rowIndex) => (
+              <tr
+                key={rowIndex}
+                className="hover:bg-gray-300 w-1/6 font-tableD"
+              >
                 {Array.from({ length: 6 }).map((_, cellIndex) => (
                   <td
                     key={cellIndex}
