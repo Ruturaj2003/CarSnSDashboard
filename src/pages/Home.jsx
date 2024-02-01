@@ -1,5 +1,5 @@
 import Card from '../components/Card';
-
+import { MdOutlinePendingActions } from 'react-icons/md';
 const Home = () => {
   return (
     <div className="w-full h-600px mt-5 flex flex-col mr-16">
@@ -15,7 +15,9 @@ const Home = () => {
         {/* Card Col 1 */}
         <div className="w-full h-[270px]  bg-slate-50 p-5 flex items-center justify-evenly ">
           {/* Card 1  */}
-          <Card></Card>
+          <Card desc={'Pending'} number={7}>
+            <MdOutlinePendingActions className="text-8xl text-[#0066AD] mx-auto" />
+          </Card>
           {/* Card 2 */}
           <Card></Card>
         </div>

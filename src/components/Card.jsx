@@ -1,8 +1,13 @@
-const Card = () => {
+const Card = ({ children, number = 100, desc }) => {
   return (
-    <div className="flex  rounded-lg shadow-md flex-col bg-white w-[300px] h-[200px]   p-6 items-center justify-center">
-      <div className="h-[60%] w-full">43</div>
-      <div className="h-[30%] text-4xl text-center  w-full">asd</div>
+    <div className="flex   rounded-lg shadow-md flex-col bg-white w-[300px] h-[200px]   p-1 items-center justify-center">
+      <div className="text-center font-tableD text-3xl text-[#8f8f8f]">
+        {desc}
+      </div>
+      <div className="w-full ">{children}</div>
+      <div className=" text-4xl text-center text-[#8f8f8f]  w-full">
+        {number}
+      </div>
     </div>
   );
 };
