@@ -15,15 +15,15 @@ const Table = () => {
           </thead>
           <tbody>
             {/* Sample data */}
-            {Array.from({ length: 5 }).map((_, rowIndex) => (
+            {Array.from({ length: 6 }).map((_, rowIndex) => (
               <tr
                 key={rowIndex}
                 className="hover:bg-gray-300 w-1/6 font-tableD"
               >
-                {Array.from({ length: 6 }).map((_, cellIndex) => (
+                {Array.from({ length: 2 }).map((_, cellIndex) => (
                   <td
                     key={cellIndex}
-                    className="pl-8 py-2 overflow-hidden overflow-ellipsis w-1/6"
+                    className="pl-8 py-2 overflow-hidden overflow-ellipsis"
                   >
                     {`Row ${rowIndex + 1}, Cell ${cellIndex + 1}`}
                   </td>
