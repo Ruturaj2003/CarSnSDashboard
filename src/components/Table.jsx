@@ -1,16 +1,16 @@
 const Table = () => {
   return (
-    <div className="bg-blue-100    rounded-xl mt-5 mr-16 w-full h-[600px] ">
-      <div id="TableData" className="h-full w-full bg-slate-200 overflow-auto">
-        <table className="border-collapse w-full shadow-md rounded overflow-hidden bg-white">
-          <thead>
-            <tr className="bg-[#0066AD] font-tableH text-white">
-              <th className="py-2">Customer Id</th>
-              <th className="py-2">Name</th>
-              <th className="py-2">Phone</th>
-              <th className="py-2">E-mail</th>
-              <th className="py-2">LIC Num.</th>
-              <th className="py-2">Create DATA</th>
+    <div className="bg-blue-100 rounded-xl mt-5 mr-16 w-full h-[600px] overflow-hidden">
+      <div className="h-full bg-slate-200 overflow-auto">
+        <table className="w-full table-fixed shadow-md rounded bg-white">
+          <thead className="bg-[#0066AD] font-tableH text-white sticky top-0">
+            <tr>
+              <th className="py-2 w-1/6">Customer Id</th>
+              <th className="py-2 w-1/6">Name</th>
+              <th className="py-2 w-1/6">Phone</th>
+              <th className="py-2 w-1/6">E-mail</th>
+              <th className="py-2 w-1/6">LIC Num.</th>
+              <th className="py-2 w-1/6">Create DATA</th>
             </tr>
           </thead>
           <tbody>
@@ -20,9 +20,9 @@ const Table = () => {
                 {Array.from({ length: 6 }).map((_, cellIndex) => (
                   <td
                     key={cellIndex}
-                    className="pl-8 py-2 overflow-hidden overflow-ellipsis"
+                    className="pl-8 py-2 overflow-hidden overflow-ellipsis w-1/6"
                   >
-                    {`Row ${rowIndex + 1},  Cell ${cellIndex + 1}`}
+                    {`Row ${rowIndex + 1}, Cell ${cellIndex + 1}`}
                   </td>
                 ))}
               </tr>
