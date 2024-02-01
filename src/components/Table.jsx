@@ -20,7 +20,7 @@ const Table = () => {
                 key={rowIndex}
                 className="hover:bg-gray-300 w-1/6 font-tableD"
               >
-                {Array.from({ length: 2 }).map((_, cellIndex) => (
+                {Array.from({ length: 5 }).map((_, cellIndex) => (
                   <td
                     key={cellIndex}
                     className="pl-8 py-2 overflow-hidden overflow-ellipsis"
@@ -28,6 +28,13 @@ const Table = () => {
                     {`Row ${rowIndex + 1}, Cell ${cellIndex + 1}`}
                   </td>
                 ))}
+                <td className="flex justify-evenly items-center">
+                  <button className="" key={100 + rowIndex}>
+                    ADS
+                  </button>
+                  <button key={200 + rowIndex}>GG</button>
+                  <button key={300 + rowIndex}>WP</button>
+                </td>
               </tr>
             ))}
           </tbody>
