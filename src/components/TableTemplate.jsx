@@ -1,7 +1,10 @@
+import { nanoid } from 'nanoid';
+
 const TableTemplate = () => {
   let dynWidth = '10px';
   const tableHeadings = ['Name', 'Email', 'Mobile no.', 'Address'];
   let data = [];
+
   return (
     <>
       {/* Table Containers */}
@@ -32,7 +35,7 @@ const TableTemplate = () => {
                       {Object.values(item).map((value, index) => {
                         return (
                           <td
-                            key={index}
+                            key={nanoid()}
                             className="py-2 overflow-hidden overflow-ellipsis "
                           >
                             {value}
@@ -40,9 +43,9 @@ const TableTemplate = () => {
                         );
                       })}
                       <td>
-                        <button>as</button>
-                        <button>sd</button>
-                        <button>dsd</button>
+                        <button key={nanoid()}>as</button>
+                        <button key={nanoid()}>sd</button>
+                        <button key={nanoid()}>dsd</button>
                       </td>
                     </tr>
                   );
