@@ -6,6 +6,7 @@ export default {
       sans: ['Montserrat', 'system-ui'],
       tableD: ['Nunito', 'sans-serif'],
       tableH: ['Montserrat', 'system-ui'],
+      homeT: ['Lato', 'sans'],
     },
     extend: {},
   },
