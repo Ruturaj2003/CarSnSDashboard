@@ -1,4 +1,36 @@
+import { useState } from 'react';
+import axios from 'axios';
+import { log } from 'console';
 const Table = () => {
+  const [data, setData] = useState();
+  const [loading, setloadng] = useState(false);
+  const fetchData = async () => {
+    try {
+      setloadng(true);
+      const res = await axios.get('');
+      const { data } = res.data;
+      setData(data);
+      setloadng(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      setloadng(true);
+      const response = await axios.delete('' + id);
+      if (response.status === 200) {
+        console.log(`Successfully deleted data with ID ${id}`);
+      } else {
+        console.error(`Failed to delete data with ID ${id}`);
+      }
+      fetchData();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="bg-blue-100 rounded-xl mt-5 mr-16 w-full h-[600px] overflow-hidden">
       <div className="h-full bg-slate-200 overflow-auto">
