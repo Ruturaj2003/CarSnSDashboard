@@ -97,7 +97,7 @@ const TableTemplate = ({}) => {
                       </th>
                     );
                   })}
-                  <th className="w-[180px] bg-[#0066AD] text-center">
+                  <th className="w-[140px] bg-[#0066AD] text-center">
                     <button onClick={handleOpen}>Create</button>
                   </th>
                 </tr>
@@ -117,10 +117,9 @@ const TableTemplate = ({}) => {
                             </td>
                           );
                         })}
-                        <td>
+                        <td className="flex justify-evenly items-center">
                           <button key={nanoid()}>Edit</button>
-                          <button key={nanoid()}>sd</button>
-                          <button key={nanoid()}>dsd</button>
+                          <button key={nanoid()}>Delete</button>
                         </td>
                       </tr>
                     );
