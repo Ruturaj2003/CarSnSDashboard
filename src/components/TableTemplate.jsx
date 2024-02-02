@@ -1,7 +1,6 @@
 import { nanoid } from 'nanoid';
 
 const TableTemplate = () => {
-  let dynWidth = '10px';
   const tableHeadings = ['Name', 'Email', 'Mobile no.', 'Address'];
   let data = [];
 
@@ -43,7 +42,7 @@ const TableTemplate = () => {
                         );
                       })}
                       <td>
-                        <button key={nanoid()}>as</button>
+                        <button key={nanoid()}>Edit</button>
                         <button key={nanoid()}>sd</button>
                         <button key={nanoid()}>dsd</button>
                       </td>

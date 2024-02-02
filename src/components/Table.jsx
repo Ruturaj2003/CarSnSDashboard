@@ -2,35 +2,72 @@ import { useState } from 'react';
 import axios from 'axios';
 
 const Table = () => {
-  const [data, setData] = useState();
-  const [loading, setloadng] = useState(false);
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+
   const fetchData = async () => {
     try {
-      setloadng(true);
-      const res = await axios.get('');
-      const { data } = res.data;
-      setData(data);
-      setloadng(false);
+      setLoading(true);
+      const res = await axios.get('https://example.com/api/data');
+      const responseData = res.data;
+      setData(responseData);
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
   const handleDelete = async (id) => {
     try {
-      setloadng(true);
-      const response = await axios.delete('' + id);
+      setLoading(true);
+      const response = await axios.delete(`https://example.com/api/data/${id}`);
       if (response.status === 200) {
         console.log(`Successfully deleted data with ID ${id}`);
+        fetchData(); // Call fetchData to update the data after deletion
       } else {
         console.error(`Failed to delete data with ID ${id}`);
       }
-      fetchData();
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
+  const handleUpdate = async (id, updatedData) => {
+    try {
+      setLoading(true);
+      const response = await axios.put(
+        `https://example.com/api/data/${id}`,
+        updatedData
+      );
+      if (response.status === 200) {
+        console.log(`Successfully updated data with ID ${id}`);
+        fetchData(); // Call fetchData to update the data after modification
+      } else {
+        console.error(`Failed to update data with ID ${id}`);
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  const getSingleItem = async (id) => {
+    try {
+      setLoading(true);
+      const res = await axios.get(`https://example.com/api/data/${id}`); //
+      const singleItemData = res.data;
+      console.log(`Successfully fetched data for ID ${id}`);
+      console.log(singleItemData);
+    } catch (error) {
+      console.error(`Failed to fetch data for ID ${id}`);
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <div className="bg-blue-100 rounded-xl mt-5 mr-16 w-full h-[600px] overflow-hidden">
       <div className="h-full bg-slate-200 overflow-auto">
@@ -64,7 +101,7 @@ const Table = () => {
                   <button className="" key={100 + rowIndex}>
                     ADS
                   </button>
-                  <button key={200 + rowIndex}>GG</button>
+                  <button key={200 + rowIndex}>Edit</button>
                   <button key={300 + rowIndex}>WP</button>
                 </td>
               </tr>
