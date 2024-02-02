@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { log } from 'console';
+
 const Table = () => {
   const [data, setData] = useState();
   const [loading, setloadng] = useState(false);
