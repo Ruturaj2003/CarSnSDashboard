@@ -5,7 +5,7 @@ import { FaPeopleGroup } from 'react-icons/fa6';
 import { FaMoneyBillTrendUp } from 'react-icons/fa6';
 const Home = () => {
   return (
-    <div className="w-full h-600px mt-5 flex flex-col mr-16">
+    <div className="w-full h-[600px] mt-5 flex flex-col mr-16">
       {/* Heading Container */}
       <div className="flex flex-col ">
         <h1 className=" text-center [word-spacing:25px] tracking-wider text-[#797979]  text-5xl font-homeT">
