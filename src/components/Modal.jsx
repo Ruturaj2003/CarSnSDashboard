@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Modal = ({ isOpen, onClose, onSave, inputFields }) => {
   // Create an initial state object with empty values for each form field
@@ -34,7 +35,7 @@ const Modal = ({ isOpen, onClose, onSave, inputFields }) => {
 
   return (
     <div
-      className={`modal ${isOpen ? 'block' : 'hidden'}`}
+      className={`modal ${isOpen ? 'block' : 'hidden'}  h-[600px] my-[160px]`}
       tabIndex="-1"
       role="dialog"
     >
@@ -49,13 +50,16 @@ const Modal = ({ isOpen, onClose, onSave, inputFields }) => {
           <div className="modal-body">
             <form>
               {inputFields.map((field) => (
-                <div className="form-group" key={field}>
-                  <label htmlFor={field}>
+                <div className="mb-4" key={field}>
+                  <label
+                    htmlFor={field}
+                    className="block text-sm font-medium text-gray-700"
+                  >
                     {field.charAt(0).toUpperCase() + field.slice(1)}:
                   </label>
                   <input
                     type="text"
-                    className="form-control"
+                    className="mt-1 p-2 border rounded-md w-full"
                     id={field}
                     value={formData[field]}
                     onChange={(e) => handleChange(field, e.target.value)}
@@ -68,12 +72,16 @@ const Modal = ({ isOpen, onClose, onSave, inputFields }) => {
           <div className="modal-footer">
             <button
               type="button"
-              className="btn btn-success"
+              className="bg-green-500 text-white px-4 py-2 rounded-md mr-2"
               onClick={saveEntry}
             >
               Save
             </button>
-            <button type="button" className="btn btn-danger" onClick={onClose}>
+            <button
+              type="button"
+              className="bg-red-500 text-white px-4 py-2 rounded-md"
+              onClick={onClose}
+            >
               Close
             </button>
           </div>
