@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Initial from './pages/Initial';
 import TableTemplate from './components/TableTemplate';
+import Testing from './pages/Testing';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -39,6 +40,11 @@ const router = createBrowserRouter([
       {
         path: '/temp',
         element: <TableTemplate></TableTemplate>,
+        errorElement: <h1>Sda</h1>,
+      },
+      {
+        path: '/modal',
+        element: <Testing></Testing>,
         errorElement: <h1>Sda</h1>,
       },
     ],
