@@ -10,7 +10,7 @@ const Sidebar = () => {
   const handleLinkClick = (index) => {
     setActiveLink(index);
   };
-  const linkTexts = ['Home', 'Table', 'Temp', 'Modal', 'Losade', 'Losade'];
+  const linkTexts = ['Home', 'Table', 'Temp', 'Modal', 'Customer', 'Losade'];
   return (
     <div id="sidebar" className="sidebar w-1/5 h-96 flex flex-col mt-5">
       {linkTexts.map((text, index) => {
