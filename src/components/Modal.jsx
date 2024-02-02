@@ -36,7 +36,7 @@ const Modal = ({ isOpen, onClose, onSave, inputFields }) => {
 
   return (
     <div
-      className={`modal ${isOpen ? 'block' : 'hidden'}  h-[600px] my-[160px]`}
+      className={`modal ${isOpen ? 'block' : 'hidden'}  h-[800px] my-[60px]`}
       tabIndex="-1"
       role="dialog"
     >

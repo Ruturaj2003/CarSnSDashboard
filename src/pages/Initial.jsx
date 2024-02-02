@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router';
 import Navbar from '../components/Navbar';
 import Sidebar from '../components/Sidebar';
+import Footer from '../components/Footer';
 
 const Initial = () => {
   return (
@@ -12,6 +13,7 @@ const Initial = () => {
         {/* <Table></Table> */}
         {/* <Home></Home> */}
       </div>
+      <Footer></Footer>
     </>
   );
 };

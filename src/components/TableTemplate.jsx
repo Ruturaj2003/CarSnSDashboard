@@ -54,7 +54,7 @@ const TableTemplate = ({}) => {
                               return (
                                 <td
                                   key={nanoid()}
-                                  className="py-2 overflow-hidden overflow-ellipsis "
+                                  className="py-2 overflow-hidden overflow-ellipsis font-tableD "
                                 >
                                   {value}
                                 </td>
