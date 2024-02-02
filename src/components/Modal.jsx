@@ -20,17 +20,18 @@ const Modal = ({ isOpen, onClose, onSave, inputFields }) => {
   };
 
   const saveEntry = () => {
-    axios
-      .post('your_api_endpoint', formData)
-      .then((response) => {
-        console.log(response.data);
-        onClose(); // Close the modal after successful save
-        onSave(); //perform additional actions after save if needed
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-        // Handle errors here
-      });
+    // axios
+    //   .post('your_api_endpoint', formData)
+    //   .then((response) => {
+    //     console.log(response.data);
+    //      //perform additional actions after save if needed
+    //   })
+    //   .catch((error) => {
+    //     console.error('Error:', error);
+    //     // Handle errors here
+    //   });
+    onClose(); // Close the modal after successful save
+    onSave();
   };
 
   return (

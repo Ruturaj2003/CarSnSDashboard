@@ -2,7 +2,8 @@ import { nanoid } from 'nanoid';
 import Modal from './Modal';
 import { useState } from 'react';
 
-const TableTemplate = () => {
+const TableTemplate = ({}) => {
+  // Input Must be tableHeadings,and array of data
   const tableHeadings = ['Name', 'Email', 'Mobile no.', 'Address'];
   let data = [];
   const inputFields = ['name', 'email', 'mobile', 'address', 'id'];
@@ -77,7 +78,7 @@ const TableTemplate = () => {
               isOpen={isOpen}
               onSave={onSave}
               onClose={handleClose}
-              inputFields={inputFields}
+              inputFields={tableHeadings}
             ></Modal>
           </>
         ) : (
