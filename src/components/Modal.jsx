@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const Modal = ({ isOpen, onClose, onSave, inputFields }) => {
+const Modal = ({ isOpen, onClose, onSave, inputFields, url, action }) => {
   // Create an initial state object with empty values for each form field
   const initialState = Object.fromEntries(
     inputFields.map((field) => [field, ''])
@@ -19,17 +19,32 @@ const Modal = ({ isOpen, onClose, onSave, inputFields }) => {
     }));
   };
 
-  const saveEntry = () => {
-    // axios
-    //   .post('your_api_endpoint', formData)
-    //   .then((response) => {
-    //     console.log(response.data);
-    //      //perform additional actions after save if needed
-    //   })
-    //   .catch((error) => {
-    //     console.error('Error:', error);
-    //     // Handle errors here
-    //   });
+  const saveEntry = (id) => {
+    if (action === 'POST') {
+      axios
+        .post(url, formData)
+        .then((response) => {
+          console.log(response.data);
+          //perform additional actions after save if needed
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+          // Handle errors here
+        });
+      return;
+    }
+    if (action === 'PUT') {
+      axios
+        .put(url + id, formData)
+        .then((response) => {
+          console.log(response.data);
+          //perform additional actions after save if needed
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+          // Handle errors here
+        });
+    }
     onClose(); // Close the modal after successful save
     onSave();
   };

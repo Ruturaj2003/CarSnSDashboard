@@ -1,15 +1,72 @@
 import { nanoid } from 'nanoid';
 import Modal from './Modal';
-import { useState } from 'react';
+import { FaEdit } from 'react-icons/fa';
+import { MdDelete } from 'react-icons/md';
+import { useEffect, useState } from 'react';
 
-const TableTemplate = ({}) => {
+const TableTemplate = ({ url, tableHeadings }) => {
   // Input Must be tableHeadings,and array of data
-  const tableHeadings = ['Name', 'Email', 'Mobile no.', 'Address'];
-  let data = [];
-  const inputFields = ['name', 'email', 'mobile', 'address', 'id'];
 
   const [isOpen, setisOpen] = useState(false);
+  const [data, setData] = useState([
+    {
+      id: 11,
+      name: 'RAY',
+      phone: 99903443,
+      email: 'rutaut$hsad',
+      lic: 787868,
+    },
+  ]);
+  const [loading, setLoading] = useState(false);
+  let action = '';
+  const fetchData = async () => {
+    try {
+      setLoading(true);
+      const res = await axios.get(url);
+      const responseData = res.data;
+      setData(responseData);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleCreate = () => {
+    action = 'POST';
+    console.log(action);
+    handleOpen();
+  };
+  const handleEdit = () => {
+    action = 'PUT';
+    console.log(action);
+    handleOpen();
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      setLoading(true);
+      const response = await axios.delete(`https://example.com/api/data/${id}`);
+      if (response.status === 200) {
+        console.log(`Successfully deleted data with ID ${id}`);
+        fetchData(); // Call fetchData to update the data after deletion
+      } else {
+        console.error(`Failed to delete data with ID ${id}`);
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  // For intial Fetch
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  // Passed to modal
   const onSave = () => {
+    fetchData();
     console.log('Data Refetched');
   };
   const handleOpen = () => {
@@ -18,6 +75,7 @@ const TableTemplate = ({}) => {
   const handleClose = () => {
     setisOpen(false);
   };
+
   return (
     <>
       {/* Table Containers */}
@@ -54,16 +112,21 @@ const TableTemplate = ({}) => {
                               return (
                                 <td
                                   key={nanoid()}
-                                  className="py-2 overflow-hidden overflow-ellipsis font-tableD "
+                                  className="py-2 overflow-hidden overflow-ellipsis font-tableD text-center "
                                 >
                                   {value}
                                 </td>
                               );
                             })}
-                            <td>
-                              <button key={nanoid()}>Edit</button>
-                              <button key={nanoid()}>sd</button>
-                              <button key={nanoid()}>dsd</button>
+                            <td className="flex justify-evenly items-center">
+                              <button key={nanoid()}>
+                                {' '}
+                                <FaEdit className="text-[#797979]"></FaEdit>
+                              </button>
+                              <button key={nanoid()}>
+                                {' '}
+                                <MdDelete className="text-[#797979]"></MdDelete>
+                              </button>
                             </td>
                           </tr>
                         );
@@ -79,6 +142,8 @@ const TableTemplate = ({}) => {
               onSave={onSave}
               onClose={handleClose}
               inputFields={tableHeadings}
+              url={url}
+              action={action}
             ></Modal>
           </>
         ) : (
@@ -98,7 +163,7 @@ const TableTemplate = ({}) => {
                     );
                   })}
                   <th className="w-[140px] bg-[#0066AD] text-center">
-                    <button onClick={handleOpen}>Create</button>
+                    <button onClick={handleCreate}>Create</button>
                   </th>
                 </tr>
               </thead>
@@ -111,15 +176,27 @@ const TableTemplate = ({}) => {
                           return (
                             <td
                               key={nanoid()}
-                              className="py-2 overflow-hidden overflow-ellipsis "
+                              className="py-2 overflow-hidden overflow-ellipsis  text-center"
                             >
                               {value}
                             </td>
                           );
                         })}
                         <td className="flex justify-evenly items-center">
-                          <button key={nanoid()}>Edit</button>
-                          <button key={nanoid()}>Delete</button>
+                          <button key={nanoid()} onClick={handleEdit}>
+                            {' '}
+                            <FaEdit className="text-[#797979]"></FaEdit>
+                          </button>
+                          <button
+                            key={nanoid()}
+                            onClick={() => handleDelete(item.id)}
+                          >
+                            {' '}
+                            <MdDelete
+                              className="text-[#797979]
+                            "
+                            ></MdDelete>
+                          </button>
                         </td>
                       </tr>
                     );

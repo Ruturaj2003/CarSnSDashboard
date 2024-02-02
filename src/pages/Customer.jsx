@@ -1,7 +1,13 @@
+import TableTemplate from '../components/TableTemplate';
+
 const Customer = () => {
   const url = 'https://api/customer';
-  const tableHeaders = ['Customer Id', 'Name', 'Phone', 'E-mail', 'LIC Num'];
+  const tableHeadings = ['Customer Id', 'Name', 'Phone', 'E-mail', 'LIC Num'];
 
-  return <></>;
+  return (
+    <>
+      <TableTemplate url={url} tableHeadings={tableHeadings}></TableTemplate>
+    </>
+  );
 };
 export default Customer;

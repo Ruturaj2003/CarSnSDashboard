@@ -36,25 +36,6 @@ const Table = ({}) => {
     }
   };
 
-  const handleUpdate = async (id, updatedData) => {
-    try {
-      setLoading(true);
-      const response = await axios.put(
-        `https://example.com/api/data/${id}`,
-        updatedData
-      );
-      if (response.status === 200) {
-        console.log(`Successfully updated data with ID ${id}`);
-        fetchData(); // Call fetchData to update the data after modification
-      } else {
-        console.error(`Failed to update data with ID ${id}`);
-      }
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
-  };
   const getSingleItem = async (id) => {
     try {
       setLoading(true);
@@ -122,3 +103,23 @@ export default Table;
 // 80left
 // 50 top
 // 60 bottm
+
+// const handleUpdate = async (id, updatedData) => {
+//   try {
+//     setLoading(true);
+//     const response = await axios.put(
+//       `https://example.com/api/data/${id}`,
+//       updatedData
+//     );
+//     if (response.status === 200) {
+//       console.log(`Successfully updated data with ID ${id}`);
+//       fetchData(); // Call fetchData to update the data after modification
+//     } else {
+//       console.error(`Failed to update data with ID ${id}`);
+//     }
+//   } catch (error) {
+//     console.log(error);
+//   } finally {
+//     setLoading(false);
+//   }
+// };
