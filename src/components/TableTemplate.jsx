@@ -118,14 +118,14 @@ const TableTemplate = ({ url, tableHeadings }) => {
                                 </td>
                               );
                             })}
-                            <td className="flex justify-evenly items-center">
+                            <td className="flex justify-evenly items-center py-2">
                               <button key={nanoid()}>
                                 {' '}
-                                <FaEdit className="text-[#797979]"></FaEdit>
+                                <FaEdit className="text-[#797979] text-xl"></FaEdit>
                               </button>
                               <button key={nanoid()}>
                                 {' '}
-                                <MdDelete className="text-[#797979]"></MdDelete>
+                                <MdDelete className=" text-xl text-[#797979]"></MdDelete>
                               </button>
                             </td>
                           </tr>
@@ -182,10 +182,10 @@ const TableTemplate = ({ url, tableHeadings }) => {
                             </td>
                           );
                         })}
-                        <td className="flex justify-evenly items-center">
+                        <td className="flex justify-evenly  py-2 items-center">
                           <button key={nanoid()} onClick={handleEdit}>
                             {' '}
-                            <FaEdit className="text-[#797979]"></FaEdit>
+                            <FaEdit className="text-[#797979] text-xl"></FaEdit>
                           </button>
                           <button
                             key={nanoid()}
@@ -193,7 +193,7 @@ const TableTemplate = ({ url, tableHeadings }) => {
                           >
                             {' '}
                             <MdDelete
-                              className="text-[#797979]
+                              className="text-[#797979] text-xl
                             "
                             ></MdDelete>
                           </button>
