@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import axios from 'axios';
-
-const Table = () => {
+import { FaEdit } from 'react-icons/fa';
+import { MdDelete } from 'react-icons/md';
+const Table = ({}) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -101,8 +102,12 @@ const Table = () => {
                   <button className="" key={100 + rowIndex}>
                     ADS
                   </button>
-                  <button key={200 + rowIndex}>Edit</button>
-                  <button key={300 + rowIndex}>WP</button>
+                  <button key={200 + rowIndex}>
+                    <FaEdit className="text-[#797979]"></FaEdit>
+                  </button>
+                  <button key={300 + rowIndex}>
+                    <MdDelete className="text-[#797979]"></MdDelete>
+                  </button>
                 </td>
               </tr>
             ))}
