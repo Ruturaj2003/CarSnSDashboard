@@ -79,7 +79,7 @@ const TableTemplate = ({ url, tableHeadings }) => {
   return (
     <>
       {/* Table Containers */}
-      <div className="rounded-lg mt-5 mr-16 w-full h-[600px] overflow-hidden">
+      <div className="rounded-sm mt-5 mr-16 w-full h-[600px] overflow-hidden">
         {isOpen ? (
           <>
             <div className="relative  bg-slate-200 w-full h-full opacity-50">
