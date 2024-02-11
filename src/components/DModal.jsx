@@ -1,6 +1,14 @@
 import { useState } from 'react';
 
-const DModal = ({ isOpen, formTitle, inputFields, setModal, setOverlay }) => {
+const DModal = ({
+  isOpen,
+  formTitle,
+  inputFields,
+  setModal,
+  setOverlay,
+  action,
+  fetchData,
+}) => {
   const initialState = Object.fromEntries(
     inputFields.map((field) => [field, ''])
   );
@@ -14,8 +22,20 @@ const DModal = ({ isOpen, formTitle, inputFields, setModal, setOverlay }) => {
       [field]: value,
     }));
   };
-
+  const closeAll = () => {
+    setModal(false);
+    setOverlay(false);
+  };
   const handleSave = async () => {
+    if (
+      !formData ||
+      !formData['Customer Id'] ||
+      !formData['Name'] ||
+      !formData['Phone']
+    ) {
+      console.error('Invalid form data. Please check the required fields.');
+      return;
+    }
     // Form Data
     //     {
     //     "Customer Id": "123",
@@ -24,13 +44,28 @@ const DModal = ({ isOpen, formTitle, inputFields, setModal, setOverlay }) => {
     //     "E-mail": "we3",
     //     "LIC Num": "1244"
     // }
-    try {
-      // Perform validation
-      const response = await axios.post('/your-api-endpoint', formData);
-      console.log('Save successful:', response.data);
-      // Call Fetch Function
-    } catch (error) {
-      console.error('Error during save:', error);
+    if (action === 'PUT') {
+      try {
+        // Perform validation
+        const response = await axios.put('/your-api-endpoint', formData);
+        console.log('Edit successful:', response.data);
+        // Call Fetch Function
+        fetchData();
+        closeAll();
+      } catch (error) {
+        console.error('Error during Edit', error);
+      }
+    }
+    if (action === 'POST') {
+      try {
+        // Perform validation
+        const response = await axios.post('/your-api-endpoint', formData);
+        console.log('Save successful:', response.data);
+        // Call Fetch Function
+        closeAll();
+      } catch (error) {
+        console.error('Error during save:', error);
+      }
     }
   };
   return (
@@ -76,10 +111,7 @@ const DModal = ({ isOpen, formTitle, inputFields, setModal, setOverlay }) => {
           <button
             type="button"
             className="bg-red-500 text-white px-4 py-2 rounded-md"
-            onClick={() => {
-              setModal(false);
-              setOverlay(false);
-            }}
+            onClick={closeAll}
           >
             Close
           </button>
