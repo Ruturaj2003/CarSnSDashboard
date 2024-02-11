@@ -5,10 +5,10 @@ import DModal from '../DModal';
 const TableFrame = ({ url, tableHeadings }) => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
-  const [overlayOpen, setOverlayOpen] = useState(true);
+  const [overlayOpen, setOverlayOpen] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const [editModalData, setEditModalData] = useState(null);
-  const [createModal, setCreateModal] = useState(true);
+  const [createModal, setCreateModal] = useState(false);
 
   const fetchData = async () => {
     const abortController = new AbortController();
