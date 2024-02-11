@@ -56,6 +56,9 @@ const TableFrame = ({ url, tableHeadings }) => {
               <DModal
                 isOpen={createModal}
                 formTitle={'Create Customer'}
+                inputFields={tableHeadings}
+                setModal={setCreateModal}
+                setOverlay={setOverlayOpen}
               ></DModal>
               {/* Create Modal */}
             </>
