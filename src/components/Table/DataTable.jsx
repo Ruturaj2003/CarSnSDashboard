@@ -8,6 +8,7 @@ const DataTable = ({ tableHeadings, data, handleModalOpen }) => {
         <TableHeader
           handleModalOpen={handleModalOpen}
           tableHeadings={tableHeadings}
+          // Test
         />
         <tbody>
           {data.map((item, index) => (
