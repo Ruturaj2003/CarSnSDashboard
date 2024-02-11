@@ -8,7 +8,7 @@ const Hero1 = () => {
         alt=""
       />
       <div className="absolute right-6 bottom-[200px] text-white">
-        <h1 className="text-8xl font-tableH">
+        <h1 className="text-8xl font-heroFont">
           Sheer Driving <span className="font-bold"> Pleasure </span>{' '}
         </h1>
       </div>

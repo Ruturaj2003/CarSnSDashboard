@@ -7,6 +7,7 @@ export default {
       tableD: ['Nunito', 'sans-serif'],
       tableH: ['Montserrat', 'system-ui'],
       homeT: ['Lato', 'sans'],
+      heroFont: ['Petit Formal Script', 'cursive'],
     },
     extend: {},
   },
