@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import DataTable from './DataTable';
+import DModal from '../DModal';
 
 const TableFrame = ({ url, tableHeadings }) => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
-  const [overlayOpen, setOverlayOpen] = useState(false);
+  const [overlayOpen, setOverlayOpen] = useState(true);
   const [editModal, setEditModal] = useState(false);
-  const [createModal, setCreateModal] = useState(false);
+  const [createModal, setCreateModal] = useState(true);
 
   const fetchData = async () => {
     const abortController = new AbortController();
@@ -44,9 +45,18 @@ const TableFrame = ({ url, tableHeadings }) => {
         <>
           {overlayOpen ? (
             <>
-              <div className="relative  bg-slate-200 w-full h-full opacity-50"></div>
+              <div className="relative  bg-slate-200 w-full h-full opacity-50">
+                <DataTable
+                  data={data}
+                  tableHeadings={tableHeadings}
+                ></DataTable>
+              </div>
 
               {/* Edit Modal */}
+              <DModal
+                isOpen={createModal}
+                formTitle={'Create Customer'}
+              ></DModal>
               {/* Create Modal */}
             </>
           ) : (
