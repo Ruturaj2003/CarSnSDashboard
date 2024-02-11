@@ -19,10 +19,10 @@ const DModal = ({
     if (rowData) {
       const updatedFormData = {};
       inputFields.forEach((field) => {
-        updatedFormData[field.name] = rowData[field.name];
+        updatedFormData[field.name] =
+          rowData[field.name] !== undefined ? rowData[field.name] : '';
       });
 
-      // Set the updated form data
       setFormData(updatedFormData);
     }
   }, [rowData]);

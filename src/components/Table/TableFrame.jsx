@@ -71,7 +71,7 @@ const TableFrame = ({ url, tableHeadings }) => {
                 inputFields={tableHeadings}
                 setModal={setCreateModal}
                 setOverlay={setOverlayOpen}
-                rowData={editModalData}
+                rowData={{}}
                 action={'POST'}
                 fetchData={fetchData}
               ></DModal>
