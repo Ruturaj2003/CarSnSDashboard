@@ -1,3 +1,6 @@
+import TableHeader from './TableHeader';
+import TableRow from './TableRow';
+
 const DataTable = ({ tableHeadings, data }) => {
   return (
     <div className="h-full bg-slate-100 overflow-auto">

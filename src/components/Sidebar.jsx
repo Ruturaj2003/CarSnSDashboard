@@ -10,7 +10,14 @@ const Sidebar = () => {
   const handleLinkClick = (index) => {
     setActiveLink(index);
   };
-  const linkTexts = ['Home', 'Table', 'Temp', 'Modal', 'Customer', 'Losade'];
+  const linkTexts = [
+    'Home',
+    'Customer',
+    'losade',
+    'losade',
+    'losade',
+    'Losade',
+  ];
   return (
     <div id="sidebar" className="sidebar w-1/5 h-96 flex flex-col mt-5">
       {linkTexts.map((text, index) => {
@@ -19,7 +26,7 @@ const Sidebar = () => {
           <Link
             key={index}
             to={'/' + path}
-            className={`m-3 text-2xl ${index === activeLink ? 'active' : ''}`}
+            className={`m-3   text-2xl ${index === activeLink ? 'active' : ''}`}
             onClick={() => handleLinkClick(index)}
           >
             {text}

@@ -1,12 +1,9 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Sidebar from './components/Sidebar';
-import Table from './components/Table';
+
 import Home from './pages/Home';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Initial from './pages/Initial';
-import TableTemplate from './components/TableTemplate';
-import Testing from './pages/Testing';
+
 import Customer from './pages/Customer';
 
 const queryClient = new QueryClient({
@@ -33,21 +30,13 @@ const router = createBrowserRouter([
         element: <Home></Home>,
         errorElement: <h1>Sda</h1>,
       },
+
       {
-        path: '/table',
-        element: <Table></Table>,
-        errorElement: <h1>Sda</h1>,
-      },
-      {
-        path: '/temp',
+        path: '/losade',
         element: <h1>asds</h1>,
         errorElement: <h1>Sda</h1>,
       },
-      {
-        path: '/modal',
-        element: <Testing></Testing>,
-        errorElement: <h1>Sda</h1>,
-      },
+
       {
         path: '/customer',
         element: <Customer></Customer>,

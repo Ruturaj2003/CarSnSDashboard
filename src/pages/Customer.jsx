@@ -1,4 +1,4 @@
-import TableTemplate from '../components/TableTemplate';
+import TableFrame from '../components/Table/TableFrame';
 
 const Customer = () => {
   const url = 'https://api/customer';
@@ -6,7 +6,7 @@ const Customer = () => {
 
   return (
     <>
-      <TableTemplate url={url} tableHeadings={tableHeadings}></TableTemplate>
+      <TableFrame url={url} tableHeadings={tableHeadings}></TableFrame>
     </>
   );
 };
