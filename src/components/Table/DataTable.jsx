@@ -1,11 +1,14 @@
 import TableHeader from './TableHeader';
 import TableRow from './TableRow';
 
-const DataTable = ({ tableHeadings, data }) => {
+const DataTable = ({ tableHeadings, data, handleModalOpen }) => {
   return (
     <div className="h-full bg-slate-100 overflow-auto">
       <table className="w-full table-fixed shadow-md rounded bg-white">
-        <TableHeader tableHeadings={tableHeadings} />
+        <TableHeader
+          handleModalOpen={handleModalOpen}
+          tableHeadings={tableHeadings}
+        />
         <tbody>
           {data.map((item, index) => (
             <TableRow key={index} item={item} />

@@ -37,6 +37,11 @@ const TableFrame = ({ url, tableHeadings }) => {
     };
   };
 
+  const handleModalOpen = () => {
+    setOverlayOpen(true);
+    setCreateModal(true);
+  };
+
   return (
     <div className="rounded-sm mt-5 mr-16 w-full h-[600px] overflow-hidden">
       {loading ? (
@@ -47,6 +52,7 @@ const TableFrame = ({ url, tableHeadings }) => {
             <>
               <div className="relative  bg-slate-200 w-full h-full opacity-50">
                 <DataTable
+                  handleModalOpen={handleModalOpen}
                   data={data}
                   tableHeadings={tableHeadings}
                 ></DataTable>
@@ -74,7 +80,11 @@ const TableFrame = ({ url, tableHeadings }) => {
               {/* Create Modal */}
             </>
           ) : (
-            <DataTable data={data} tableHeadings={tableHeadings}></DataTable>
+            <DataTable
+              data={data}
+              handleModalOpen={handleModalOpen}
+              tableHeadings={tableHeadings}
+            ></DataTable>
           )}
         </>
       )}

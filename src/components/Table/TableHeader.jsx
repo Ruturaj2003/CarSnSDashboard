@@ -1,4 +1,4 @@
-const TableHeader = ({ tableHeadings }) => {
+const TableHeader = ({ tableHeadings, handleModalOpen }) => {
   return (
     <thead className="font-tableH bg-[#0066AD] text-white sticky top-0">
       <tr>
@@ -8,7 +8,7 @@ const TableHeader = ({ tableHeadings }) => {
           </th>
         ))}
         <th className="w-[140px] bg-[#0066AD] text-center">
-          <button>Create</button>
+          <button onClick={handleModalOpen}>Create</button>
         </th>
       </tr>
     </thead>
