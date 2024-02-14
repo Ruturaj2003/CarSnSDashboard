@@ -1,6 +1,6 @@
-import hero from '../../assets/hero.jpg';
+import hero from '../../assets/hero7.jpg';
 
-const Hero1 = () => {
+const Hero7 = () => {
   return (
     <>
       <img
@@ -16,4 +16,4 @@ const Hero1 = () => {
     </>
   );
 };
-export default Hero1;
+export default Hero7;
