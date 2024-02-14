@@ -28,7 +28,15 @@ const UserNavbar = () => {
             ))}
           </div>
         </div>
-        <div className="bg-slate-200 w-[200px] h-full"></div>
+        <div className=" w-[200px] h-full flex">
+          <div
+            className=" text-2xl text-white font-tableH my-auto   
+          cursor-pointer
+          mx-auto"
+          >
+            Log Out
+          </div>
+        </div>
       </div>
       <div className="bg-white mr-16 ml-16 h-[1px]"></div>
     </>
