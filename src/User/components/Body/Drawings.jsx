@@ -5,7 +5,7 @@ import { MdHexagon } from 'react-icons/md';
 import { FaCircle } from 'react-icons/fa';
 const Drawings = () => {
   return (
-    <div className=" flex justify-around items-center w-full h-[200px]">
+    <div className=" flex justify-around  bg-slate-100 items-center w-full h-[200px]">
       <FaDotCircle className=" text-6xl text-[#001C55]"></FaDotCircle>
       <BiSolidCircleHalf className="text-6xl text-[#00072D]"></BiSolidCircleHalf>
       <BsOctagonFill className="text-6xl text-[#001C55]"></BsOctagonFill>

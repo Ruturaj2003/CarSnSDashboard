@@ -7,8 +7,6 @@ import Hero5 from './components/Hero/Hero5';
 import Hero6 from './components/Hero/Hero6';
 import Hero7 from './components/Hero/Hero7';
 import { HomeBody } from './components/Body/HomeBody';
-import Drawings from './components/Body/drawings';
-import Reviews from './components/Body/Reviews';
 
 const UserHome = () => {
   const numOfHero = 7;
@@ -36,8 +34,6 @@ const UserHome = () => {
         {activeHero === 7 && <Hero7 />}
       </div>
       <HomeBody></HomeBody>
-      <Drawings></Drawings>
-      <Reviews></Reviews>
     </>
   );
 };
