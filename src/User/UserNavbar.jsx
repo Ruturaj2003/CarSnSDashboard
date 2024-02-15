@@ -21,7 +21,7 @@ const UserNavbar = () => {
                 key={index}
                 className={`h-full ${
                   index === 2 ? '2 ' : ''
-                }border-b-[2px] transition-all text-white duration-500    cursor-pointer  hover:border-blue-600 flex justify-center items-center`}
+                }border-b-[0px]  text-white    cursor-pointer   hover:border-blue-600 hover:border-b-[2px]  flex justify-center items-center`}
               >
                 <h1>{link}</h1>
               </div>
