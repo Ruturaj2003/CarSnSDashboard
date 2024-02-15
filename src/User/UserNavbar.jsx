@@ -23,7 +23,7 @@ const UserNavbar = () => {
                   index === 2 ? '2 ' : ''
                 }border-b-[0px]  text-white    cursor-pointer   hover:border-blue-600 hover:border-b-[4px]  flex justify-center items-center`}
               >
-                <h1>{link}</h1>
+                <h1 className="font-semibold">{link}</h1>
               </div>
             ))}
           </div>
