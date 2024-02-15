@@ -1,7 +1,7 @@
 import logo from './assets/logo.png';
 
 const UserNavbar = () => {
-  const navLinks = ['Losadae', 'Losadae', 'Losadae', 'Losadae', 'Losadae']; // Manually specified array
+  const navLinks = ['Browse Cars', 'Book Service', 'About', 'Contact', 'Help']; // Manually specified array
 
   return (
     <>
@@ -21,7 +21,7 @@ const UserNavbar = () => {
                 key={index}
                 className={`h-full ${
                   index === 2 ? '2 ' : ''
-                }border-b-[0px]  text-white    cursor-pointer   hover:border-blue-600 hover:border-b-[2px]  flex justify-center items-center`}
+                }border-b-[0px]  text-white    cursor-pointer   hover:border-blue-600 hover:border-b-[4px]  flex justify-center items-center`}
               >
                 <h1>{link}</h1>
               </div>
