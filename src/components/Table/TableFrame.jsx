@@ -70,6 +70,7 @@ const TableFrame = ({ url, tableHeadings }) => {
 
               {/* Edit Modal */}
               <DModal
+                url={url}
                 isOpen={createModal}
                 formTitle={'Create Customer'}
                 inputFields={tableHeadings}
@@ -80,6 +81,7 @@ const TableFrame = ({ url, tableHeadings }) => {
                 fetchData={fetchData}
               ></DModal>
               <DModal
+                url={url}
                 isOpen={editModal}
                 formTitle={'Edit Customer'}
                 inputFields={tableHeadings}

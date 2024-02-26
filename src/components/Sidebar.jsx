@@ -13,10 +13,10 @@ const Sidebar = () => {
   const linkTexts = [
     'Home',
     'Customer',
-    'losade',
-    'losade',
-    'losade',
-    'Losade',
+    'Employee',
+    'Cars',
+    'StockPile',
+    'Service',
   ];
   return (
     <div id="sidebar" className="sidebar w-1/5 h-96 flex flex-col mt-5">

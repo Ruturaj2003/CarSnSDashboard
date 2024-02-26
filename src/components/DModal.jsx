@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 const DModal = ({
+  url,
   isOpen,
   formTitle,
   inputFields,
@@ -12,10 +13,11 @@ const DModal = ({
   rowData,
 }) => {
   const initialState = Object.fromEntries(
-    inputFields.map((field) => [field, ''])
+    inputFields.map((field) => [field, rowData ? rowData[field] || '' : ''])
   );
   // Use state hook to manage the form data
   const [formData, setFormData] = useState(initialState);
+  console.log(rowData);
   useEffect(() => {
     if (rowData) {
       const updatedFormData = {};
@@ -60,7 +62,7 @@ const DModal = ({
     if (action === 'PUT') {
       try {
         // Perform validation
-        const response = await axios.put('/your-api-endpoint', formData);
+        const response = await axios.put(url, formData);
         console.log('Edit successful:', response.data);
         // Call Fetch Function
         fetchData();
@@ -72,7 +74,7 @@ const DModal = ({
     if (action === 'POST') {
       try {
         // Perform validation
-        const response = await axios.post('/your-api-endpoint', formData);
+        const response = await axios.post(url, formData);
         console.log('Save successful:', response.data);
         // Call Fetch Function
         closeAll();
