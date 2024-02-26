@@ -58,6 +58,8 @@ const TableFrame = ({ url, tableHeadings }) => {
             <>
               <div className="relative  bg-slate-200 w-full h-full opacity-50">
                 <DataTable
+                  url={url}
+                  fetchData={fetchData}
                   handleModalOpen={handleModalOpen}
                   handleEditModalOpen={handleEditModalOpen}
                   setEditModalData={setEditModalData}
@@ -91,6 +93,7 @@ const TableFrame = ({ url, tableHeadings }) => {
             </>
           ) : (
             <DataTable
+              url={url}
               data={data}
               handleModalOpen={handleModalOpen}
               handleEditModalOpen={handleEditModalOpen}

@@ -2,6 +2,8 @@ import TableHeader from './TableHeader';
 import TableRow from './TableRow';
 
 const DataTable = ({
+  url,
+  fetchData,
   tableHeadings,
   data,
   handleModalOpen,
@@ -21,7 +23,13 @@ const DataTable = ({
         />
         <tbody>
           {data.map((item, index) => (
-            <TableRow handleRowClick={handleRowClick} key={index} item={item} />
+            <TableRow
+              handleRowClick={handleRowClick}
+              key={index}
+              item={item}
+              url={url}
+              fetchData={fetchData}
+            />
           ))}
         </tbody>
       </table>
