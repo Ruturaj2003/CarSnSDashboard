@@ -18,7 +18,7 @@ const queryClient = new QueryClient({
 
 const router = createBrowserRouter([
   {
-    path: '/admin',
+    path: '/',
     element: <Initial />,
     errorElement: <h1>sorry GG</h1>,
     children: [
@@ -45,7 +45,7 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: '/',
+    path: '/user',
     element: <CustomerUI></CustomerUI>,
     errorElement: <h3>Something went BAD</h3>,
     children: [

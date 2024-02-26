@@ -21,7 +21,7 @@ const DataTable = ({
         />
         <tbody>
           {data.map((item, index) => (
-            <TableRow handleRowClick key={index} item={item} />
+            <TableRow handleRowClick={handleRowClick} key={index} item={item} />
           ))}
         </tbody>
       </table>

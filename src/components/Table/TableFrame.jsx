@@ -1,15 +1,17 @@
 import { useEffect, useState } from 'react';
 import DataTable from './DataTable';
 import DModal from '../DModal';
+import axios from 'axios';
 
 const TableFrame = ({ url, tableHeadings }) => {
+  console.log(url);
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   const [overlayOpen, setOverlayOpen] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const [editModalData, setEditModalData] = useState(null);
   const [createModal, setCreateModal] = useState(false);
-
+  const abortController = new AbortController();
   const fetchData = async () => {
     const abortController = new AbortController();
     try {
@@ -17,6 +19,7 @@ const TableFrame = ({ url, tableHeadings }) => {
       const { data: responseData } = await axios.get(url, {
         signal: abortController.signal,
       });
+      console.log(responseData);
       setData(responseData);
     } catch (error) {
       if (!abortController.signal.aborted) {
@@ -25,17 +28,6 @@ const TableFrame = ({ url, tableHeadings }) => {
     } finally {
       setLoading(false);
     }
-
-    useEffect(() => {
-      const cleanupFunction = fetchData();
-
-      return cleanupFunction;
-    }, []); // Empty dependency array to run only on mount and unmount
-
-    return () => {
-      abortController.abort();
-      // Cancel the request if the component is unmounted
-    };
   };
 
   const handleModalOpen = () => {
@@ -46,6 +38,16 @@ const TableFrame = ({ url, tableHeadings }) => {
     setOverlayOpen(true);
     setEditModal(true);
   };
+
+  useEffect(() => {
+    fetchData();
+
+    return () => {
+      // Cleanup function
+      abortController.abort();
+      // Cancel the request if the component is unmounted
+    };
+  }, []);
   return (
     <div className="rounded-sm mt-5 mr-16 w-full h-[600px] overflow-hidden">
       {loading ? (
