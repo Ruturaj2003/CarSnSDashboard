@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const DModal = ({
   isOpen,
@@ -8,12 +8,24 @@ const DModal = ({
   setOverlay,
   action,
   fetchData,
+  rowData,
 }) => {
   const initialState = Object.fromEntries(
     inputFields.map((field) => [field, ''])
   );
   // Use state hook to manage the form data
   const [formData, setFormData] = useState(initialState);
+  useEffect(() => {
+    if (rowData) {
+      const updatedFormData = {};
+      inputFields.forEach((field) => {
+        updatedFormData[field.name] =
+          rowData[field.name] !== undefined ? rowData[field.name] : '';
+      });
+
+      setFormData(updatedFormData);
+    }
+  }, [rowData]);
 
   const handleChange = (field, value) => {
     // Update the form data state based on the previous state

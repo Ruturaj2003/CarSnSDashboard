@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid';
 
-const TableRow = ({ item }) => {
+const TableRow = ({ item, handleRowClick }) => {
   return (
     <tr>
       {Object.values(item).map((value) => (
@@ -12,7 +12,7 @@ const TableRow = ({ item }) => {
         </td>
       ))}
       <td className="flex justify-evenly py-2 items-center">
-        <button key={nanoid()}>
+        <button key={nanoid()} onClick={() => handleRowClick(item)}>
           <FaEdit className="text-[#797979] text-xl" />
         </button>
         <button key={nanoid()}>

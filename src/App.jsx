@@ -5,6 +5,8 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Initial from './pages/Initial';
 
 import Customer from './pages/Customer';
+import CustomerUI from './User/CustomerUI';
+import UserHome from './User/UserHome';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -16,31 +18,41 @@ const queryClient = new QueryClient({
 
 const router = createBrowserRouter([
   {
-    path: '/',
-    element: <Initial></Initial>,
+    path: '/admin',
+    element: <Initial />,
     errorElement: <h1>sorry GG</h1>,
     children: [
       {
         index: true,
-        element: <Home></Home>,
+        element: <Home />,
         errorElement: <h1>Sda</h1>,
       },
       {
-        path: '/home',
-        element: <Home></Home>,
+        path: 'home',
+        element: <Home />,
         errorElement: <h1>Sda</h1>,
       },
-
       {
-        path: '/losade',
+        path: 'losade',
         element: <h1>asds</h1>,
         errorElement: <h1>Sda</h1>,
       },
-
       {
-        path: '/customer',
-        element: <Customer></Customer>,
+        path: 'customer',
+        element: <Customer />,
         errorElement: <h1>Sda</h1>,
+      },
+    ],
+  },
+  {
+    path: '/',
+    element: <CustomerUI></CustomerUI>,
+    errorElement: <h3>Something went BAD</h3>,
+    children: [
+      {
+        index: true,
+        element: <UserHome></UserHome>,
+        errorElement: <h1>Error in Home</h1>,
       },
     ],
   },

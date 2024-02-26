@@ -7,8 +7,17 @@ export default {
       tableD: ['Nunito', 'sans-serif'],
       tableH: ['Montserrat', 'system-ui'],
       homeT: ['Lato', 'sans'],
+      heroFont: ['Petit Formal Script', 'cursive'],
+      slogan: ['Bowlby One', ' sans-serif'],
+      normal: ['Libre Baskerville', 'serif'],
     },
-    extend: {},
+    extend: {
+      colors: {
+        'pri-blue': '#001c55',
+        'sec-blue': '#00072d',
+        'ter-blue': '#0e6ba8',
+      },
+    },
   },
   plugins: [],
 };

@@ -5,9 +5,10 @@ import DModal from '../DModal';
 const TableFrame = ({ url, tableHeadings }) => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
-  const [overlayOpen, setOverlayOpen] = useState(true);
+  const [overlayOpen, setOverlayOpen] = useState(false);
   const [editModal, setEditModal] = useState(false);
-  const [createModal, setCreateModal] = useState(true);
+  const [editModalData, setEditModalData] = useState(null);
+  const [createModal, setCreateModal] = useState(false);
 
   const fetchData = async () => {
     const abortController = new AbortController();
@@ -41,7 +42,10 @@ const TableFrame = ({ url, tableHeadings }) => {
     setOverlayOpen(true);
     setCreateModal(true);
   };
-
+  const handleEditModalOpen = () => {
+    setOverlayOpen(true);
+    setEditModal(true);
+  };
   return (
     <div className="rounded-sm mt-5 mr-16 w-full h-[600px] overflow-hidden">
       {loading ? (
@@ -53,6 +57,8 @@ const TableFrame = ({ url, tableHeadings }) => {
               <div className="relative  bg-slate-200 w-full h-full opacity-50">
                 <DataTable
                   handleModalOpen={handleModalOpen}
+                  handleEditModalOpen={handleEditModalOpen}
+                  setEditModalData={setEditModalData}
                   data={data}
                   tableHeadings={tableHeadings}
                 ></DataTable>
@@ -65,6 +71,7 @@ const TableFrame = ({ url, tableHeadings }) => {
                 inputFields={tableHeadings}
                 setModal={setCreateModal}
                 setOverlay={setOverlayOpen}
+                rowData={{}}
                 action={'POST'}
                 fetchData={fetchData}
               ></DModal>
@@ -74,6 +81,7 @@ const TableFrame = ({ url, tableHeadings }) => {
                 inputFields={tableHeadings}
                 setModal={setEditModal}
                 setOverlay={setOverlayOpen}
+                rowData={editModalData}
                 action={'PUT'}
                 fetchData={fetchData}
               ></DModal>
@@ -83,6 +91,8 @@ const TableFrame = ({ url, tableHeadings }) => {
             <DataTable
               data={data}
               handleModalOpen={handleModalOpen}
+              handleEditModalOpen={handleEditModalOpen}
+              setEditModalData={setEditModalData}
               tableHeadings={tableHeadings}
             ></DataTable>
           )}
