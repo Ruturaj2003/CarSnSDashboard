@@ -25,6 +25,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
+
         element: <Home />,
         errorElement: <h1>Sda</h1>,
       },
@@ -57,14 +58,19 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: '/user/bookservice',
+    element: <Service></Service>,
+    errorElement: <h1>Sda</h1>,
+  },
 ]);
 
 function App() {
   return (
-    <Service/>
-    // <QueryClientProvider client={queryClient}>
-    //   <RouterProvider router={router}></RouterProvider>
-    // </QueryClientProvider>
+    // <Service />
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router}></RouterProvider>
+    </QueryClientProvider>
   );
 }
 
