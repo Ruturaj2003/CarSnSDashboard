@@ -1,24 +1,32 @@
-import axios from 'axios';
+import React from 'react';
 import { nanoid } from 'nanoid';
+import axios from 'axios';
 import { FaEdit } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
+import { useMutation, useQuery, useQueryClient } from 'react-query';
+// import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
-const TableRow = ({ item, handleRowClick, url, fetchData }) => {
-  const handleDelete = async (id) => {
-    try {
-      // Replace 'your-api-endpoint' with your actual API endpoint for deleting a customer
-      const response = await axios.delete(`${url}/${id}`);
+const TableRow = ({ item, handleRowClick, url }) => {
+  const queryClient = useQueryClient();
 
-      // Assuming you want to do something after successful deletion
-      console.log(' deleted successfully', response.data);
-
-      // Call the fetchData function to update the data
-      fetchData();
-    } catch (error) {
-      // Handle error
-      console.error('Error deleting customer', error);
+  const deltMut = useMutation(
+    (id) => {
+      axios.delete(`${url}/${id}`);
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(['tableData', url]);
+        console.log('reftech');
+      },
+      onError: (err) => {
+        console.error('Error during delete:', err);
+      },
     }
+  );
+  const handleDelete = () => {
+    deltMut.mutate(item.id);
   };
+
   return (
     <tr>
       {Object.values(item).map((value) => (
@@ -33,11 +41,12 @@ const TableRow = ({ item, handleRowClick, url, fetchData }) => {
         <button key={nanoid()} onClick={() => handleRowClick(item)}>
           <FaEdit className="text-[#797979] text-xl" />
         </button>
-        <button key={nanoid()} onClick={() => handleDelete(item.id)}>
+        <button key={nanoid()} onClick={() => handleDelete()}>
           <MdDelete className="text-xl text-[#797979]" />
         </button>
       </td>
     </tr>
   );
 };
+
 export default TableRow;

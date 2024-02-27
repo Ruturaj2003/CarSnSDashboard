@@ -3,12 +3,12 @@ import TableRow from './TableRow';
 
 const DataTable = ({
   url,
-  fetchData,
   tableHeadings,
   data,
   handleModalOpen,
   handleEditModalOpen,
   setEditModalData,
+  handleDelete,
 }) => {
   const handleRowClick = (rowData) => {
     setEditModalData(rowData);
@@ -25,10 +25,10 @@ const DataTable = ({
           {data.map((item, index) => (
             <TableRow
               handleRowClick={handleRowClick}
+              handleDelete={handleDelete}
               key={index}
               item={item}
               url={url}
-              fetchData={fetchData}
             />
           ))}
         </tbody>
