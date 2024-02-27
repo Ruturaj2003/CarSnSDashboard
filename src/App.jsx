@@ -9,10 +9,8 @@ import UserHome from './User/UserHome';
 
 import Service from './User/pages/Service';
 
-  
 import Employee from './pages/Employee';
 import { QueryClient, QueryClientProvider } from 'react-query';
-
 
 const queryClient = new QueryClient({
   defaultOptions: {
