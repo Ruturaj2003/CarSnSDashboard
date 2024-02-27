@@ -6,6 +6,9 @@ import Initial from './pages/Initial';
 import Customer from './pages/Customer';
 import CustomerUI from './User/CustomerUI';
 import UserHome from './User/UserHome';
+
+import Service from './User/pages/Service';
+
 import Employee from './pages/Employee';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
@@ -25,6 +28,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
+
         element: <Home />,
         errorElement: <h1>Sda</h1>,
       },
@@ -62,10 +66,16 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: '/user/bookservice',
+    element: <Service></Service>,
+    errorElement: <h1>Sda</h1>,
+  },
 ]);
 
 function App() {
   return (
+    // <Service />
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router}></RouterProvider>
     </QueryClientProvider>
