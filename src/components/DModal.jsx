@@ -1,5 +1,7 @@
+// import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useMutation, useQueryClient } from 'react-query';
 
 const DModal = ({
   url,
@@ -9,15 +11,37 @@ const DModal = ({
   setModal,
   setOverlay,
   action,
-  fetchData,
+
   rowData,
 }) => {
+  const queryClient = useQueryClient();
+
+  const editMutation = useMutation((formData) => axios.put(url, formData), {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['tableData', url]);
+      closeAll();
+    },
+    onError: (error) => {
+      console.error('Error during Edit', error);
+    },
+  });
+
+  const saveMutation = useMutation((formData) => axios.post(url, formData), {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['tableData', url]);
+      closeAll();
+    },
+    onError: (error) => {
+      console.error('Error during save:', error);
+    },
+  });
+
   const initialState = Object.fromEntries(
     inputFields.map((field) => [field, rowData ? rowData[field] || '' : ''])
   );
   // Use state hook to manage the form data
   const [formData, setFormData] = useState(initialState);
-  console.log(rowData);
+
   useEffect(() => {
     if (rowData) {
       const updatedFormData = {};
@@ -31,7 +55,6 @@ const DModal = ({
   }, [rowData]);
 
   const handleChange = (field, value) => {
-    // Update the form data state based on the previous state
     setFormData((prevData) => ({
       ...prevData,
       [field]: value,
@@ -41,46 +64,18 @@ const DModal = ({
     setModal(false);
     setOverlay(false);
   };
-  const handleSave = async () => {
-    if (
-      !formData ||
-      !formData['Customer Id'] ||
-      !formData['Name'] ||
-      !formData['Phone']
-    ) {
+  const handleSave = () => {
+    if (!formData) {
       console.error('Invalid form data. Please check the required fields.');
       return;
     }
-    // Form Data
-    //     {
-    //     "Customer Id": "123",
-    //     "Name": "Ray",
-    //     "Phone": "123",
-    //     "E-mail": "we3",
-    //     "LIC Num": "1244"
-    // }
+
     if (action === 'PUT') {
-      try {
-        // Perform validation
-        const response = await axios.put(url, formData);
-        console.log('Edit successful:', response.data);
-        // Call Fetch Function
-        fetchData();
-        closeAll();
-      } catch (error) {
-        console.error('Error during Edit', error);
-      }
+      editMutation.mutate(formData);
     }
+
     if (action === 'POST') {
-      try {
-        // Perform validation
-        const response = await axios.post(url, formData);
-        console.log('Save successful:', response.data);
-        // Call Fetch Function
-        closeAll();
-      } catch (error) {
-        console.error('Error during save:', error);
-      }
+      saveMutation.mutate(formData);
     }
   };
   return (

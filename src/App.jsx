@@ -1,18 +1,22 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import Home from './pages/Home';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Initial from './pages/Initial';
 
 import Customer from './pages/Customer';
 import CustomerUI from './User/CustomerUI';
 import UserHome from './User/UserHome';
+<<<<<<< HEAD
 import Service from './User/pages/Service';
+=======
+import Employee from './pages/Employee';
+import { QueryClient, QueryClientProvider } from 'react-query';
+>>>>>>> master
 
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 1000 * 60 * 3,
+      staleTime: 1000,
     },
   },
 });
@@ -42,6 +46,11 @@ const router = createBrowserRouter([
       {
         path: 'customer',
         element: <Customer />,
+        errorElement: <h1>Sda</h1>,
+      },
+      {
+        path: 'employee',
+        element: <Employee></Employee>,
         errorElement: <h1>Sda</h1>,
       },
     ],
