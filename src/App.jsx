@@ -7,6 +7,7 @@ import Initial from './pages/Initial';
 import Customer from './pages/Customer';
 import CustomerUI from './User/CustomerUI';
 import UserHome from './User/UserHome';
+import Employee from './pages/Employee';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -40,6 +41,11 @@ const router = createBrowserRouter([
       {
         path: 'customer',
         element: <Customer />,
+        errorElement: <h1>Sda</h1>,
+      },
+      {
+        path: 'employee',
+        element: <Employee></Employee>,
         errorElement: <h1>Sda</h1>,
       },
     ],

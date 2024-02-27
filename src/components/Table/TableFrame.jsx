@@ -3,7 +3,7 @@ import DataTable from './DataTable';
 import DModal from '../DModal';
 import axios from 'axios';
 
-const TableFrame = ({ url, tableHeadings }) => {
+const TableFrame = ({ url, tableHeadings, formName }) => {
   console.log(url);
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
@@ -72,7 +72,7 @@ const TableFrame = ({ url, tableHeadings }) => {
               <DModal
                 url={url}
                 isOpen={createModal}
-                formTitle={'Create Customer'}
+                formTitle={'Create ' + formName}
                 inputFields={tableHeadings}
                 setModal={setCreateModal}
                 setOverlay={setOverlayOpen}
@@ -83,7 +83,7 @@ const TableFrame = ({ url, tableHeadings }) => {
               <DModal
                 url={url}
                 isOpen={editModal}
-                formTitle={'Edit Customer'}
+                formTitle={'Edit ' + formName}
                 inputFields={tableHeadings}
                 setModal={setEditModal}
                 setOverlay={setOverlayOpen}
