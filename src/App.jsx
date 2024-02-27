@@ -12,7 +12,6 @@ import Service from './User/pages/Service';
 import Employee from './pages/Employee';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import Login from './pages/Login';
-import { errorMonitor } from 'events';
 
 const queryClient = new QueryClient({
   defaultOptions: {
