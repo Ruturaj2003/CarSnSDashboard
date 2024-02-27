@@ -11,6 +11,10 @@ import TextField from '@mui/material/TextField';
 import Divider from '@mui/material/Divider';
 import {FormControl, InputLabel, Select, MenuItem,} from '@mui/material';
 import Modal from '@mui/material/Modal';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Swal from 'sweetalert2';
+
 
 const style = {
   position: 'fixed',
@@ -38,17 +42,27 @@ const styles = {
 
 function Service() {
 
+  const [selectedService, setSelectedService] = useState('General');
+
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const [categoryOpen, setCategoryOpen] = React.useState(false);
+  const handleOn = () => setCategoryOpen(true);
+  const handleOff = () => setCategoryOpen(false);
 
   const [values, setValues] = useState({
     serviceType: '',
     phone: ''
   })
 
-  const handleChange = (event) => {
-    setValues({ ...values, [event.target.name]: event.target.value });
+  const handleServiceTypeChange = (event) => {
+    setSelectedService(event.target.value);
+  };
+  
+  const handlePhoneChange = (event) => {
+    setValues({ ...values, phone: event.target.value });
   };
 
   const [form, setform] = useState({
@@ -64,116 +78,273 @@ function Service() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setform({
+      ...form,
+      serviceType: selectedService,
+      phone: values.phone
+    });
     handleOpen();
   };
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    const arrivalDate = new Date().toISOString();
+    const currentDate = new Date();
+    const formattedDate = currentDate.toISOString(); 
 
     const data = {
       regNo: form.regNo,
       name: form.name,
       phone: form.phone,
       serviceType: form.serviceType,
-      arrivalDate: arrivalDate
-
+      currentDate: formattedDate,
     };
 
     try {
       await axios.post('http://localhost:8081/booking', data);
-  console.log('Product added successfully');
-  handleClose();
+      console.log('Product added successfully');
+      handleClose();
+      swalmasg();
 
-} catch (error) {
-  console.error('Error adding product:', error.response?.data || error.message);
-}
+    } catch (err) {
+      toast.error('Error in booking!', {
+        position: 'top-center',
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+      console.log('Error in booking!', err);
+    }
 
   };
 
+  const [categoryValues, setCategoryValues] = useState({
+    regNo: '',
+    name: '',
+    phone: '',
+    serviceType: ''
+  });
+
+  const handleCatChange = (event) => {
+    setCategoryValues({ ...categoryValues, [event.target.name]: event.target.value });
+  }
+
+  const handleCatSubmit = async (event) => {
+    event.preventDefault();
+
+    const currentDate = new Date();
+    const formattedDate = currentDate.toISOString();
+
+    const catData = {
+      regNo: categoryValues.regNo,
+      name: categoryValues.name,
+      phone: categoryValues.phone,
+      serviceType: categoryValues.serviceType,
+      currentDate: formattedDate,
+    };
+
+    try {
+      await axios.post('http://localhost:8081/booking', catData);
+      console.log('Product added successfully');
+      handleOff();
+      swalmasg();
+
+    } catch (err) {
+      toast.error('Error in booking!', {
+        position: 'top-center',
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+      console.log('Error in booking!', err);
+    }
+  };
+
+  const swalmasg = async () => {
+    await Swal.fire({
+      icon: 'success',
+      title: 'successful',
+      html: '<div style="color: green;">Service Booked Successful</div>',
+      showConfirmButton: true,
+      confirmButtonText: 'OK',
+    });
+  }
 
 
   return (
     <>
 
-    {/* Modal box */}
+      <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
 
-    <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-          >
-            <Box sx={styles}>
-            <Typography variant='h4' sx={{fontWeight: 'bold', fontFamily: 'Calibri', mb: 5, textAlign: 'center'}}>
-              BOOK SERVICE</Typography>
-              <form noValidate onSubmit={handleFormSubmit}>
-                <Grid container spacing={2}>
-                  <Grid item xs={12}>
-                    <TextField
-                      id="regNo"
-                      label="Registration Number"
-                      name="regNo"
-                      fullWidth
-                      onChange={handleFormChange}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      id="name"
-                      label="Name"
-                      name="name"
-                      fullWidth
-                      onChange={handleFormChange}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      id="phone"
-                      label="Selected Phone Number"
-                      name="phone"
-                      fullWidth
-                      onChange={handleFormChange}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      id="serviceType"
-                      label="Selected Service Type"
-                      name="serviceType"
-                      fullWidth
-                      onChange={handleFormChange}
-                    />
-                  </Grid>
-                </Grid>
-                <Grid container spacing={2} sx={{mt: 2}}>
-                  <Grid item xs={6}>
-                    <Button onClick={handleClose} variant="contained"
-                      sx={{
-                        mt: 2, width: '100%',
-                        p: 1,
-                        backgroundColor: theme => theme.palette.error.main,
-                        '&:hover': { backgroundColor: '#ff0000' }
-                      }}>
-                      Cancel
-                    </Button>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Button type="submit" variant="contained"
-                      sx={{
-                        mt: 2, width: '100%',
-                        p: 1,
-                        backgroundColor: theme => theme.palette.success.main,
-                        '&:hover': { backgroundColor: '#00cc00' }
-                      }}>
-                      Book
-                    </Button>
-                  </Grid>
-                </Grid>
-              </form>
-            </Box>
-          </Modal>
+      {/* Modal box*/}
+
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={styles}>
+          <Typography variant='h4' sx={{ fontWeight: 'bold', fontFamily: 'Calibri', mb: 5, textAlign: 'center' }}>
+            BOOK SERVICE</Typography>
+          <form noValidate onSubmit={handleFormSubmit}>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextField
+                  id="regNo"
+                  label="Registration Number"
+                  name="regNo"
+                  fullWidth
+                  onChange={handleFormChange}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  id="name"
+                  label="Name"
+                  name="name"
+                  fullWidth
+                  onChange={handleFormChange}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  id="phone"
+                  label="Selected Phone Number"
+                  name="phone"
+                  fullWidth
+                  value={form.phone}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  id="serviceType"
+                  label="Selected Service Type"
+                  name="serviceType"
+                  fullWidth
+                  value={form.serviceType}
+                />
+              </Grid>
+            </Grid>
+            <Grid container spacing={2} sx={{ mt: 2 }}>
+              <Grid item xs={6}>
+                <Button onClick={handleClose} variant="contained"
+                  sx={{
+                    mt: 2, width: '100%',
+                    p: 1,
+                    backgroundColor: theme => theme.palette.error.main,
+                    '&:hover': { backgroundColor: '#ff0000' }
+                  }}>
+                  Cancel
+                </Button>
+              </Grid>
+              <Grid item xs={6}>
+                <Button type="submit" variant="contained"
+                  sx={{
+                    mt: 2, width: '100%',
+                    p: 1,
+                    backgroundColor: theme => theme.palette.success.main,
+                    '&:hover': { backgroundColor: '#00cc00' }
+                  }}>
+                  Book
+                </Button>
+              </Grid>
+            </Grid>
+          </form>
+        </Box>
+      </Modal>
+
+      {/* Modal box for categories*/}
+
+      <Modal
+        open={categoryOpen}
+        onClose={handleOff}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={styles}>
+          <Typography variant='h4' sx={{ fontWeight: 'bold', fontFamily: 'Calibri', mb: 5, textAlign: 'center' }}>
+            BOOK SERVICE</Typography>
+          <form noValidate onSubmit={handleCatSubmit}>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextField
+                  id="regNo"
+                  label="Registration Number"
+                  name="regNo"
+                  fullWidth
+                  onChange={handleCatChange}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  id="name"
+                  label="Name"
+                  name="name"
+                  fullWidth
+                  onChange={handleCatChange}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  id="phone"
+                  label="Selected Phone Number"
+                  name="phone"
+                  fullWidth
+                  onChange={handleCatChange}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  id="serviceType"
+                  label="Selected Service Type"
+                  name="serviceType"
+                  fullWidth
+                  onChange={handleCatChange}
+                />
+              </Grid>
+            </Grid>
+            <Grid container spacing={2} sx={{ mt: 2 }}>
+              <Grid item xs={6}>
+                <Button onClick={handleOff} variant="contained"
+                  sx={{
+                    mt: 2, width: '100%',
+                    p: 1,
+                    backgroundColor: theme => theme.palette.error.main,
+                    '&:hover': { backgroundColor: '#ff0000' }
+                  }}>
+                  Cancel
+                </Button>
+              </Grid>
+              <Grid item xs={6}>
+                <Button type="submit" variant="contained"
+                  sx={{
+                    mt: 2, width: '100%',
+                    p: 1,
+                    backgroundColor: theme => theme.palette.success.main,
+                    '&:hover': { backgroundColor: '#00cc00' }
+                  }}>
+                  Book
+                </Button>
+              </Grid>
+            </Grid>
+          </form>
+        </Box>
+      </Modal>
 
       <UserNavbar />
       <div style={{ display: 'flex' }}>
@@ -195,10 +366,11 @@ function Service() {
                         label="Choose Service Type"
                         id="serviceType"
                         name="serviceType"
+                        value={selectedService}
                         fullWidth
-                        onChange={handleChange}
+                        onChange={handleServiceTypeChange}
                       >
-                          <MenuItem value="General">General</MenuItem>
+                          <MenuItem value="General" >General</MenuItem>
                           <MenuItem value="Additional">Additional</MenuItem>
                       </Select>
                     </FormControl>
@@ -209,7 +381,7 @@ function Service() {
                       label="Enter Phone Number"
                       name="phone"
                       fullWidth
-                      onChange={handleChange}
+                      onChange={handlePhoneChange}
                     />
                   </Grid>
                 </Grid>
@@ -245,32 +417,44 @@ function Service() {
           </Typography>
 
           <div style={{ display: 'flex', flexDirection: 'row', marginBottom: '40px', marginTop: '40px' }}>
-            <Box className="service-box" sx={{ bgcolor: 'background.paper', padding: 3, textAlign: 'center', backgroundColor: '#ECECEC', borderRadius: 1  }}>
+            <Box className="service-box" 
+            sx={{ bgcolor: 'background.paper', padding: 3, textAlign: 'center', backgroundColor: '#ECECEC', borderRadius: 1  }}
+            onClick={() => handleOn()}>
               <img src="/images/1.png" alt="Periodic Services" className='serviceImages' />
               <Typography>Periodic</Typography>
               <Typography>Services</Typography>
             </Box>
-            <Box className="service-box" sx={{ bgcolor: 'background.paper', padding: 3, textAlign: 'center', backgroundColor: '#ECECEC', borderRadius: 1   }}>
+            <Box className="service-box" 
+            sx={{ bgcolor: 'background.paper', padding: 3, textAlign: 'center', backgroundColor: '#ECECEC', borderRadius: 1   }}
+            onClick={() => handleOn()}>
               <img src="/images/5.png" alt="Periodic Services" className='serviceImages' />
               <Typography>AC Service &</Typography>
               <Typography>Repair</Typography>
             </Box>
-            <Box className="service-box" sx={{ bgcolor: 'background.paper', padding: 3, textAlign: 'center', backgroundColor: '#ECECEC', borderRadius: 1   }}>
+            <Box className="service-box" 
+            sx={{ bgcolor: 'background.paper', padding: 3, textAlign: 'center', backgroundColor: '#ECECEC', borderRadius: 1   }}
+            onClick={() => handleOn()}>
               <img src="/images/8.png" alt="Periodic Services" className='serviceImages' />
               <Typography>Detailing</Typography>
               <Typography>Services</Typography>
             </Box>
-            <Box className="service-box" sx={{ bgcolor: 'background.paper', padding: 3, textAlign: 'center', backgroundColor: '#ECECEC', borderRadius: 1   }}>
+            <Box className="service-box" 
+            sx={{ bgcolor: 'background.paper', padding: 3, textAlign: 'center', backgroundColor: '#ECECEC', borderRadius: 1   }}
+            onClick={() => handleOn()}>
               <img src="/images/Car-Inspection.png" alt="Periodic Services" className='serviceImages' />
               <Typography>Car</Typography>
               <Typography>Inspections</Typography>
             </Box>
-            <Box className="service-box" sx={{ bgcolor: 'background.paper', padding: 3, textAlign: 'center', backgroundColor: '#ECECEC', borderRadius: 1   }}>
+            <Box className="service-box" 
+            sx={{ bgcolor: 'background.paper', padding: 3, textAlign: 'center', backgroundColor: '#ECECEC', borderRadius: 1   }}
+            onClick={() => handleOn()}>
               <img src="/images/10.png" alt="Periodic Services" className='serviceImages' />
               <Typography>Windshields &</Typography>
               <Typography>Lights</Typography>
             </Box>
-            <Box className="service-box" sx={{ bgcolor: 'background.paper', padding: 3, textAlign: 'center', backgroundColor: '#ECECEC', borderRadius: 1   }}>
+            <Box className="service-box" 
+            sx={{ bgcolor: 'background.paper', padding: 3, textAlign: 'center', backgroundColor: '#ECECEC', borderRadius: 1   }}
+            onClick={() => handleOn()}>
               <img src="/images/Clutch-_-Bumpers.png" alt="Periodic Services" className='serviceImages' />
               <Typography>Clutch & Body</Typography>
               <Typography>Parts</Typography>
@@ -278,7 +462,9 @@ function Service() {
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'row', marginBottom: '40px'}}>
-            <Box className="service-box" sx={{ bgcolor: 'background.paper', padding: 3, textAlign: 'center', backgroundColor: '#ECECEC', borderRadius: 1  }}>
+            <Box className="service-box" 
+            sx={{ bgcolor: 'background.paper', padding: 3, textAlign: 'center', backgroundColor: '#ECECEC', borderRadius: 1  }}
+            >
               <img src="/images/4.png" alt="Periodic Services" className='serviceImages' />
               <Typography>Car Spa &</Typography>
               <Typography>Cleaning</Typography>
