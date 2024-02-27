@@ -3,6 +3,7 @@ import logo from './assets/logo.png';
 
 const UserNavbar = () => {
   const navLinks = ['Browse Cars', 'Book Service', 'About', 'Contact', 'Help']; // Manually specified array
+  let odta;
 
   return (
     <>
