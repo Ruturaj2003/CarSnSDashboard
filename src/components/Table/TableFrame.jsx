@@ -11,8 +11,6 @@ const fetchTableData = async (url) => {
 
 const deleteItem = async (id, url) => {
   const response = await axios.delete(url + '/' + id);
-
-  console.log(response);
 };
 
 const TableFrame = ({ url, tableHeadings, formName }) => {
