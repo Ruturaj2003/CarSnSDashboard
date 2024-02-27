@@ -2,33 +2,65 @@ import { useEffect, useState } from 'react';
 import DataTable from './DataTable';
 import DModal from '../DModal';
 import axios from 'axios';
+import { useMutation, useQuery, useQueryClient } from 'react-query';
+
+const fetchTableData = async (url) => {
+  const response = await axios.get(url);
+  return response.data;
+};
+
+const deleteItem = async (id, url) => {
+  const response = await axios.delete(url + '/' + id);
+
+  console.log(response);
+};
 
 const TableFrame = ({ url, tableHeadings, formName }) => {
   console.log(url);
+
   const [loading, setLoading] = useState(false);
-  const [data, setData] = useState([]);
   const [overlayOpen, setOverlayOpen] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const [editModalData, setEditModalData] = useState(null);
   const [createModal, setCreateModal] = useState(false);
-  const abortController = new AbortController();
-  const fetchData = async () => {
-    const abortController = new AbortController();
-    try {
-      setLoading(true);
-      const { data: responseData } = await axios.get(url, {
-        signal: abortController.signal,
-      });
-      console.log(responseData);
-      setData(responseData);
-    } catch (error) {
-      if (!abortController.signal.aborted) {
-        console.error(error);
-      }
-    } finally {
-      setLoading(false);
+  const queryClient = useQueryClient();
+
+  const {
+    data: tableData,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryFn: () => fetchTableData(url),
+    queryKey: ['tableData', url],
+  });
+
+  // Mutation for deleting an item
+  const deleteItemMutation = useMutation(
+    (params) => deleteItem(params.id, params.url), // Replace fetchDeleteItem with your actual delete function
+    {
+      onSuccess: (data, variables) => {
+        console.log('Deleted successfully', data);
+        // Invalidate the query to trigger a refetch
+        queryClient.invalidateQueries(['tableData', url]);
+      },
+      onError: (error) => {
+        console.error('Error deleting item', error);
+      },
     }
+  );
+
+  const handleDelete = (id, url) => {
+    // Call the mutate function with the item ID and URL
+    deleteItemMutation.mutate({ id, url });
   };
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
+  if (isError) {
+    return <p>Error loading data</p>;
+  }
 
   const handleModalOpen = () => {
     setOverlayOpen(true);
@@ -41,16 +73,6 @@ const TableFrame = ({ url, tableHeadings, formName }) => {
 
   const inputFields = tableHeadings.map((heading) => heading.toLowerCase());
 
-  console.log(inputFields);
-  useEffect(() => {
-    fetchData();
-
-    return () => {
-      // Cleanup function
-      abortController.abort();
-      // Cancel the request if the component is unmounted
-    };
-  }, []);
   return (
     <div className="rounded-sm mt-5 mr-16 w-full h-[600px] overflow-hidden">
       {loading ? (
@@ -62,11 +84,11 @@ const TableFrame = ({ url, tableHeadings, formName }) => {
               <div className="relative  bg-slate-200 w-full h-full opacity-50">
                 <DataTable
                   url={url}
-                  fetchData={fetchData}
                   handleModalOpen={handleModalOpen}
+                  handleDelete={handleDelete}
                   handleEditModalOpen={handleEditModalOpen}
                   setEditModalData={setEditModalData}
-                  data={data}
+                  data={tableData}
                   tableHeadings={tableHeadings}
                 ></DataTable>
               </div>
@@ -81,7 +103,6 @@ const TableFrame = ({ url, tableHeadings, formName }) => {
                 setOverlay={setOverlayOpen}
                 rowData={{}}
                 action={'POST'}
-                fetchData={fetchData}
               ></DModal>
               <DModal
                 url={url}
@@ -92,17 +113,17 @@ const TableFrame = ({ url, tableHeadings, formName }) => {
                 setOverlay={setOverlayOpen}
                 rowData={editModalData}
                 action={'PUT'}
-                fetchData={fetchData}
               ></DModal>
               {/* Create Modal */}
             </>
           ) : (
             <DataTable
               url={url}
-              data={data}
+              data={tableData}
               handleModalOpen={handleModalOpen}
               handleEditModalOpen={handleEditModalOpen}
               setEditModalData={setEditModalData}
+              handleDelete={handleDelete}
               tableHeadings={tableHeadings}
             ></DataTable>
           )}
