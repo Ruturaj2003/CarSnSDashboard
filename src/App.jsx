@@ -7,6 +7,7 @@ import Initial from './pages/Initial';
 import Customer from './pages/Customer';
 import CustomerUI from './User/CustomerUI';
 import UserHome from './User/UserHome';
+import Service from './User/pages/Service';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -60,9 +61,10 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router}></RouterProvider>
-    </QueryClientProvider>
+    <Service/>
+    // <QueryClientProvider client={queryClient}>
+    //   <RouterProvider router={router}></RouterProvider>
+    // </QueryClientProvider>
   );
 }
 
