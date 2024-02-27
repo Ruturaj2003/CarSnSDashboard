@@ -41,7 +41,7 @@ function SignUp() {
         const response = await axios.post('http://localhost:8081/usersignup', values)
         console.log('Login successful', response.data);
         toast.success('SignUp successful');
-        navigate('/home')
+        navigate('home')
 
         }
         catch (error) {

@@ -39,7 +39,7 @@ function Login() {
             const response = await axios.post('http://localhost:8081/admin', formData);
             console.log('Login successful', response.data);
             toast.success('Login successful');
-            navigate('/home')
+            navigate('home')
 
         } 
         catch (error) {
