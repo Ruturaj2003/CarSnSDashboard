@@ -7,11 +7,21 @@ import Customer from './pages/Customer';
 import CustomerUI from './User/CustomerUI';
 import UserHome from './User/UserHome';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Service from './User/pages/Service';
 =======
 import Employee from './pages/Employee';
 import { QueryClient, QueryClientProvider } from 'react-query';
 >>>>>>> master
+=======
+
+import Service from './User/pages/Service';
+
+  
+import Employee from './pages/Employee';
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+>>>>>>> 4777c0a71d112e989fd04442fd3e22cf677f11e0
 
 const queryClient = new QueryClient({
   defaultOptions: {
