@@ -39,6 +39,9 @@ const TableFrame = ({ url, tableHeadings, formName }) => {
     setEditModal(true);
   };
 
+  const inputFields = tableHeadings.map((heading) => heading.toLowerCase());
+
+  console.log(inputFields);
   useEffect(() => {
     fetchData();
 
@@ -73,7 +76,7 @@ const TableFrame = ({ url, tableHeadings, formName }) => {
                 url={url}
                 isOpen={createModal}
                 formTitle={'Create ' + formName}
-                inputFields={tableHeadings}
+                inputFields={inputFields}
                 setModal={setCreateModal}
                 setOverlay={setOverlayOpen}
                 rowData={{}}
@@ -84,7 +87,7 @@ const TableFrame = ({ url, tableHeadings, formName }) => {
                 url={url}
                 isOpen={editModal}
                 formTitle={'Edit ' + formName}
-                inputFields={tableHeadings}
+                inputFields={inputFields}
                 setModal={setEditModal}
                 setOverlay={setOverlayOpen}
                 rowData={editModalData}
