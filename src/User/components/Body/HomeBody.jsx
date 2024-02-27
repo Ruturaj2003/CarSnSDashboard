@@ -3,7 +3,7 @@ import Features from './Features';
 import Reviews from './Reviews';
 import Slogan from './Slogan';
 import Team from './Team';
-import Drawings from './drawings';
+import Drawings from './Drawings';
 
 export const HomeBody = () => {
   return (

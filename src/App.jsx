@@ -11,6 +11,8 @@ import Service from './User/pages/Service';
 
 import Employee from './pages/Employee';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import Login from './pages/Login';
+import { errorMonitor } from 'events';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -21,8 +23,10 @@ const queryClient = new QueryClient({
 });
 
 const router = createBrowserRouter([
+  { path: '/', element: <Login></Login>, errorElement: <h3>sad</h3> },
+
   {
-    path: '/',
+    path: '/admin',
     element: <Initial />,
     errorElement: <h1>sorry GG</h1>,
     children: [
