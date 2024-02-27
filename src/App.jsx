@@ -6,14 +6,6 @@ import Initial from './pages/Initial';
 import Customer from './pages/Customer';
 import CustomerUI from './User/CustomerUI';
 import UserHome from './User/UserHome';
-<<<<<<< HEAD
-<<<<<<< HEAD
-import Service from './User/pages/Service';
-=======
-import Employee from './pages/Employee';
-import { QueryClient, QueryClientProvider } from 'react-query';
->>>>>>> master
-=======
 
 import Service from './User/pages/Service';
 
