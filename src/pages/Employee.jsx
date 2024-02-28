@@ -7,17 +7,17 @@ const Employee = () => {
   const url = 'http://localhost:8081/employee';
   const tableHeadings = ['ID', 'Name', 'Department', 'Salary'];
   const formName = 'Employee';
-  const testData = useSelector((state) => state.employee.tdata);
+  const tableData = useSelector((state) => state.employee.tdata);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchEmployees(url));
-    console.log(testData);
   }, [dispatch]);
 
   return (
     <>
       <TableFrame
+        tableData={tableData}
         url={url}
         formName={formName}
         tableHeadings={tableHeadings}

@@ -13,52 +13,50 @@ const deleteItem = async (id, url) => {
   const response = await axios.delete(url + '/' + id);
 };
 
-const TableFrame = ({ url, tableHeadings, formName }) => {
-  console.log(url);
-
+const TableFrame = ({ url, tableHeadings, formName, tableData }) => {
   const [loading, setLoading] = useState(false);
   const [overlayOpen, setOverlayOpen] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const [editModalData, setEditModalData] = useState(null);
   const [createModal, setCreateModal] = useState(false);
-  const queryClient = useQueryClient();
+  // const queryClient = useQueryClient();
 
-  const {
-    data: tableData,
-    isLoading,
-    isError,
-  } = useQuery({
-    queryFn: () => fetchTableData(url),
-    queryKey: ['tableData', url],
-  });
+  // const {
+  //   data: tableData,
+  //   isLoading,
+  //   isError,
+  // } = useQuery({
+  //   queryFn: () => fetchTableData(url),
+  //   queryKey: ['tableData', url],
+  // });
 
-  // Mutation for deleting an item
-  const deleteItemMutation = useMutation(
-    (params) => deleteItem(params.id, params.url), // Replace fetchDeleteItem with your actual delete function
-    {
-      onSuccess: (data, variables) => {
-        console.log('Deleted successfully', data);
-        // Invalidate the query to trigger a refetch
-        queryClient.invalidateQueries(['tableData', url]);
-      },
-      onError: (error) => {
-        console.error('Error deleting item', error);
-      },
-    }
-  );
+  // // Mutation for deleting an item
+  // const deleteItemMutation = useMutation(
+  //   (params) => deleteItem(params.id, params.url), // Replace fetchDeleteItem with your actual delete function
+  //   {
+  //     onSuccess: (data, variables) => {
+  //       console.log('Deleted successfully', data);
+  //       // Invalidate the query to trigger a refetch
+  //       queryClient.invalidateQueries(['tableData', url]);
+  //     },
+  //     onError: (error) => {
+  //       console.error('Error deleting item', error);
+  //     },
+  //   }
+  // );
 
   const handleDelete = (id, url) => {
     // Call the mutate function with the item ID and URL
-    deleteItemMutation.mutate({ id, url });
+    // deleteItemMutation.mutate({ id, url });
   };
 
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
+  // if (isLoading) {
+  //   return <p>Loading...</p>;
+  // }
 
-  if (isError) {
-    return <p>Error loading data</p>;
-  }
+  // if (isError) {
+  //   return <p>Error loading data</p>;
+  // }
 
   const handleModalOpen = () => {
     setOverlayOpen(true);
