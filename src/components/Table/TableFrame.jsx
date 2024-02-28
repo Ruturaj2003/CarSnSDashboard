@@ -4,7 +4,14 @@ import DataTable from './DataTable';
 import CreateModal from '../CreateModal';
 import EditModal from '../EditModal';
 
-const TableFrame = ({ url, tableHeadings, formName, tableData, fetchFn }) => {
+const TableFrame = ({
+  url,
+  tableHeadings,
+  formName,
+  tableData,
+  fetchFn,
+  numOfCol,
+}) => {
   const [loading, setLoading] = useState(false);
   const [overlayOpen, setOverlayOpen] = useState(false);
   const [editModal, setEditModal] = useState(false);
@@ -39,6 +46,7 @@ const TableFrame = ({ url, tableHeadings, formName, tableData, fetchFn }) => {
                   data={tableData}
                   tableHeadings={tableHeadings}
                   fetchFn={fetchFn}
+                  numOfCol={numOfCol}
                 ></DataTable>
               </div>
 
@@ -71,6 +79,7 @@ const TableFrame = ({ url, tableHeadings, formName, tableData, fetchFn }) => {
               setEditModalData={setEditModalData}
               tableHeadings={tableHeadings}
               fetchFn={fetchFn}
+              numOfCol={numOfCol}
             ></DataTable>
           )}
         </>

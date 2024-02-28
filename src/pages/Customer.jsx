@@ -6,7 +6,6 @@ import { fetchCustomers } from '../state/slices/customerSlice';
 
 const Customer = () => {
   const tableHeadings = [
-    'Id',
     'Name',
     'Phone',
     'address',
@@ -15,9 +14,9 @@ const Customer = () => {
   ];
 
   const url = globalUrl + '/customer';
-
   const formName = 'Customer';
   const tableData = useSelector((state) => state.customer.tdata);
+  const numOfCol = 5;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -31,6 +30,7 @@ const Customer = () => {
         formName={formName}
         tableHeadings={tableHeadings}
         fetchFn={fetchCustomers}
+        numOfCol={numOfCol}
       ></TableFrame>
     </>
   );
