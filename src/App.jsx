@@ -12,6 +12,7 @@ import store from './state/store';
 import Login from './User/pages/Login';
 import SignUp from './User/pages/SignUp';
 import Alogin from './pages/Login';
+import BrowseCar from './User/pages/BrowseCar';
 export const globalUrl = 'http://localhost:8081';
 
 const queryClient = new QueryClient({
@@ -82,6 +83,7 @@ const router = createBrowserRouter([
 function App() {
   return (
     // <Service />
+    // <BrowseCar></BrowseCar>
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router}></RouterProvider>
