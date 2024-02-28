@@ -1,16 +1,17 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const url = '';
 const initialState = {
-  data: [],
+  tdata: [],
+  value: 12,
 };
 
 export const fetchEmployees = createAsyncThunk(
   'employee/fetchEmployees',
-  async () => {
+  async (url) => {
     try {
       const resp = await axios.get(url);
+      console.log(resp.data);
       return resp.data;
     } catch (error) {
       // Check if the error status is 404 and return an empty array
@@ -29,7 +30,7 @@ const employeeSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchEmployees.fulfilled, (state, action) => {
-      state.data = action.payload;
+      state.tdata = action.payload;
     });
   },
 });
