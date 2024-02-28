@@ -9,6 +9,7 @@ import hero from '../assets/hero.jpg';
 import hero2 from '../assets/hero2.jpg';
 import hero3 from '../assets/hero3.jpg';
 import hero4 from '../assets/hero4.jpg';
+import Slider from 'react-slick';
 const imgMap = {
   Car_image_1708861269778: hero,
   sideView_1708861269780: hero2,
@@ -82,19 +83,53 @@ const SpecificCar = () => {
     // fetchCar();
   }, [id]);
 
+  const images = Object.values(imgMap);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prevSlide) => (prevSlide + 1) % images.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [images]);
+
+  const showSlide = (index) => {
+    setCurrentSlide(index);
+  };
+
   return (
     <>
       <BlackNavBar></BlackNavBar>
       {/* Body */}
-      <div className="mr-16 ml-16">
+      <div className="mr-16 ml-16 mt-6">
         {/* Hero Container */}
-        <div className="w-full h-[450px] pl-12 pr-12 pt-6 mb-3">
-          <div className="w-full h-full ">
-            <img
-              src={imgMap[mainImg]}
-              className="object-cover h-full rounded-md w-full"
-              alt=""
-            />
+        <div className="w-full h-[450px] pl-12 pr-12 pt-6 mb-3 relative">
+          {images.map((image, index) => (
+            <div
+              key={index}
+              className={`absolute left-0 top-0 w-full h-full transition-opacity duration-500 ${
+                index === currentSlide ? 'opacity-100' : 'opacity-0'
+              }`}
+              style={{ zIndex: index === currentSlide ? 1 : 0 }}
+            >
+              <img
+                src={image}
+                alt={`Slide ${index}`}
+                className="object-cover h-full rounded-md w-full"
+              />
+            </div>
+          ))}
+          <div className="absolute bottom-0 left-0 right-0 flex justify-center mb-2">
+            {images.map((_, index) => (
+              <div
+                key={index}
+                onClick={() => showSlide(index)}
+                className={`h-2 w-2 mx-1 rounded-full cursor-pointer ${
+                  index === currentSlide ? 'bg-blue-500' : 'bg-gray-300'
+                }`}
+              ></div>
+            ))}
           </div>
         </div>
         {/* INfo Container */}
