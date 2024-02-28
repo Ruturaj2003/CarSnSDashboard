@@ -4,6 +4,7 @@ import { FaQuoteLeft } from 'react-icons/fa';
 import { FaQuoteRight } from 'react-icons/fa';
 import BCHero from '../components/Hero/BCHero';
 import BCBody from '../components/Body/BCBody';
+import Footer from '../../components/Footer';
 const BrowseCar = () => {
   return (
     <>
@@ -12,6 +13,7 @@ const BrowseCar = () => {
       <BCHero></BCHero>
       {/* Body */}
       <BCBody></BCBody>
+      <Footer></Footer>
     </>
   );
 };
