@@ -5,7 +5,10 @@ import { FaEdit } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { useDispatch } from 'react-redux';
-import { deleteEmployees } from '../../state/slices/employeeSlice';
+import {
+  deleteEmployees,
+  fetchEmployees,
+} from '../../state/slices/employeeSlice';
 // import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 const TableRow = ({ item, handleRowClick, url }) => {
@@ -32,6 +35,7 @@ const TableRow = ({ item, handleRowClick, url }) => {
 
   const deleteItem = (id) => {
     dispatch(deleteEmployees(url, id));
+    dispatch(fetchEmployees(url));
   };
 
   return (
