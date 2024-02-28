@@ -16,9 +16,9 @@ const EditModal = ({
   const initialState = Object.fromEntries(
     inputFields.map((field) => [field, rowData ? rowData[field] || '' : ''])
   );
-
+  console.log('Editmodal');
   const [formData, setFormData] = useState(initialState);
-  const id = rowData.id;
+  const id = rowData?.id ?? 0;
   const path = url + '/' + id;
 
   useEffect(() => {

@@ -7,7 +7,7 @@ import Hero5 from './components/Hero/Hero5';
 
 import { HomeBody } from './components/Body/HomeBody';
 import Footer from '../components/Footer';
-import './UserHome.css';
+
 // Images
 
 import bmwm from './assets/mpi/bmwm.jpg';

@@ -11,6 +11,7 @@ const CreateModal = ({
   setModal,
   setOverlay,
 }) => {
+  console.log('Create Modal');
   const dispatch = useDispatch();
 
   const initialFormData = Object.fromEntries(
