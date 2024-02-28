@@ -27,7 +27,9 @@ const TableFrame = ({
     setEditModal(true);
   };
 
-  const inputFields = tableHeadings.map((heading) => heading.toLowerCase());
+  const inputFields = tableHeadings.map((heading) =>
+    heading.toLowerCase().replace(/\s/g, '')
+  );
 
   return (
     <div className="rounded-sm mt-5 mr-16 w-full h-[600px] overflow-hidden">
