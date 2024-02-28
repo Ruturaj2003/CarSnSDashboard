@@ -79,7 +79,7 @@ function Login() {
                         <PersonIcon />
                     </Avatar>
                     <Typography component="h1" variant="h5">
-                        Sign in
+                        User Sign In
                     </Typography>
                     <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
                         <TextField
@@ -109,14 +109,19 @@ function Login() {
                             sx={{ mt: 3, mb: 2 }}
                         >
                             Log In
-                        </Button>
-                        <Grid container justifyContent="flex-end">
-                            <Grid item>
-                                <ReactRouterDom.Link to="/signup" variant="body2">
-                                    Don't have an account? Sign Up
-                                </ReactRouterDom.Link>
+                            </Button>
+                            <Grid container spacing={2}>
+                                <Grid item xs={12} sm={6}>
+                                    <ReactRouterDom.Link to="alogin" variant="body2">
+                                        Admin login
+                                    </ReactRouterDom.Link>
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <ReactRouterDom.Link to="/" variant="body2">
+                                        New user? SignUp
+                                    </ReactRouterDom.Link>
+                                </Grid>
                             </Grid>
-                        </Grid>
                     </Box>
                 </Box>
             </Container>

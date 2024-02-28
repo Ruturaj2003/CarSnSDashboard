@@ -16,7 +16,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const defaultTheme = createTheme();
 
-function Login() {
+function Alogin() {
 
     const navigate = useNavigate();
 
@@ -76,7 +76,7 @@ function Login() {
                             <PersonIcon />
                         </Avatar>
                         <Typography component="h1" variant="h5">
-                            Log in
+                            Admin Log in
                         </Typography>
                         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
                             <TextField
@@ -105,6 +105,13 @@ function Login() {
                             >
                                 Log In
                             </Button>
+                            <Grid container justifyContent="flex-end">
+                                <Grid item>
+                                    <ReactRouterDom.Link to="ulogin" variant="body2">
+                                        User login
+                                    </ReactRouterDom.Link>
+                                </Grid>
+                            </Grid>
                         </Box>
                     </Box>
                 </Container>
@@ -113,4 +120,4 @@ function Login() {
     );
 }
 
-export default Login;
+export default Alogin;

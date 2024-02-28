@@ -11,7 +11,9 @@ import Service from './User/pages/Service';
 
 import Employee from './pages/Employee';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import Login from './pages/Login';
+import Login from './User/pages/Login';
+import SignUp from './User/pages/SignUp';
+import Alogin from './pages/Login';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -22,7 +24,9 @@ const queryClient = new QueryClient({
 });
 
 const router = createBrowserRouter([
-  { path: '/', element: <Login></Login>, errorElement: <h3>sad</h3> },
+  { path: '/', element: <SignUp></SignUp>, errorElement: <h3>sad</h3> },
+  { path: 'ulogin', element: <Login></Login>, errorElement: <h3>sad</h3> },
+  { path: 'alogin', element: <Alogin></Alogin>, errorElement: <h3>sad</h3> },
 
   {
     path: '/admin',

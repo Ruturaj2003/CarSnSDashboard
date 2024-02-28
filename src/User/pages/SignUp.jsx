@@ -41,7 +41,7 @@ function SignUp() {
         const response = await axios.post('http://localhost:8081/usersignup', values)
         console.log('Login successful', response.data);
         toast.success('SignUp successful');
-        navigate('home')
+        navigate('ulogin')
 
         }
         catch (error) {
@@ -82,7 +82,7 @@ function SignUp() {
                     </Typography>
                     <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
                         <Grid container spacing={2}>
-                            <Grid item xs={12} sm={6}>
+                            <Grid item xs={12}>
                                 <TextField
                                     autoComplete="given-name"
                                     name="name"
@@ -93,7 +93,7 @@ function SignUp() {
                                     onChange={handleChange}
                                 />
                             </Grid>
-                            <Grid item xs={12} sm={6}>
+                            <Grid item xs={12}>
                                 <TextField
                                     fullWidth
                                     id="phone"
@@ -145,7 +145,7 @@ function SignUp() {
                         </Button>
                         <Grid container justifyContent="flex-end">
                             <Grid item>
-                                <ReactRouterDom.Link to="/signin" variant="body2">
+                                <ReactRouterDom.Link to="ulogin" variant="body2">
                                     Already have an account? Sign in
                                 </ReactRouterDom.Link>
                             </Grid>
