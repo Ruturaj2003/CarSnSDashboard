@@ -10,7 +10,7 @@ import { HomeBody } from './components/Body/HomeBody';
 import Footer from '../components/Footer';
 
 const UserHome = () => {
-  const numOfHero = 7;
+  const numOfHero = 5;
   const [activeHero, setActiveHero] = useState(1);
 
   const nextHero = () => {
@@ -31,8 +31,6 @@ const UserHome = () => {
         {activeHero === 3 && <Hero3 />}
         {activeHero === 4 && <Hero4 />}
         {activeHero === 5 && <Hero5 />}
-        {activeHero === 6 && <Hero6 />}
-        {activeHero === 7 && <Hero7 />}
       </div>
       <HomeBody></HomeBody>
       <Footer></Footer>
