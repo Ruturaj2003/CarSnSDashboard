@@ -4,8 +4,7 @@ import Hero2 from './components/Hero/Hero2';
 import Hero3 from './components/Hero/Hero3';
 import { Hero4 } from './components/Hero/Hero4';
 import Hero5 from './components/Hero/Hero5';
-import Hero6 from './components/Hero/Hero6';
-import Hero7 from './components/Hero/Hero7';
+
 import { HomeBody } from './components/Body/HomeBody';
 import Footer from '../components/Footer';
 
