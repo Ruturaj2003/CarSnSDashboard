@@ -21,14 +21,15 @@ const UserNavbar = () => {
             {navLinks.map((link, index) => {
               const path = link.replace(/\s/g, '').toLowerCase();
               return (
-                <Link to={'/user/' + path} key={index}>
-                  <div
-                    key={index}
-                    className={`h-full ${
-                      index === 2 ? '2 ' : ''
-                    }border-b-[0px]  text-white    cursor-pointer   hover:border-blue-600 hover:border-b-[4px]  flex justify-center items-center`}
-                  >
-                    <h1 className="font-semibold">{link}</h1>
+                <Link
+                  to={'/user/' + path}
+                  key={index}
+                  className={`h-full ${
+                    index === 2 ? '2 ' : ''
+                  }border-b-[0px]  text-white    cursor-pointer   hover:border-blue-600 hover:border-b-[2.5px]  flex justify-center items-center`}
+                >
+                  <div key={index}>
+                    <h1>{link}</h1>
                   </div>
                 </Link>
               );
