@@ -19,31 +19,6 @@ const TableFrame = ({ url, tableHeadings, formName, tableData }) => {
   const [editModal, setEditModal] = useState(false);
   const [editModalData, setEditModalData] = useState(null);
   const [createModal, setCreateModal] = useState(false);
-  // const queryClient = useQueryClient();
-
-  // const {
-  //   data: tableData,
-  //   isLoading,
-  //   isError,
-  // } = useQuery({
-  //   queryFn: () => fetchTableData(url),
-  //   queryKey: ['tableData', url],
-  // });
-
-  // // Mutation for deleting an item
-  // const deleteItemMutation = useMutation(
-  //   (params) => deleteItem(params.id, params.url), // Replace fetchDeleteItem with your actual delete function
-  //   {
-  //     onSuccess: (data, variables) => {
-  //       console.log('Deleted successfully', data);
-  //       // Invalidate the query to trigger a refetch
-  //       queryClient.invalidateQueries(['tableData', url]);
-  //     },
-  //     onError: (error) => {
-  //       console.error('Error deleting item', error);
-  //     },
-  //   }
-  // );
 
   const handleDelete = (id, url) => {
     // Call the mutate function with the item ID and URL

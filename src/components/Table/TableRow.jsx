@@ -4,10 +4,13 @@ import axios from 'axios';
 import { FaEdit } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
+import { useDispatch } from 'react-redux';
+import { deleteEmployees } from '../../state/slices/employeeSlice';
 // import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 const TableRow = ({ item, handleRowClick, url }) => {
   const queryClient = useQueryClient();
+  const dispatch = useDispatch();
 
   const deltMut = useMutation(
     (id) => {
@@ -27,6 +30,10 @@ const TableRow = ({ item, handleRowClick, url }) => {
     deltMut.mutate(item.id);
   };
 
+  const deleteItem = (id) => {
+    dispatch(deleteEmployees(url, id));
+  };
+
   return (
     <tr>
       {Object.values(item).map((value) => (
@@ -41,7 +48,7 @@ const TableRow = ({ item, handleRowClick, url }) => {
         <button key={nanoid()} onClick={() => handleRowClick(item)}>
           <FaEdit className="text-[#797979] text-xl" />
         </button>
-        <button key={nanoid()} onClick={() => handleDelete()}>
+        <button key={nanoid()} onClick={() => deleteItem(item.id)}>
           <MdDelete className="text-xl text-[#797979]" />
         </button>
       </td>
