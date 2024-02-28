@@ -23,31 +23,14 @@ export const fetchEmployees = createAsyncThunk(
   }
 );
 
-export const deleteEmployees = createAsyncThunk(
-  'employee/deleteEmplyoees',
-  async (url, id) => {
-    axios.delete(url + '/' + id);
-    try {
-    } catch (error) {
-      console.log(error);
-    }
-  }
-);
-
 const employeeSlice = createSlice({
   name: 'employee',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder
-      .addCase(fetchEmployees.fulfilled, (state, action) => {
-        state.tdata = action.payload;
-      })
-      .addCase(deleteEmployees.fulfilled, (state, action) => {
-        state.value += 1;
-        // Remove the item with the deletedId from tdata
-        // state.tdata = state.tdata.filter((item) => item.id !== deletedId);
-      });
+    builder.addCase(fetchEmployees.fulfilled, (state, action) => {
+      state.tdata = action.payload;
+    });
   },
 });
 

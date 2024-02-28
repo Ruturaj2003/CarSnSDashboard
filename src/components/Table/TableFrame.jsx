@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import DataTable from './DataTable';
 import DModal from '../DModal';
+import CreateModal from '../CreateModal';
+import EditModal from '../EditModal';
 
 const TableFrame = ({ url, tableHeadings, formName, tableData }) => {
   const [loading, setLoading] = useState(false);
@@ -39,18 +41,17 @@ const TableFrame = ({ url, tableHeadings, formName, tableData }) => {
                 ></DataTable>
               </div>
 
-              {/* Edit Modal */}
-              <DModal
+              <CreateModal
                 url={url}
                 isOpen={createModal}
                 formTitle={'Create ' + formName}
                 inputFields={inputFields}
                 setModal={setCreateModal}
                 setOverlay={setOverlayOpen}
-                rowData={{}}
+                rowData={[]}
                 action={'POST'}
-              ></DModal>
-              <DModal
+              ></CreateModal>
+              <EditModal
                 url={url}
                 isOpen={editModal}
                 formTitle={'Edit ' + formName}
@@ -58,9 +59,7 @@ const TableFrame = ({ url, tableHeadings, formName, tableData }) => {
                 setModal={setEditModal}
                 setOverlay={setOverlayOpen}
                 rowData={editModalData}
-                action={'PUT'}
-              ></DModal>
-              {/* Create Modal */}
+              ></EditModal>
             </>
           ) : (
             <DataTable

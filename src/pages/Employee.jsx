@@ -8,12 +8,11 @@ const Employee = () => {
   const tableHeadings = ['ID', 'Name', 'Department', 'Salary'];
   const formName = 'Employee';
   const tableData = useSelector((state) => state.employee.tdata);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchEmployees(url));
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
