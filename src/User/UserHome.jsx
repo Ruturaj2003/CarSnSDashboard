@@ -39,8 +39,10 @@ const UserHome = () => {
         {activeHero === 5 && <Hero5 />}
       </div>
       <div className="main_description">
-        <h2>Welcome to BMW: The Ultimate Driving Experience</h2>
-        <p>
+        <h2 className="font-tableD text-4xl mb-10">
+          Welcome to BMW: The Ultimate Driving Experience
+        </h2>
+        <p className="font-semibold mb-6">
           At BMW, we don't just build cars; we create the ultimate driving
           experience. For over a century, BMW has been synonymous with luxury,
           performance, and innovation, setting the standard for excellence in
