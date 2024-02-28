@@ -78,6 +78,11 @@ const router = createBrowserRouter([
     element: <Service></Service>,
     errorElement: <h1>Sda</h1>,
   },
+  {
+    path: '/user/browsecars',
+    element: <BrowseCar></BrowseCar>,
+    errorElement: <h1>Sda</h1>,
+  },
 ]);
 
 function App() {
