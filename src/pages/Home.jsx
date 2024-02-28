@@ -5,8 +5,9 @@ import { FaPeopleGroup } from 'react-icons/fa6';
 import { FaMoneyBillTrendUp } from 'react-icons/fa6';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { globalUrl } from '../App';
 const Home = () => {
-  const url = 'http://localhost:8081';
+  const url = globalUrl;
   const [pending, setPending] = useState(0);
   const [serviced, setServiced] = useState(0);
   const [employee, setEmployee] = useState(0);

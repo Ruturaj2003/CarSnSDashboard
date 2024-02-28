@@ -2,9 +2,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import TableFrame from '../components/Table/TableFrame';
 import { fetchEmployees } from '../state/slices/employeeSlice';
 import { useEffect } from 'react';
+import { globalUrl } from '../App';
 
 const Employee = () => {
-  const url = 'http://localhost:8081/employee';
+  const url = globalUrl + '/employee';
   const tableHeadings = ['ID', 'Name', 'Department', 'Salary'];
   const formName = 'Employee';
   const tableData = useSelector((state) => state.employee.tdata);

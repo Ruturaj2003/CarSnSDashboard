@@ -1,5 +1,4 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-
 import Home from './pages/Home';
 import Initial from './pages/Initial';
 import Customer from './pages/Customer';
@@ -13,7 +12,7 @@ import store from './state/store';
 import Login from './User/pages/Login';
 import SignUp from './User/pages/SignUp';
 import Alogin from './pages/Login';
-
+export const globalUrl = 'http://localhost:8081';
 
 const queryClient = new QueryClient({
   defaultOptions: {
