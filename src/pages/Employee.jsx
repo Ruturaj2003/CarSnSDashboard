@@ -22,6 +22,7 @@ const Employee = () => {
         url={url}
         formName={formName}
         tableHeadings={tableHeadings}
+        fetchFn={fetchEmployees}
       ></TableFrame>
     </>
   );

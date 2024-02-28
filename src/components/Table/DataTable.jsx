@@ -8,6 +8,7 @@ const DataTable = ({
   handleModalOpen,
   handleEditModalOpen,
   setEditModalData,
+  fetchFn,
 }) => {
   const handleRowClick = (rowData) => {
     setEditModalData(rowData);
@@ -27,6 +28,7 @@ const DataTable = ({
               key={index}
               item={item}
               url={url}
+              fetchFn={fetchFn}
             />
           ))}
         </tbody>

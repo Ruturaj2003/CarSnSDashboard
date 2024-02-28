@@ -11,6 +11,7 @@ const EditModal = ({
   setModal,
   setOverlay,
   rowData,
+  fetchFn,
 }) => {
   const dispatch = useDispatch();
   const initialState = Object.fromEntries(
@@ -52,7 +53,7 @@ const EditModal = ({
         return;
       }
       const response = await axios.put(path, formData);
-      dispatch(fetchEmployees(url));
+      dispatch(fetchFn(url));
       console.log('Update successful:', response.data);
       closeAll();
     } catch (error) {

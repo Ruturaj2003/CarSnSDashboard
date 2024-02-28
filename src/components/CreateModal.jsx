@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { fetchEmployees } from '../state/slices/employeeSlice';
 
 const CreateModal = ({
   url,
@@ -10,6 +9,7 @@ const CreateModal = ({
   inputFields,
   setModal,
   setOverlay,
+  fetchFn,
 }) => {
   console.log('Create Modal');
   const dispatch = useDispatch();
@@ -54,7 +54,7 @@ const CreateModal = ({
       const response = await axios.post(url, formData);
       console.log('Save successful:', response.data);
 
-      dispatch(fetchEmployees(url));
+      dispatch(fetchFn(url));
 
       closeAll();
     } catch (error) {

@@ -3,19 +3,19 @@ import { nanoid } from 'nanoid';
 import axios from 'axios';
 import { FaEdit } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
-import { useMutation, useQuery, useQueryClient } from 'react-query';
+
 import { useDispatch } from 'react-redux';
-import { fetchEmployees } from '../../state/slices/employeeSlice';
+
 // import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
-const TableRow = ({ item, handleRowClick, url }) => {
+const TableRow = ({ item, handleRowClick, url, fetchFn }) => {
   const dispatch = useDispatch();
 
   const dota = (id) => {
     axios
       .delete(url + '/' + id)
       .then(() => {
-        dispatch(fetchEmployees(url));
+        dispatch(fetchFn(url));
       })
       .catch((error) => {
         console.log(error);
