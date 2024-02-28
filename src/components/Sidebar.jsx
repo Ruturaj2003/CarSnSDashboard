@@ -25,7 +25,7 @@ const Sidebar = () => {
         return (
           <Link
             key={index}
-            to={'/' + path}
+            to={path}
             className={`m-3   text-2xl ${index === activeLink ? 'active' : ''}`}
             onClick={() => handleLinkClick(index)}
           >
