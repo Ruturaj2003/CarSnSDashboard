@@ -11,14 +11,15 @@ const EditModal = ({
   setModal,
   setOverlay,
   rowData,
+  fetchFn,
 }) => {
   const dispatch = useDispatch();
   const initialState = Object.fromEntries(
     inputFields.map((field) => [field, rowData ? rowData[field] || '' : ''])
   );
-
+  console.log('Editmodal');
   const [formData, setFormData] = useState(initialState);
-  const id = rowData.id;
+  const id = rowData?.id ?? 0;
   const path = url + '/' + id;
 
   useEffect(() => {
@@ -52,7 +53,7 @@ const EditModal = ({
         return;
       }
       const response = await axios.put(path, formData);
-      dispatch(fetchEmployees(url));
+      dispatch(fetchFn(url));
       console.log('Update successful:', response.data);
       closeAll();
     } catch (error) {

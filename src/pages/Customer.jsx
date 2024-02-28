@@ -1,12 +1,37 @@
 import TableFrame from '../components/Table/TableFrame';
+import { useEffect } from 'react';
+import { globalUrl } from '../App';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCustomers } from '../state/slices/customerSlice';
 
 const Customer = () => {
-  const url = 'http://localhost:8081/customer';
-  const tableHeadings = ['Customer Id', 'Name', 'Phone', 'E-mail', 'LIC Num'];
+  const tableHeadings = [
+    'Name',
+    'Phone',
+    'address',
+    'Licence Number',
+    'Password',
+  ];
 
+  const url = globalUrl + '/customer';
+  const formName = 'Customer';
+  const tableData = useSelector((state) => state.customer.tdata);
+  const numOfCol = 5;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCustomers(url));
+  }, [dispatch]);
   return (
     <>
-      <TableFrame url={url} tableHeadings={tableHeadings}></TableFrame>
+      <TableFrame
+        tableData={tableData}
+        url={url}
+        formName={formName}
+        tableHeadings={tableHeadings}
+        fetchFn={fetchCustomers}
+        numOfCol={numOfCol}
+      ></TableFrame>
     </>
   );
 };

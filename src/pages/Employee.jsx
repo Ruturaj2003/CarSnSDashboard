@@ -6,9 +6,10 @@ import { globalUrl } from '../App';
 
 const Employee = () => {
   const url = globalUrl + '/employee';
-  const tableHeadings = ['ID', 'Name', 'Department', 'Salary'];
+  const tableHeadings = ['Name', 'Department', 'Salary'];
   const formName = 'Employee';
   const tableData = useSelector((state) => state.employee.tdata);
+  const numOfCol = 3;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -22,6 +23,8 @@ const Employee = () => {
         url={url}
         formName={formName}
         tableHeadings={tableHeadings}
+        fetchFn={fetchEmployees}
+        numOfCol={numOfCol}
       ></TableFrame>
     </>
   );
