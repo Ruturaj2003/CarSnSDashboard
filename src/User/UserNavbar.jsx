@@ -10,11 +10,13 @@ const UserNavbar = () => {
       <div className="h-16 mt-6 mr-16 ml-16 flex items-center justify-between">
         <div className="w-[55%] h-full flex items-center">
           {/* Logo */}
-          <img
-            src={logo}
-            className="ml-4 mr-8 rounded-full h-[50px] w-[50px]"
-            alt="Logo"
-          />
+          <Link to={'/user'}>
+            <img
+              src={logo}
+              className="ml-4 mr-8 rounded-full h-[50px] w-[50px]"
+              alt="Logo"
+            />
+          </Link>
 
           {/* Navlink Container */}
           <div className="300 h-full w-[70%] flex items-center justify-evenly">

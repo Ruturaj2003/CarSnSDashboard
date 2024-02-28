@@ -4,9 +4,11 @@ import customerReducer from './slices/customerSlice';
 import stockPileReducer from './slices/stockPileSlice';
 import serviceReducer from './slices/serviceSlice';
 import carReducer from './slices/carSlice';
+import commonReducer from './slices/commonSlice';
 
 const store = configureStore({
   reducer: {
+    common: commonReducer,
     employee: employeeReducer,
     customer: customerReducer,
     stockPile: stockPileReducer,

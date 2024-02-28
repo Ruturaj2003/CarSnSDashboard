@@ -13,6 +13,7 @@ import Login from './User/pages/Login';
 import SignUp from './User/pages/SignUp';
 import Alogin from './pages/Login';
 import BrowseCar from './User/pages/BrowseCar';
+import SpecificCar from './User/pages/SpecificCar';
 export const globalUrl = 'http://localhost:8081';
 
 const queryClient = new QueryClient({
@@ -76,6 +77,16 @@ const router = createBrowserRouter([
   {
     path: '/user/bookservice',
     element: <Service></Service>,
+    errorElement: <h1>Sda</h1>,
+  },
+  {
+    path: '/user/browsecars',
+    element: <BrowseCar></BrowseCar>,
+    errorElement: <h1>Sda</h1>,
+  },
+  {
+    path: '/user/browsecar',
+    element: <SpecificCar></SpecificCar>,
     errorElement: <h1>Sda</h1>,
   },
 ]);
