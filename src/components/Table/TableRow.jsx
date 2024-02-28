@@ -8,34 +8,26 @@ import { useDispatch } from 'react-redux';
 import {
   deleteEmployees,
   fetchEmployees,
+  incrementValue,
 } from '../../state/slices/employeeSlice';
 // import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 const TableRow = ({ item, handleRowClick, url }) => {
-  const queryClient = useQueryClient();
   const dispatch = useDispatch();
 
-  const deltMut = useMutation(
-    (id) => {
-      axios.delete(`${url}/${id}`);
-    },
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries(['tableData', url]);
-        console.log('reftech');
-      },
-      onError: (err) => {
-        console.error('Error during delete:', err);
-      },
-    }
-  );
-  const handleDelete = () => {
-    deltMut.mutate(item.id);
+  const dota = (id) => {
+    axios
+      .delete(url + '/' + id)
+      .then(() => {
+        dispatch(fetchEmployees(url));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const deleteItem = (id) => {
-    dispatch(deleteEmployees(url, id));
-    dispatch(fetchEmployees(url));
+    dota(id);
   };
 
   return (

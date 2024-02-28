@@ -1,17 +1,6 @@
 import { useEffect, useState } from 'react';
 import DataTable from './DataTable';
 import DModal from '../DModal';
-import axios from 'axios';
-import { useMutation, useQuery, useQueryClient } from 'react-query';
-
-const fetchTableData = async (url) => {
-  const response = await axios.get(url);
-  return response.data;
-};
-
-const deleteItem = async (id, url) => {
-  const response = await axios.delete(url + '/' + id);
-};
 
 const TableFrame = ({ url, tableHeadings, formName, tableData }) => {
   const [loading, setLoading] = useState(false);
@@ -19,19 +8,6 @@ const TableFrame = ({ url, tableHeadings, formName, tableData }) => {
   const [editModal, setEditModal] = useState(false);
   const [editModalData, setEditModalData] = useState(null);
   const [createModal, setCreateModal] = useState(false);
-
-  const handleDelete = (id, url) => {
-    // Call the mutate function with the item ID and URL
-    // deleteItemMutation.mutate({ id, url });
-  };
-
-  // if (isLoading) {
-  //   return <p>Loading...</p>;
-  // }
-
-  // if (isError) {
-  //   return <p>Error loading data</p>;
-  // }
 
   const handleModalOpen = () => {
     setOverlayOpen(true);
@@ -56,7 +32,6 @@ const TableFrame = ({ url, tableHeadings, formName, tableData }) => {
                 <DataTable
                   url={url}
                   handleModalOpen={handleModalOpen}
-                  handleDelete={handleDelete}
                   handleEditModalOpen={handleEditModalOpen}
                   setEditModalData={setEditModalData}
                   data={tableData}
@@ -94,7 +69,6 @@ const TableFrame = ({ url, tableHeadings, formName, tableData }) => {
               handleModalOpen={handleModalOpen}
               handleEditModalOpen={handleEditModalOpen}
               setEditModalData={setEditModalData}
-              handleDelete={handleDelete}
               tableHeadings={tableHeadings}
             ></DataTable>
           )}

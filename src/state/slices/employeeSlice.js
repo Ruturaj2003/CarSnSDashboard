@@ -3,7 +3,6 @@ import axios from 'axios';
 
 const initialState = {
   tdata: [],
-  value: 12,
 };
 
 export const fetchEmployees = createAsyncThunk(
