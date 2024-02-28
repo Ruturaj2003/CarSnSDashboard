@@ -209,7 +209,7 @@ const SpecificCar = () => {
               />
             </div>
             {/* Card 2 */}
-            <div className="flex w-full mb-6">
+            <div className="flex w-full mt-6 mb-6">
               <img
                 className=" w-[45%] h-[500px] rounded-2xl shadow-lg object-cover"
                 src="https://wallpapercave.com/wp/wp7374501.png"
