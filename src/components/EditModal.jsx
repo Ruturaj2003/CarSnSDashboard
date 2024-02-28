@@ -1,46 +1,25 @@
-// import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { useMutation, useQueryClient } from 'react-query';
+import { useDispatch } from 'react-redux';
+import { fetchEmployees } from '../state/slices/employeeSlice';
 
-const DModal = ({
+const EditModal = ({
   url,
   isOpen,
   formTitle,
   inputFields,
   setModal,
   setOverlay,
-  action,
-
   rowData,
 }) => {
-  const queryClient = useQueryClient();
-
-  const editMutation = useMutation((formData) => axios.put(url, formData), {
-    onSuccess: () => {
-      queryClient.invalidateQueries(['tableData', url]);
-      closeAll();
-    },
-    onError: (error) => {
-      console.error('Error during Edit', error);
-    },
-  });
-
-  const saveMutation = useMutation((formData) => axios.post(url, formData), {
-    onSuccess: () => {
-      queryClient.invalidateQueries(['tableData', url]);
-      closeAll();
-    },
-    onError: (error) => {
-      console.error('Error during save:', error);
-    },
-  });
-
+  const dispatch = useDispatch();
   const initialState = Object.fromEntries(
     inputFields.map((field) => [field, rowData ? rowData[field] || '' : ''])
   );
-  // Use state hook to manage the form data
+
   const [formData, setFormData] = useState(initialState);
+  const id = rowData.id;
+  const path = url + '/' + id;
 
   useEffect(() => {
     if (rowData) {
@@ -60,24 +39,27 @@ const DModal = ({
       [field]: value,
     }));
   };
+
   const closeAll = () => {
     setModal(false);
     setOverlay(false);
   };
-  const handleSave = () => {
-    if (!formData) {
-      console.error('Invalid form data. Please check the required fields.');
-      return;
-    }
 
-    if (action === 'PUT') {
-      editMutation.mutate(formData);
-    }
-
-    if (action === 'POST') {
-      saveMutation.mutate(formData);
+  const handleSave = async () => {
+    try {
+      if (!formData) {
+        console.error('Invalid form data. Please check the required fields.');
+        return;
+      }
+      const response = await axios.put(path, formData);
+      dispatch(fetchEmployees(url));
+      console.log('Update successful:', response.data);
+      closeAll();
+    } catch (error) {
+      console.error('Error during update:', error);
     }
   };
+
   return (
     <div
       className={`fixed ${
@@ -130,4 +112,5 @@ const DModal = ({
     </div>
   );
 };
-export default DModal;
+
+export default EditModal;

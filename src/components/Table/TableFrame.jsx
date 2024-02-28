@@ -1,64 +1,15 @@
 import { useEffect, useState } from 'react';
 import DataTable from './DataTable';
 import DModal from '../DModal';
-import axios from 'axios';
-import { useMutation, useQuery, useQueryClient } from 'react-query';
+import CreateModal from '../CreateModal';
+import EditModal from '../EditModal';
 
-const fetchTableData = async (url) => {
-  const response = await axios.get(url);
-  return response.data;
-};
-
-const deleteItem = async (id, url) => {
-  const response = await axios.delete(url + '/' + id);
-};
-
-const TableFrame = ({ url, tableHeadings, formName }) => {
-  console.log(url);
-
+const TableFrame = ({ url, tableHeadings, formName, tableData }) => {
   const [loading, setLoading] = useState(false);
   const [overlayOpen, setOverlayOpen] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const [editModalData, setEditModalData] = useState(null);
   const [createModal, setCreateModal] = useState(false);
-  const queryClient = useQueryClient();
-
-  const {
-    data: tableData,
-    isLoading,
-    isError,
-  } = useQuery({
-    queryFn: () => fetchTableData(url),
-    queryKey: ['tableData', url],
-  });
-
-  // Mutation for deleting an item
-  const deleteItemMutation = useMutation(
-    (params) => deleteItem(params.id, params.url), // Replace fetchDeleteItem with your actual delete function
-    {
-      onSuccess: (data, variables) => {
-        console.log('Deleted successfully', data);
-        // Invalidate the query to trigger a refetch
-        queryClient.invalidateQueries(['tableData', url]);
-      },
-      onError: (error) => {
-        console.error('Error deleting item', error);
-      },
-    }
-  );
-
-  const handleDelete = (id, url) => {
-    // Call the mutate function with the item ID and URL
-    deleteItemMutation.mutate({ id, url });
-  };
-
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
-
-  if (isError) {
-    return <p>Error loading data</p>;
-  }
 
   const handleModalOpen = () => {
     setOverlayOpen(true);
@@ -83,7 +34,6 @@ const TableFrame = ({ url, tableHeadings, formName }) => {
                 <DataTable
                   url={url}
                   handleModalOpen={handleModalOpen}
-                  handleDelete={handleDelete}
                   handleEditModalOpen={handleEditModalOpen}
                   setEditModalData={setEditModalData}
                   data={tableData}
@@ -91,18 +41,17 @@ const TableFrame = ({ url, tableHeadings, formName }) => {
                 ></DataTable>
               </div>
 
-              {/* Edit Modal */}
-              <DModal
+              <CreateModal
                 url={url}
                 isOpen={createModal}
                 formTitle={'Create ' + formName}
                 inputFields={inputFields}
                 setModal={setCreateModal}
                 setOverlay={setOverlayOpen}
-                rowData={{}}
+                rowData={[]}
                 action={'POST'}
-              ></DModal>
-              <DModal
+              ></CreateModal>
+              <EditModal
                 url={url}
                 isOpen={editModal}
                 formTitle={'Edit ' + formName}
@@ -110,9 +59,7 @@ const TableFrame = ({ url, tableHeadings, formName }) => {
                 setModal={setEditModal}
                 setOverlay={setOverlayOpen}
                 rowData={editModalData}
-                action={'PUT'}
-              ></DModal>
-              {/* Create Modal */}
+              ></EditModal>
             </>
           ) : (
             <DataTable
@@ -121,7 +68,6 @@ const TableFrame = ({ url, tableHeadings, formName }) => {
               handleModalOpen={handleModalOpen}
               handleEditModalOpen={handleEditModalOpen}
               setEditModalData={setEditModalData}
-              handleDelete={handleDelete}
               tableHeadings={tableHeadings}
             ></DataTable>
           )}
