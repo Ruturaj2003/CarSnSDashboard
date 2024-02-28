@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import DataTable from './DataTable';
-import DModal from '../DModal';
+
 import CreateModal from '../CreateModal';
 import EditModal from '../EditModal';
 
@@ -48,8 +48,6 @@ const TableFrame = ({ url, tableHeadings, formName, tableData }) => {
                 inputFields={inputFields}
                 setModal={setCreateModal}
                 setOverlay={setOverlayOpen}
-                rowData={[]}
-                action={'POST'}
               ></CreateModal>
               <EditModal
                 url={url}
