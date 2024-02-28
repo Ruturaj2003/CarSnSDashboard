@@ -1,7 +1,19 @@
-const BCCard = () => {
+import { useDispatch } from 'react-redux';
+import { assignCarId } from '../../../state/slices/commonSlice';
+import { useNavigate } from 'react-router';
+
+const BCCard = ({ data }) => {
+  const dispatch = useDispatch();
+  const navi = useNavigate();
+  const { id } = data;
+
+  const handleClick = () => {
+    dispatch(assignCarId(id));
+    navi('/user/browsecar');
+  };
   return (
     <div
-      onClick={() => console.log('Dota')}
+      onClick={() => handleClick()}
       className="h-[300px] w-[400px] bg-slate-300  bg-opacity-25 rounded-lg flex flex-col p-2 cursor-pointer  "
     >
       {/* Image COntainer */}
