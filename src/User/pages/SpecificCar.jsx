@@ -9,7 +9,7 @@ import hero from '../assets/hero.jpg';
 import hero2 from '../assets/hero2.jpg';
 import hero3 from '../assets/hero3.jpg';
 import hero4 from '../assets/hero4.jpg';
-import Slider from 'react-slick';
+
 const imgMap = {
   Car_image_1708861269778: hero,
   sideView_1708861269780: hero2,
