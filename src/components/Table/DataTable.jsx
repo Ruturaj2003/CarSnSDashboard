@@ -38,6 +38,7 @@ const DataTable = ({
                 url={url}
                 fetchFn={fetchFn}
                 buttonData={buttonData}
+                readOnly={readOnly}
               />
             );
           })}

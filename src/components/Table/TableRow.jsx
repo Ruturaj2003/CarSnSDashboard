@@ -15,6 +15,7 @@ const TableRow = ({
   fetchFn,
   numOfCol,
   buttonData,
+  readOnly,
 }) => {
   const dispatch = useDispatch();
 
@@ -55,35 +56,37 @@ const TableRow = ({
             {item[key]}
           </td>
         ))}
-      <td className="flex justify-evenly py-2 items-center">
-        {buttonData.editButton && (
-          <button key={nanoid()} onClick={() => handleRowClick(item)}>
-            <FaEdit className="text-[#797979] text-xl" />
-          </button>
-        )}
+      {!readOnly && (
+        <td className="flex justify-evenly py-2 items-center">
+          {buttonData.editButton && (
+            <button key={nanoid()} onClick={() => handleRowClick(item)}>
+              <FaEdit className="text-[#797979] text-xl" />
+            </button>
+          )}
 
-        {buttonData.deleteButton && (
-          <button key={nanoid()} onClick={() => deleteItem(item.id)}>
-            <MdDelete className="text-xl text-[#797979]" />
-          </button>
-        )}
-        {buttonData.bookingButton && (
-          <button
-            onClick={() => handleDelivered(item.id)}
-            className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-          >
-            Delivered
-          </button>
-        )}
-        {buttonData.serviceButton && (
-          <button
-            onClick={() => handleServiced(item.id)}
-            className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-          >
-            Serviced
-          </button>
-        )}
-      </td>
+          {buttonData.deleteButton && (
+            <button key={nanoid()} onClick={() => deleteItem(item.id)}>
+              <MdDelete className="text-xl text-[#797979]" />
+            </button>
+          )}
+          {buttonData.bookingButton && (
+            <button
+              onClick={() => handleDelivered(item.id)}
+              className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+            >
+              Delivered
+            </button>
+          )}
+          {buttonData.serviceButton && (
+            <button
+              onClick={() => handleServiced(item.id)}
+              className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+            >
+              Serviced
+            </button>
+          )}
+        </td>
+      )}
     </tr>
   );
 };
