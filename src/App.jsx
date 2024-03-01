@@ -4,7 +4,7 @@ import Initial from './pages/Initial';
 import Customer from './pages/Customer';
 import CustomerUI from './User/CustomerUI';
 import UserHome from './User/UserHome';
-import Service from './User/pages/Service';
+import UService from './User/pages/Service';
 import Employee from './pages/Employee';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { Provider } from 'react-redux';
@@ -14,6 +14,7 @@ import SignUp from './User/pages/SignUp';
 import Alogin from './pages/Login';
 import BrowseCar from './User/pages/BrowseCar';
 import SpecificCar from './User/pages/SpecificCar';
+import Service from './pages/Service';
 export const globalUrl = 'http://localhost:8081';
 
 const queryClient = new QueryClient({
@@ -46,8 +47,8 @@ const router = createBrowserRouter([
         errorElement: <h1>Sda</h1>,
       },
       {
-        path: 'losade',
-        element: <h1>asds</h1>,
+        path: 'service',
+        element: <Service>asds</Service>,
         errorElement: <h1>Sda</h1>,
       },
       {
@@ -76,7 +77,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/user/bookservice',
-    element: <Service></Service>,
+    element: <UService></UService>,
     errorElement: <h1>Sda</h1>,
   },
   {

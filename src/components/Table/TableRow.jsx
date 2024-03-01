@@ -88,4 +88,25 @@ const TableRow = ({
   );
 };
 
+//Curremt Time Fn
+
+// const currentTime = new Date().toISOString();
+
+// // Replace this URL with your actual API endpoint
+// const apiUrl = 'https://example.com/api/your-endpoint';
+
+// // Data to be sent in the PUT request
+// const requestData = {
+//   currentTime: currentTime,
+// };
+
+// // Making the Axios PUT request
+// axios
+//   .put(apiUrl, requestData)
+//   .then((response) => {
+//     console.log('PUT Request Successful:', response.data);
+//   })
+//   .catch((error) => {
+//     console.error('Error making PUT request:', error);
+//   });
 export default TableRow;
