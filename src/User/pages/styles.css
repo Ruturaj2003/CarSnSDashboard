@@ -16,3 +16,26 @@
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+.about-content {
+  flex: 1;
+}
+
+.about-content p {
+  font-size: 30px;
+  line-height: 1.5;
+  color: black;
+}
+
+.about-image {
+  flex: 1;
+  margin-right: 40px;
+  overflow: hidden;
+}
+
+.about-image img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  transition: 0.5s ease;
+}
