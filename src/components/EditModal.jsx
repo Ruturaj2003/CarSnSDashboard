@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { fetchEmployees } from '../state/slices/employeeSlice';
 
 const EditModal = ({
   url,

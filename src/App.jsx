@@ -16,6 +16,7 @@ import BrowseCar from './User/pages/BrowseCar';
 import SpecificCar from './User/pages/SpecificCar';
 import Service from './pages/Service';
 import AboutUs from './User/pages/AboutUs';
+import ContactUs from './User/pages/ContactUs';
 export const globalUrl = 'http://localhost:8081';
 
 const queryClient = new QueryClient({
@@ -94,6 +95,11 @@ const router = createBrowserRouter([
   {
     path: '/user/about',
     element: <AboutUs></AboutUs>,
+    errorElement: <h1>Sda</h1>,
+  },
+  {
+    path: '/user/contact',
+    element: <ContactUs></ContactUs>,
     errorElement: <h1>Sda</h1>,
   },
 ]);
