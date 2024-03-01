@@ -10,9 +10,9 @@ const Hero2 = () => {
           alt=""
         />
         <div className="absolute right-6 bottom-[200px] text-white">
-          <h1 className="text-8xl font-heroFont">
+          {/* <h1 className="text-8xl font-heroFont">
             Sheer Driving <span className="font-bold"> Pleasure </span>{' '}
-          </h1>
+          </h1> */}
         </div>
       </>
     </>
