@@ -3,10 +3,9 @@ import TableFrame from '../components/Table/TableFrame';
 import { useEffect } from 'react';
 import { globalUrl } from '../App';
 
-import { fetchEmployees } from '../state/slices/employeeSlice';
-const Employee = () => {
+const Service = () => {
   const url = globalUrl + '/employee';
-  const tableHeadings = ['Name', 'Department', 'Salary'];
+  const tableHeadings = ['Customer Name', '', 'Salary'];
   const formName = 'Employee';
   const tableData = useSelector((state) => state.employee.tdata);
   const buttonData = useSelector((state) => state.employee.buttonData);
@@ -17,20 +16,6 @@ const Employee = () => {
   useEffect(() => {
     dispatch(fetchEmployees(url));
   }, [dispatch]);
-
-  return (
-    <>
-      <TableFrame
-        tableData={tableData}
-        url={url}
-        formName={formName}
-        tableHeadings={tableHeadings}
-        fetchFn={fetchEmployees}
-        numOfCol={numOfCol}
-        buttonData={buttonData}
-        readOnly={false}
-      ></TableFrame>
-    </>
-  );
+  return <div>Service</div>;
 };
-export default Employee;
+export default Service;
