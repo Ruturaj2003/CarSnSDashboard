@@ -44,7 +44,7 @@ const TableRow = ({ item, handleRowClick, url, fetchFn, numOfCol }) => {
         <button key={nanoid()} onClick={() => handleRowClick(item)}>
           <FaEdit className="text-[#797979] text-xl" />
         </button>
-        <button key={nanoid()} onClick={() => deleteItem(item)}>
+        <button key={nanoid()} onClick={() => deleteItem(item.id)}>
           <MdDelete className="text-xl text-[#797979]" />
         </button>
       </td>
