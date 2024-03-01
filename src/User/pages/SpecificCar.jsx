@@ -42,45 +42,43 @@ const SpecificCar = () => {
         );
 
         setCarData(filteredData);
+        setMainImg(filteredData.carimage);
+        setRearView(filteredData.rearview);
+        setInterior(filteredData.interior);
+        setSideView(filteredData.sideview);
       } catch (error) {
         console.error('Error fetching car data:', error.message);
       }
     };
 
-    // Example dummy data
-    const dummy = {
-      id: 5,
-      chassisno: 'SB1280',
-      engineno: 9185,
-      cartype: 'SUV',
-      modelname: 'X7',
-      price: 9000000,
-      stock: 9,
-      carimage: 'Car_image_1708861269778.png',
-      sideview: 'sideView_1708861269780.png',
-      interior: 'interior_1708861269785.png',
-      rearview: 'rearView_1708861269790.png',
-      cardescription: 'fsdfhjdsgvfjkhsdvbfkjshfv',
-      color: 'Red',
-    };
+    // // Example dummy data
+    // const dummy = {
+    //   id: 5,
+    //   chassisno: 'SB1280',
+    //   engineno: 9185,
+    //   cartype: 'SUV',
+    //   modelname: 'X7',
+    //   price: 9000000,
+    //   stock: 9,
+    //   carimage: 'Car_image_1708861269778.png',
+    //   sideview: 'sideView_1708861269780.png',
+    //   interior: 'interior_1708861269785.png',
+    //   rearview: 'rearView_1708861269790.png',
+    //   cardescription: 'fsdfhjdsgvfjkhsdvbfkjshfv',
+    //   color: 'Red',
+    // };
 
-    // Remove '.png' from all properties
-    const updatedDummy = Object.fromEntries(
-      Object.entries(dummy).map(([key, value]) => [
-        key,
-        typeof value === 'string' ? value.replace('.png', '') : value,
-      ])
-    );
+    // // Remove '.png' from all properties
+    // const updatedDummy = Object.fromEntries(
+    //   Object.entries(dummy).map(([key, value]) => [
+    //     key,
+    //     typeof value === 'string' ? value.replace('.png', '') : value,
+    //   ])
+    // );
     // Set dummy data
-    setCarData(updatedDummy);
-    setMainImg(updatedDummy.carimage);
-    setRearView(updatedDummy.rearview);
-    setInterior(updatedDummy.interior);
-    setSideView(updatedDummy.sideview);
-    console.log(updatedDummy);
 
     // Fetch car data (commented out for now)
-    // fetchCar();
+    fetchCar();
   }, [id]);
 
   const images = Object.values(imgMap);

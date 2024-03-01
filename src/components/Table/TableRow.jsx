@@ -41,9 +41,12 @@ const TableRow = ({ item, handleRowClick, url, fetchFn, numOfCol }) => {
           </td>
         ))}
       <td className="flex justify-evenly py-2 items-center">
-        <button key={nanoid()} onClick={() => handleRowClick(item)}>
-          <FaEdit className="text-[#797979] text-xl" />
-        </button>
+        {true && (
+          <button key={nanoid()} onClick={() => handleRowClick(item)}>
+            <FaEdit className="text-[#797979] text-xl" />
+          </button>
+        )}
+
         <button key={nanoid()} onClick={() => deleteItem(item.id)}>
           <MdDelete className="text-xl text-[#797979]" />
         </button>
