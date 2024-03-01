@@ -11,6 +11,7 @@ const DataTable = ({
   fetchFn,
   numOfCol,
   buttonData,
+  readOnly,
 }) => {
   const handleRowClick = (rowData) => {
     setEditModalData(rowData);
@@ -24,6 +25,7 @@ const DataTable = ({
           handleModalOpen={handleModalOpen}
           tableHeadings={tableHeadings}
           buttonData={buttonData}
+          readOnly={readOnly}
         />
         <tbody>
           {data.map((item, index) => {
@@ -35,6 +37,7 @@ const DataTable = ({
                 item={item}
                 url={url}
                 fetchFn={fetchFn}
+                buttonData={buttonData}
               />
             );
           })}

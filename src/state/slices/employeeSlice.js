@@ -7,6 +7,8 @@ const initialState = {
     editButton: true,
     deleteButton: true,
     createButton: true,
+    serviceButton: false,
+    bookingButton: false,
   },
 };
 
@@ -15,7 +17,7 @@ export const fetchEmployees = createAsyncThunk(
   async (url) => {
     try {
       const resp = await axios.get(url);
-      console.log(resp.data);
+
       return resp.data;
     } catch (error) {
       // Check if the error status is 404 and return an empty array

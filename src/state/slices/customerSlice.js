@@ -7,6 +7,8 @@ const initialState = {
     editButton: true,
     deleteButton: true,
     createButton: false,
+    serviceButton: false,
+    bookingButton: false,
   },
 };
 

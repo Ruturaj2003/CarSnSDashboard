@@ -33,6 +33,7 @@ const Customer = () => {
         fetchFn={fetchCustomers}
         numOfCol={numOfCol}
         buttonData={buttonData}
+        readOnly={false}
       ></TableFrame>
     </>
   );

@@ -10,7 +10,7 @@ const Employee = () => {
   const formName = 'Employee';
   const tableData = useSelector((state) => state.employee.tdata);
   const buttonData = useSelector((state) => state.employee.buttonData);
-  console.log(buttonData);
+
   const numOfCol = 3;
   const dispatch = useDispatch();
 
@@ -28,6 +28,7 @@ const Employee = () => {
         fetchFn={fetchEmployees}
         numOfCol={numOfCol}
         buttonData={buttonData}
+        readOnly={false}
       ></TableFrame>
     </>
   );

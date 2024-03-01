@@ -8,7 +8,14 @@ import { useDispatch } from 'react-redux';
 
 // import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
-const TableRow = ({ item, handleRowClick, url, fetchFn, numOfCol }) => {
+const TableRow = ({
+  item,
+  handleRowClick,
+  url,
+  fetchFn,
+  numOfCol,
+  buttonData,
+}) => {
   const dispatch = useDispatch();
 
   const dota = (id) => {
@@ -22,6 +29,14 @@ const TableRow = ({ item, handleRowClick, url, fetchFn, numOfCol }) => {
       });
   };
 
+  const handleDelivered = (id) => {
+    console.log('Vehicle Id: ' + id + ' Delivered');
+  };
+
+  const handleServiced = (id) => {
+    console.log('Vehicle Id: ' + id + ' Serviced');
+  };
+
   const deleteItem = (id) => {
     console.log(id);
     dota(id);
@@ -29,7 +44,7 @@ const TableRow = ({ item, handleRowClick, url, fetchFn, numOfCol }) => {
   const nume = numOfCol;
 
   return (
-    <tr>
+    <tr className="hover:bg-blue-100">
       {Object.keys(item)
         .slice(0, nume)
         .map((key) => (
@@ -41,15 +56,33 @@ const TableRow = ({ item, handleRowClick, url, fetchFn, numOfCol }) => {
           </td>
         ))}
       <td className="flex justify-evenly py-2 items-center">
-        {true && (
+        {buttonData.editButton && (
           <button key={nanoid()} onClick={() => handleRowClick(item)}>
             <FaEdit className="text-[#797979] text-xl" />
           </button>
         )}
 
-        <button key={nanoid()} onClick={() => deleteItem(item.id)}>
-          <MdDelete className="text-xl text-[#797979]" />
-        </button>
+        {buttonData.deleteButton && (
+          <button key={nanoid()} onClick={() => deleteItem(item.id)}>
+            <MdDelete className="text-xl text-[#797979]" />
+          </button>
+        )}
+        {buttonData.bookingButton && (
+          <button
+            onClick={() => handleDelivered(item.id)}
+            className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+          >
+            Delivered
+          </button>
+        )}
+        {buttonData.serviceButton && (
+          <button
+            onClick={() => handleServiced(item.id)}
+            className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+          >
+            Serviced
+          </button>
+        )}
       </td>
     </tr>
   );
