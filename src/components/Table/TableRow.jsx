@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 
 // import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
-const TableRow = ({ item, handleRowClick, url, fetchFn }) => {
+const TableRow = ({ item, handleRowClick, url, fetchFn, numOfCol }) => {
   const dispatch = useDispatch();
 
   const dota = (id) => {
@@ -23,24 +23,28 @@ const TableRow = ({ item, handleRowClick, url, fetchFn }) => {
   };
 
   const deleteItem = (id) => {
+    console.log(id);
     dota(id);
   };
+  const nume = numOfCol;
 
   return (
     <tr>
-      {Object.values(item).map((value) => (
-        <td
-          key={nanoid()}
-          className="py-2 overflow-hidden overflow-ellipsis text-center font-tableD"
-        >
-          {value}
-        </td>
-      ))}
+      {Object.keys(item)
+        .slice(0, nume)
+        .map((key) => (
+          <td
+            key={nanoid()}
+            className="py-2 overflow-hidden overflow-ellipsis text-center font-tableD"
+          >
+            {item[key]}
+          </td>
+        ))}
       <td className="flex justify-evenly py-2 items-center">
         <button key={nanoid()} onClick={() => handleRowClick(item)}>
           <FaEdit className="text-[#797979] text-xl" />
         </button>
-        <button key={nanoid()} onClick={() => deleteItem(item.id)}>
+        <button key={nanoid()} onClick={() => deleteItem(item)}>
           <MdDelete className="text-xl text-[#797979]" />
         </button>
       </td>

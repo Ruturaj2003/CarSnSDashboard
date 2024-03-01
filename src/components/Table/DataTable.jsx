@@ -15,7 +15,7 @@ const DataTable = ({
     setEditModalData(rowData);
     handleEditModalOpen();
   };
-  const nume = numOfCol;
+
   return (
     <div className="h-full bg-slate-100 overflow-auto">
       <table className="w-full table-fixed shadow-md rounded bg-white">
@@ -25,18 +25,12 @@ const DataTable = ({
         />
         <tbody>
           {data.map((item, index) => {
-            // Display only the specified number of attributes
-            const displayedItem = {};
-            for (let i = 0; i < nume; i++) {
-              const attributeKey = Object.keys(item)[i];
-              displayedItem[attributeKey] = item[attributeKey];
-            }
-
             return (
               <TableRow
+                numOfCol={numOfCol}
                 handleRowClick={handleRowClick}
                 key={index}
-                item={displayedItem}
+                item={item}
                 url={url}
                 fetchFn={fetchFn}
               />
