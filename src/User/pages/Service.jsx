@@ -627,6 +627,7 @@ function Service() {
                 backgroundColor: '#ECECEC',
                 borderRadius: 1,
               }}
+              onClick={() => handleOn()}
             >
               <img
                 src="/images/4.png"
@@ -645,6 +646,7 @@ function Service() {
                 backgroundColor: '#ECECEC',
                 borderRadius: 1,
               }}
+              onClick={() => handleOn()}
             >
               <img
                 src="/images/5.png"
@@ -663,6 +665,7 @@ function Service() {
                 backgroundColor: '#ECECEC',
                 borderRadius: 1,
               }}
+              onClick={() => handleOn()}
             >
               <img
                 src="/images/insurance-v3.png"
@@ -681,6 +684,7 @@ function Service() {
                 backgroundColor: '#ECECEC',
                 borderRadius: 1,
               }}
+              onClick={() => handleOn()}
             >
               <img
                 src="/images/Clutch-_-Bumpers.png"
@@ -699,6 +703,7 @@ function Service() {
                 backgroundColor: '#ECECEC',
                 borderRadius: 1,
               }}
+              onClick={() => handleOn()}
             >
               <img
                 src="/images/tyre-v3.png"
@@ -717,6 +722,7 @@ function Service() {
                 backgroundColor: '#ECECEC',
                 borderRadius: 1,
               }}
+              onClick={() => handleOn()}
             >
               <img
                 src="/images/Suspension-_-Fitments.png"
