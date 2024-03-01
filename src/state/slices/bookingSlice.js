@@ -4,16 +4,16 @@ import axios from 'axios';
 const initialState = {
   tdata: [],
   buttonData: {
-    editButton: true,
-    deleteButton: true,
-    createButton: true,
+    editButton: false,
+    deleteButton: false,
+    createButton: false,
     serviceButton: false,
-    bookingButton: false,
+    bookingButton: true,
   },
 };
 
-export const fetchStockPiles = createAsyncThunk(
-  'stockPile/fetchStockPiles', // Change the action type to 'employee/fetchStockPiles'
+export const fetchBookings = createAsyncThunk(
+  'booking/fetchBookings',
   async (url) => {
     try {
       const resp = await axios.get(url);
@@ -30,16 +30,15 @@ export const fetchStockPiles = createAsyncThunk(
   }
 );
 
-const stockPileSlice = createSlice({
-  name: 'stockpile', // Change the slice name to 'stockpile'
+const bookingSlice = createSlice({
+  name: 'booking',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchStockPiles.fulfilled, (state, action) => {
-      // Change to fetchStockPiles
+    builder.addCase(fetchBookings.fulfilled, (state, action) => {
       state.tdata = action.payload;
     });
   },
 });
 
-export default stockPileSlice.reducer;
+export default bookingSlice.reducer;

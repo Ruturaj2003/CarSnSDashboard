@@ -5,6 +5,7 @@ import stockPileReducer from './slices/stockPileSlice';
 import serviceReducer from './slices/serviceSlice';
 import carReducer from './slices/carSlice';
 import commonReducer from './slices/commonSlice';
+import bookingReducer from './slices/bookingSlice';
 
 const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ const store = configureStore({
     stockPile: stockPileReducer,
     service: serviceReducer,
     car: carReducer,
+    booking: bookingReducer,
   },
 });
 

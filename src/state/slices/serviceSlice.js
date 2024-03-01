@@ -3,10 +3,17 @@ import axios from 'axios';
 
 const initialState = {
   tdata: [],
+  buttonData: {
+    editButton: false,
+    deleteButton: false,
+    createButton: false,
+    serviceButton: true,
+    bookingButton: false,
+  },
 };
 
 export const fetchServices = createAsyncThunk(
-  'employee/fetchServices', // Change the action type to 'employee/fetchServices'
+  'service/fetchServices', // Change the action type to 'employee/fetchServices'
   async (url) => {
     try {
       const resp = await axios.get(url);
