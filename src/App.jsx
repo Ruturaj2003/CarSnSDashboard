@@ -18,6 +18,7 @@ import Service from './pages/Service';
 import AboutUs from './User/pages/AboutUs';
 import ContactUs from './User/pages/ContactUs';
 import StockPile from './pages/StockPile';
+import Booking from './pages/Booking';
 export const globalUrl = 'http://localhost:8081';
 
 const queryClient = new QueryClient({
@@ -67,6 +68,11 @@ const router = createBrowserRouter([
       {
         path: 'stockPile',
         element: <StockPile></StockPile>,
+        errorElement: <h1>Sda</h1>,
+      },
+      {
+        path: 'booking',
+        element: <Booking></Booking>,
         errorElement: <h1>Sda</h1>,
       },
     ],

@@ -30,12 +30,50 @@ const TableRow = ({
       });
   };
 
-  const handleDelivered = (id) => {
-    console.log('Vehicle Id: ' + id + ' Delivered');
+  const deliReq = async (id, data) => {
+    axios
+      .put(url + '/' + id, data)
+      .then((response) => {
+        console.log('PUT Request Successful:', response.data);
+      })
+      .catch((error) => {
+        console.error('Error making PUT request:', error);
+      });
   };
 
-  const handleServiced = (id) => {
-    console.log('Vehicle Id: ' + id + ' Serviced');
+  const serviceReq = async (id, data) => {
+    console.log(data);
+    axios
+      .put(url + '/' + id, data)
+      .then((response) => {
+        console.log('PUT Request Successful:', response.data);
+      })
+      .catch((error) => {
+        console.error('Error making PUT request:', error);
+      });
+  };
+
+  const handleDelivered = (item) => {
+    const { status, employeeid } = item;
+    const currentTime = new Date().toISOString();
+    const requestData = {
+      date: currentTime,
+      status,
+      emp: employeeid,
+    };
+    deliReq(item.id, requestData);
+  };
+
+  const handleServiced = (item) => {
+    const { cost, servicedescription } = item;
+    const currentTime = new Date().toISOString();
+    const requestData = {
+      date: currentTime,
+      desc: servicedescription,
+      cost,
+    };
+    console.log('Vehicle Id: ' + item.id + ' Serviced');
+    serviceReq(item.id, requestData);
   };
 
   const deleteItem = (id) => {
@@ -71,7 +109,7 @@ const TableRow = ({
           )}
           {buttonData.bookingButton && (
             <button
-              onClick={() => handleDelivered(item.id)}
+              onClick={() => handleDelivered(item)}
               className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
             >
               Delivered
@@ -79,7 +117,7 @@ const TableRow = ({
           )}
           {buttonData.serviceButton && (
             <button
-              onClick={() => handleServiced(item.id)}
+              onClick={() => handleServiced(item)}
               className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
             >
               Serviced
@@ -91,25 +129,6 @@ const TableRow = ({
   );
 };
 
-//Curremt Time Fn
+// Making the Axios PUT request
 
-// const currentTime = new Date().toISOString();
-
-// // Replace this URL with your actual API endpoint
-// const apiUrl = 'https://example.com/api/your-endpoint';
-
-// // Data to be sent in the PUT request
-// const requestData = {
-//   currentTime: currentTime,
-// };
-
-// // Making the Axios PUT request
-// axios
-//   .put(apiUrl, requestData)
-//   .then((response) => {
-//     console.log('PUT Request Successful:', response.data);
-//   })
-//   .catch((error) => {
-//     console.error('Error making PUT request:', error);
-//   });
 export default TableRow;
