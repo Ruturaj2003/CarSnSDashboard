@@ -26,7 +26,7 @@ const AboutUs = () => {
           </div>
           <div className="w-full md:w-1/2 px-4">
             <div className="about-content">
-              <p className="text-lg leading-relaxed font-tableD">
+              <p className="text-2xl leading-relaxed font-tableD">
                 Bayerische Motoren Werke AG (Bavarian Motor Works in English),
                 is a German multinational company that produces luxury vehicles
                 and motorcycles. It was founded in 1916 and is headquartered in

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import logo from './assets/logo.png';
 
 const UserNavbar = () => {
-  const navLinks = ['Browse Cars', 'Book Service', 'About', 'Contact', 'Help']; // Manually specified array
+  const navLinks = ['Browse Cars', 'Book Service', 'About', 'Contact']; // Manually specified array
   let odta;
 
   return (
