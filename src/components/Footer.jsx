@@ -9,13 +9,16 @@ const Footer = () => {
         </p>
 
         <div className="mt-4 flex space-x-4">
-          <a href="#" className="text-xl">
+          <a href="https://twitter.com/dotaizz44865" className="text-xl">
             <FaXTwitter className="hover:text-[#2c95e0] hover:scale-150" />
           </a>
           <a href="#" className="text-xl">
             <FaMeta className="hover:text-[#2c95e0] hover:scale-150" />
           </a>
-          <a href="#" className="text-xl">
+          <a
+            href="https://github.com/Ruturaj2003/CarSnSDashboard"
+            className="text-xl"
+          >
             <FaGithub className="hover:text-[#2c95e0] hover:scale-150" />
           </a>
         </div>
