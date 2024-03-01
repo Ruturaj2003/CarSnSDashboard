@@ -11,6 +11,7 @@ const TableFrame = ({
   tableData,
   fetchFn,
   numOfCol,
+  buttonData,
 }) => {
   const [loading, setLoading] = useState(false);
   const [overlayOpen, setOverlayOpen] = useState(false);
@@ -49,6 +50,7 @@ const TableFrame = ({
                   tableHeadings={tableHeadings}
                   fetchFn={fetchFn}
                   numOfCol={numOfCol}
+                  buttonData={buttonData}
                 ></DataTable>
               </div>
 
@@ -82,6 +84,7 @@ const TableFrame = ({
               tableHeadings={tableHeadings}
               fetchFn={fetchFn}
               numOfCol={numOfCol}
+              buttonData={buttonData}
             ></DataTable>
           )}
         </>

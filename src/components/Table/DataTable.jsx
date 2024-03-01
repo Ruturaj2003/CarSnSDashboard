@@ -10,6 +10,7 @@ const DataTable = ({
   setEditModalData,
   fetchFn,
   numOfCol,
+  buttonData,
 }) => {
   const handleRowClick = (rowData) => {
     setEditModalData(rowData);
@@ -22,6 +23,7 @@ const DataTable = ({
         <TableHeader
           handleModalOpen={handleModalOpen}
           tableHeadings={tableHeadings}
+          buttonData={buttonData}
         />
         <tbody>
           {data.map((item, index) => {

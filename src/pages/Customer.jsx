@@ -16,6 +16,7 @@ const Customer = () => {
   const url = globalUrl + '/customer';
   const formName = 'Customer';
   const tableData = useSelector((state) => state.customer.tdata);
+  const buttonData = useSelector((state) => state.customer.buttonData);
   const numOfCol = 5;
   const dispatch = useDispatch();
 
@@ -31,6 +32,7 @@ const Customer = () => {
         tableHeadings={tableHeadings}
         fetchFn={fetchCustomers}
         numOfCol={numOfCol}
+        buttonData={buttonData}
       ></TableFrame>
     </>
   );

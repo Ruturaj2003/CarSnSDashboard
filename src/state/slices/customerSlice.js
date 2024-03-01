@@ -3,10 +3,15 @@ import axios from 'axios';
 
 const initialState = {
   tdata: [],
+  buttonData: {
+    editButton: true,
+    deleteButton: true,
+    createButton: false,
+  },
 };
 
 export const fetchCustomers = createAsyncThunk(
-  'employee/fetchCustomers',
+  'customer/fetchCustomers',
   async (url) => {
     try {
       const resp = await axios.get(url);

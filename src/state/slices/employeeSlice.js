@@ -3,6 +3,11 @@ import axios from 'axios';
 
 const initialState = {
   tdata: [],
+  buttonData: {
+    editButton: true,
+    deleteButton: true,
+    createButton: true,
+  },
 };
 
 export const fetchEmployees = createAsyncThunk(
