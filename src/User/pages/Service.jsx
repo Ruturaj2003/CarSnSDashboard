@@ -379,7 +379,7 @@ function Service() {
       </Modal>
 
       <div style={{ display: 'flex' }}>
-        <section style={{ display: 'flex', width: '100%' }}>
+        <section style={{ display: 'flex', width: '100%' }} className="servBg">
           <div style={{ flex: '70%' }}></div>
           <div className="content" style={{ flex: '30%' }}>
             <Box sx={style}>

@@ -15,6 +15,7 @@ import Alogin from './pages/Login';
 import BrowseCar from './User/pages/BrowseCar';
 import SpecificCar from './User/pages/SpecificCar';
 import Service from './pages/Service';
+import AboutUs from './User/pages/AboutUs';
 export const globalUrl = 'http://localhost:8081';
 
 const queryClient = new QueryClient({
@@ -88,6 +89,11 @@ const router = createBrowserRouter([
   {
     path: '/user/browsecar',
     element: <SpecificCar></SpecificCar>,
+    errorElement: <h1>Sda</h1>,
+  },
+  {
+    path: '/user/about',
+    element: <AboutUs></AboutUs>,
     errorElement: <h1>Sda</h1>,
   },
 ]);
