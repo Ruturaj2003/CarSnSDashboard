@@ -10,6 +10,7 @@ const initialState = {
     serviceButton: true,
     bookingButton: false,
   },
+  servID: 0,
 };
 
 export const fetchServices = createAsyncThunk(
@@ -33,7 +34,11 @@ export const fetchServices = createAsyncThunk(
 const serviceSlice = createSlice({
   name: 'service', // Change the slice name to 'service'
   initialState,
-  reducers: {},
+  reducers: {
+    assignServId: (state, action) => {
+      state.servID = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchServices.fulfilled, (state, action) => {
       // Change to fetchServices
@@ -42,4 +47,5 @@ const serviceSlice = createSlice({
   },
 });
 
+export const { assignServId } = serviceSlice.actions;
 export default serviceSlice.reducer;

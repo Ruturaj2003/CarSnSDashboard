@@ -27,6 +27,7 @@ const StockPile = () => {
         numOfCol={numOfCol}
         buttonData={buttonData}
         readOnly={true}
+        serviceModal={false}
       ></TableFrame>
     </>
   );

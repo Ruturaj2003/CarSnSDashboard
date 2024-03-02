@@ -13,6 +13,7 @@ const TableFrame = ({
   numOfCol,
   buttonData,
   readOnly,
+  serviceModal,
 }) => {
   const [loading, setLoading] = useState(false);
   const [overlayOpen, setOverlayOpen] = useState(false);
@@ -64,6 +65,7 @@ const TableFrame = ({
                 setModal={setCreateModal}
                 setOverlay={setOverlayOpen}
                 fetchFn={fetchFn}
+                serviceModal={serviceModal}
               ></CreateModal>
               <EditModal
                 url={url}

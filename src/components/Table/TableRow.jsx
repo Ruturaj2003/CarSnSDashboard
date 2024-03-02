@@ -4,7 +4,8 @@ import axios from 'axios';
 import { FaEdit } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { assignServId } from '../../state/slices/serviceSlice';
 
 // import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
@@ -16,6 +17,7 @@ const TableRow = ({
   numOfCol,
   buttonData,
   readOnly,
+  handleModalOpen,
 }) => {
   const dispatch = useDispatch();
 
@@ -41,18 +43,6 @@ const TableRow = ({
       });
   };
 
-  const serviceReq = async (id, data) => {
-    console.log(data);
-    axios
-      .put(url + '/' + id, data)
-      .then((response) => {
-        console.log('PUT Request Successful:', response.data);
-      })
-      .catch((error) => {
-        console.error('Error making PUT request:', error);
-      });
-  };
-
   const handleDelivered = (item) => {
     const { status, employeeid } = item;
     const currentTime = new Date().toISOString();
@@ -65,15 +55,8 @@ const TableRow = ({
   };
 
   const handleServiced = (item) => {
-    const { cost, servicedescription } = item;
-    const currentTime = new Date().toISOString();
-    const requestData = {
-      date: currentTime,
-      desc: servicedescription,
-      cost,
-    };
-    console.log('Vehicle Id: ' + item.id + ' Serviced');
-    serviceReq(item.id, requestData);
+    dispatch(assignServId(item.id));
+    handleModalOpen();
   };
 
   const deleteItem = (id) => {
@@ -107,14 +90,17 @@ const TableRow = ({
               <MdDelete className="text-xl text-[#797979]" />
             </button>
           )}
-          {buttonData.bookingButton && (
-            <button
-              onClick={() => handleDelivered(item)}
-              className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-            >
-              Delivered
-            </button>
-          )}
+          {buttonData.bookingButton &&
+            (item.status === 'delivered' ? (
+              <h2 className="text-xl font-tableD text-green-600">Delivered</h2>
+            ) : (
+              <button
+                onClick={() => handleDelivered(item)}
+                className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+              >
+                Deliver
+              </button>
+            ))}
           {buttonData.serviceButton && (
             <button
               onClick={() => handleServiced(item)}

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const CreateModal = ({
   url,
@@ -10,6 +10,7 @@ const CreateModal = ({
   setModal,
   setOverlay,
   fetchFn,
+  serviceModal,
 }) => {
   console.log('Create Modal');
   const dispatch = useDispatch();
@@ -20,6 +21,9 @@ const CreateModal = ({
 
   const [formData, setFormData] = useState(initialFormData);
   const [validationError, setValidationError] = useState('');
+  const [cost, setCost] = useState(0);
+  const [desc, setDesc] = useState('');
+  const id = useSelector((state) => state.service.servID);
 
   const handleChange = (field, value) => {
     setFormData((prevData) => ({
@@ -62,6 +66,33 @@ const CreateModal = ({
     }
   };
 
+  const handleServ = (id) => {
+    const currentTime = new Date().toISOString();
+    const requestData = {
+      date: currentTime,
+      desc: desc,
+      cost: cost,
+    };
+    console.log('Vehicle Id: ' + id + ' Serviced');
+    serviceReq(id, requestData);
+
+    dispatch(fetchFn(url));
+
+    closeAll();
+  };
+
+  const serviceReq = async (id, data) => {
+    console.log(data);
+    axios
+      .put(url + '/' + id, data)
+      .then((response) => {
+        console.log('PUT Request Successful:', response.data);
+      })
+      .catch((error) => {
+        console.error('Error making PUT request:', error);
+      });
+  };
+
   return (
     <div
       className={`fixed ${
@@ -74,36 +105,83 @@ const CreateModal = ({
         <div className="flex items-center justify-between mb-4">
           <h4 className="text-2xl font-bold">{formTitle}</h4>
         </div>
-        <form>
-          {inputFields.map((field) => (
-            <div className="mb-4" key={field}>
+        {serviceModal ? (
+          <form>
+            <div className="mb-4">
+              <label htmlFor="cost" className="block text-sm  text-gray-700">
+                Cost
+              </label>
+              <input
+                type="number"
+                className={`mt-1 p-2 border rounded-md w-full ${
+                  validationError ? 'border-red-500' : ''
+                }`}
+                id="cost"
+                value={cost}
+                onChange={(e) => setCost(e.target.value)}
+              ></input>
+            </div>
+            <div className="mb-4">
               <label
-                htmlFor={field}
-                className="block text-sm font-medium text-gray-700"
+                htmlFor="description"
+                className="block text-sm  text-gray-700"
               >
-                {field.charAt(0).toUpperCase() + field.slice(1)}:
+                Service Description
               </label>
               <input
                 type="text"
                 className={`mt-1 p-2 border rounded-md w-full ${
                   validationError ? 'border-red-500' : ''
                 }`}
-                id={field}
-                value={formData[field]}
-                onChange={(e) => handleChange(field, e.target.value)}
-                required
-              />
+                id="cost"
+                value={desc}
+                onChange={(e) => setDesc(e.target.value)}
+              ></input>
             </div>
-          ))}
-          {validationError && (
-            <p className="text-red-500 text-sm">{validationError}</p>
-          )}
-        </form>
+
+            {validationError && (
+              <p className="text-red-500 text-sm">{validationError}</p>
+            )}
+          </form>
+        ) : (
+          <form>
+            {inputFields.map((field) => (
+              <div className="mb-4" key={field}>
+                <label
+                  htmlFor={field}
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  {field.charAt(0).toUpperCase() + field.slice(1)}:
+                </label>
+                <input
+                  type="text"
+                  className={`mt-1 p-2 border rounded-md w-full ${
+                    validationError ? 'border-red-500' : ''
+                  }`}
+                  id={field}
+                  value={formData[field]}
+                  onChange={(e) => handleChange(field, e.target.value)}
+                  required
+                />
+              </div>
+            ))}
+            {validationError && (
+              <p className="text-red-500 text-sm">{validationError}</p>
+            )}
+          </form>
+        )}
+
         <div className="flex justify-end mt-4">
           <button
             type="button"
             className="bg-green-500 text-white px-4 py-2 rounded-md mr-2"
-            onClick={handleSave}
+            onClick={() => {
+              if (serviceModal) {
+                handleServ(id);
+              } else {
+                handleSave();
+              }
+            }}
           >
             Save
           </button>

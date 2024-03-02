@@ -6,7 +6,14 @@ import { fetchServices } from '../state/slices/serviceSlice';
 
 const Service = () => {
   const url = globalUrl + '/service';
-  const tableHeadings = [
+  const tableHeadings1 = [
+    'Registration Number',
+    'Customer Name',
+    'Phone',
+    'Service Type',
+    'Arrival Date',
+  ];
+  const tableHeadings2 = [
     'Registration Number',
     'Customer Name',
     'Phone',
@@ -14,15 +21,18 @@ const Service = () => {
     'Arrival Date',
     'Service Description',
     'Cost',
+    'Delivery Date',
   ];
+
   const formName = 'Service';
   const data = useSelector((state) => state.service.tdata);
   const buttonData = useSelector((state) => state.service.buttonData);
 
-  const numOfCol = 7;
+  const numOfCol1 = 5;
+  const numOfCOl2 = 8;
   const dispatch = useDispatch();
 
-  const tableData = data.map((item) => {
+  const preTableData = data.map((item) => {
     // Format the arrival date
     const formattedArrivalDate = new Date(item.arrivaldate).toLocaleDateString(
       'en-GB'
@@ -41,21 +51,38 @@ const Service = () => {
     };
   });
 
+  const tableData1 = preTableData.filter((item) => item.Status === 'T');
+  const tableData2 = preTableData.filter((item) => item.Status === 'F');
+
   useEffect(() => {
     dispatch(fetchServices(url));
   }, [dispatch]);
 
   return (
-    <TableFrame
-      tableData={tableData}
-      url={url}
-      formName={formName}
-      tableHeadings={tableHeadings}
-      fetchFn={fetchServices}
-      numOfCol={numOfCol}
-      buttonData={buttonData}
-      readOnly={false}
-    ></TableFrame>
+    <div className="flex flex-col">
+      <TableFrame
+        tableData={tableData1}
+        url={url}
+        formName={formName}
+        tableHeadings={tableHeadings1}
+        fetchFn={fetchServices}
+        numOfCol={numOfCol1}
+        buttonData={buttonData}
+        readOnly={false}
+        serviceModal={true}
+      ></TableFrame>
+      <TableFrame
+        tableData={tableData2}
+        url={url}
+        formName={formName}
+        tableHeadings={tableHeadings2}
+        fetchFn={fetchServices}
+        numOfCol={numOfCOl2}
+        buttonData={buttonData}
+        readOnly={true}
+        serviceModal={false}
+      ></TableFrame>
+    </div>
   );
 };
 export default Service;

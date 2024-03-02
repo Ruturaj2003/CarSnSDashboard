@@ -11,7 +11,7 @@ const Booking = () => {
     'Phone',
     'Booking Amount',
     'Booking Date',
-    'Employee ID',
+    'Delivery Date',
   ];
   const formName = 'Booking';
   const data = useSelector((state) => state.booking.tdata);
@@ -31,13 +31,24 @@ const Booking = () => {
       item.deliverydate
     ).toLocaleDateString('en-GB');
 
-    // Return the updated item
-    return {
-      ...item,
-      bookingdate: formattedBookingDate,
-      deliverydate: formattedDeliveryDate,
-    };
+    // Check if the delivery date is invalid
+    if (formattedDeliveryDate === 'Invalid Date') {
+      // Return the updated item with booking date set to 'Pending'
+      return {
+        ...item,
+        bookingdate: formattedBookingDate,
+        deliverydate: 'Pending',
+      };
+    } else {
+      // Return the updated item with both booking and delivery dates formatted
+      return {
+        ...item,
+        bookingdate: formattedBookingDate,
+        deliverydate: formattedDeliveryDate,
+      };
+    }
   });
+
   useEffect(() => {
     dispatch(fetchBookings(url));
   }, [dispatch]);
@@ -54,6 +65,7 @@ const Booking = () => {
       numOfCol={numOfCol}
       buttonData={buttonData}
       readOnly={false}
+      serviceModal={false}
     ></TableFrame>
   );
 };

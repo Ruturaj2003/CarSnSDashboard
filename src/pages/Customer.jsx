@@ -34,6 +34,7 @@ const Customer = () => {
         numOfCol={numOfCol}
         buttonData={buttonData}
         readOnly={false}
+        serviceModal={false}
       ></TableFrame>
     </>
   );

@@ -33,6 +33,7 @@ const DataTable = ({
               <TableRow
                 numOfCol={numOfCol}
                 handleRowClick={handleRowClick}
+                handleModalOpen={handleModalOpen}
                 key={index}
                 item={item}
                 url={url}

@@ -29,6 +29,7 @@ const Employee = () => {
         numOfCol={numOfCol}
         buttonData={buttonData}
         readOnly={false}
+        serviceModal={false}
       ></TableFrame>
     </>
   );
