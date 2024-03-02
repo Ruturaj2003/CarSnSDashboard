@@ -52,7 +52,7 @@ const style = {
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
+    backgroundColor: '#0066AD',
     color: theme.palette.common.white,
   },
   [`&.${tableCellClasses.body}`]: {
@@ -69,7 +69,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
   '&:nth-of-type(odd)': {
-    backgroundColor: theme.palette.action.hover,
+    backgroundColor: 'white',
   },
 
   '&:last-child td, &:last-child th': {
@@ -223,12 +223,12 @@ const Car = () => {
       <div className="flex">
         <div>
           <Box sx={{ display: 'flex' }}>
-            <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-              <div className="buttonAdd">
+            <Box component="main" sx={{ flexGrow: 1, p: 3}}>
+              <div className="buttonAdd" style={{display: 'flex', justifyContent: 'flex-end', marginBottom: '20px'}}>
                 <Button
                   variant="contained"
                   startIcon={<AddIcon />}
-                  sx={{ backgroundColor: '#2f2f2f', padding: 1.5 }}
+                  sx={{ backgroundColor: '#0066AD', padding: 1.5 }}
                   onClick={handleOpen}
                 >
                   Add NEW CAR
@@ -578,92 +578,94 @@ const Car = () => {
                 </Box>
               </Modal>
 
-              <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 700 }} aria-label="customized table">
-                  <TableHead>
-                    <TableRow>
-                      <StyledTableCell align="center">S.No</StyledTableCell>
-                      <StyledTableCell align="center">Image</StyledTableCell>
-                      <StyledTableCell align="center">
-                        Model Name
-                      </StyledTableCell>
-                      <StyledTableCell align="center">Type</StyledTableCell>
-                      <StyledTableCell align="center">
-                        Chassis No
-                      </StyledTableCell>
-                      <StyledTableCell align="center">
-                        Engine No
-                      </StyledTableCell>
-                      <StyledTableCell align="center">
-                        Description
-                      </StyledTableCell>
-                      <StyledTableCell align="center">Color</StyledTableCell>
-                      <StyledTableCell align="center">Price</StyledTableCell>
-                      <StyledTableCell align="center">Stock</StyledTableCell>
-                      <StyledTableCell align="center">Edit</StyledTableCell>
-                      <StyledTableCell align="center">Delete</StyledTableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {data.map((d, i) => (
-                      <StyledTableRow key={i}>
+              <div style={{display: 'flex', height: '600px', overflow: 'auto'}}>
+                <TableContainer component={Paper}>
+                  <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                    <TableHead>
+                      <TableRow>
+                        <StyledTableCell align="center">S.No</StyledTableCell>
+                        <StyledTableCell align="center">Image</StyledTableCell>
                         <StyledTableCell align="center">
-                          {i + 1}
+                          Model Name
+                        </StyledTableCell>
+                        <StyledTableCell align="center">Type</StyledTableCell>
+                        <StyledTableCell align="center">
+                          Chassis No
                         </StyledTableCell>
                         <StyledTableCell align="center">
-                          {d.carimage && (
-                            <img
-                              src={`http://localhost:8081/images/${d.carimage}`}
-                              alt={d.modelname}
-                              style={{ width: '50px', height: '50px' }}
-                            />
-                          )}
+                          Engine No
                         </StyledTableCell>
                         <StyledTableCell align="center">
-                          {d.modelname}
+                          Description
                         </StyledTableCell>
-                        <StyledTableCell align="center">
-                          {d.type}
-                        </StyledTableCell>
-                        <StyledTableCell align="center">
-                          {d.chassisno}
-                        </StyledTableCell>
-                        <StyledTableCell align="center">
-                          {d.engineno}
-                        </StyledTableCell>
-                        <StyledTableCell align="center">
-                          {d.description}
-                        </StyledTableCell>
-                        <StyledTableCell align="center">
-                          {d.color}
-                        </StyledTableCell>
-                        <StyledTableCell align="center">
-                          ₹{d.price}
-                        </StyledTableCell>
-                        <StyledTableCell align="center">
-                          {d.stock}
-                        </StyledTableCell>
-                        <StyledTableCell align="center">
-                          <IconButton
-                            aria-label="delete"
-                            onClick={() => handleEditOpen(d)}
-                          >
-                            <EditIcon className="add-icon" />
-                          </IconButton>
-                        </StyledTableCell>
-                        <StyledTableCell align="center">
-                          <IconButton
-                            aria-label="delete"
-                            onClick={(e) => handleDelete(d.id)}
-                          >
-                            <DeleteIcon className="delete-icon" />
-                          </IconButton>
-                        </StyledTableCell>
-                      </StyledTableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </TableContainer>
+                        <StyledTableCell align="center">Color</StyledTableCell>
+                        <StyledTableCell align="center">Price</StyledTableCell>
+                        <StyledTableCell align="center">Stock</StyledTableCell>
+                        <StyledTableCell align="center">Edit</StyledTableCell>
+                        <StyledTableCell align="center">Delete</StyledTableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {data.map((d, i) => (
+                        <StyledTableRow key={i}>
+                          <StyledTableCell align="center">
+                            {i + 1}
+                          </StyledTableCell>
+                          <StyledTableCell align="center">
+                            {d.carimage && (
+                              <img
+                                src={`http://localhost:8081/images/${d.carimage}`}
+                                alt={d.modelname}
+                                style={{ width: '50px', height: '50px' }}
+                              />
+                            )}
+                          </StyledTableCell>
+                          <StyledTableCell align="center">
+                            {d.modelname}
+                          </StyledTableCell>
+                          <StyledTableCell align="center">
+                            {d.type}
+                          </StyledTableCell>
+                          <StyledTableCell align="center">
+                            {d.chassisno}
+                          </StyledTableCell>
+                          <StyledTableCell align="center">
+                            {d.engineno}
+                          </StyledTableCell>
+                          <StyledTableCell align="center">
+                            {d.description}
+                          </StyledTableCell>
+                          <StyledTableCell align="center">
+                            {d.color}
+                          </StyledTableCell>
+                          <StyledTableCell align="center">
+                            ₹{d.price}
+                          </StyledTableCell>
+                          <StyledTableCell align="center">
+                            {d.stock}
+                          </StyledTableCell>
+                          <StyledTableCell align="center">
+                            <IconButton
+                              aria-label="delete"
+                              onClick={() => handleEditOpen(d)}
+                            >
+                              <EditIcon className="add-icon" />
+                            </IconButton>
+                          </StyledTableCell>
+                          <StyledTableCell align="center">
+                            <IconButton
+                              aria-label="delete"
+                              onClick={(e) => handleDelete(d.id)}
+                            >
+                              <DeleteIcon className="delete-icon" />
+                            </IconButton>
+                          </StyledTableCell>
+                        </StyledTableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              </div>
             </Box>
           </Box>
         </div>
