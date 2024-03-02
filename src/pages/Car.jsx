@@ -1,5 +1,3 @@
-import Navbar from '../components/Navbar';
-import Sidebar from '../components/Sidebar';
 import Footer from '../components/Footer';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -21,8 +19,7 @@ import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import DialogTitle from '@mui/material/DialogTitle';
 import IconButton from '@mui/material/IconButton';
-import Input from '@mui/material/Input';
-import InputLabel from '@mui/material/InputLabel';
+
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
@@ -81,26 +78,26 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 const Car = () => {
-
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [editOpen, setEditOpen] = React.useState(false);
   const [editProduct, setEditProduct] = React.useState(null);
 
-  useEffect(() => { fetchData() }, [])
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-  const [data, setData] = useState([])
+  const [data, setData] = useState([]);
   const fetchData = async () => {
     try {
-      const resp = await axios.get('http://localhost:8081/car')
-      setData(resp.data)
+      const resp = await axios.get('http://localhost:8081/car');
+      setData(resp.data);
       console.log(resp);
     } catch (error) {
       console.log(error);
     }
-
-  }
+  };
 
   const [values, setValues] = useState({
     modelname: '',
@@ -111,7 +108,7 @@ const Car = () => {
     color: '',
     price: '',
     stock: '',
-  })
+  });
 
   const handleChange = (event) => {
     setValues({ ...values, [event.target.name]: event.target.value });
@@ -125,10 +122,9 @@ const Car = () => {
     }));
   };
 
-
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
+
     const formData = new FormData();
     formData.append('modelname', values.modelname);
     formData.append('type', values.type);
@@ -142,7 +138,7 @@ const Car = () => {
     formData.append('sideview', values.sideview);
     formData.append('interior', values.interior);
     formData.append('rearview', values.rearview);
-  
+
     try {
       const response = await axios.post('http://localhost:8081/car', formData, {
         headers: {
@@ -158,19 +154,16 @@ const Car = () => {
       toast.error('Error adding car!');
     }
   };
-  
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete('http://localhost:8081/car/' + id)
+      await axios.delete('http://localhost:8081/car/' + id);
       toast.success('car deleted successful');
       fetchData();
-    }
-    catch (err) {
+    } catch (err) {
       console.log(err);
       toast.error('Error deleting car !');
     }
-
   };
 
   const handleEditOpen = (product) => {
@@ -183,7 +176,6 @@ const Car = () => {
     setEditOpen(false);
   };
 
-
   const handleEditSubmit = async (event) => {
     event.preventDefault();
 
@@ -195,11 +187,14 @@ const Car = () => {
       description: values.description,
       color: values.color,
       price: values.price,
-      stock: values.stock
+      stock: values.stock,
     };
 
     try {
-      await axios.put(`http://localhost:8081/car/${editProduct.id}`, updatedProduct);
+      await axios.put(
+        `http://localhost:8081/car/${editProduct.id}`,
+        updatedProduct
+      );
 
       console.log('Product updated successfully');
       toast.success('Product updated successfully');
@@ -210,8 +205,6 @@ const Car = () => {
       toast.error('Error updating product!');
     }
   };
-
-
 
   return (
     <>
@@ -227,14 +220,17 @@ const Car = () => {
         pauseOnHover
       />
 
-      <Navbar></Navbar>
       <div className="flex">
-        <Sidebar></Sidebar>
         <div>
           <Box sx={{ display: 'flex' }}>
             <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-              <div className='buttonAdd'>
-                <Button variant="contained" startIcon={<AddIcon />} sx={{ backgroundColor: '#2f2f2f', padding: 1.5 }} onClick={handleOpen}>
+              <div className="buttonAdd">
+                <Button
+                  variant="contained"
+                  startIcon={<AddIcon />}
+                  sx={{ backgroundColor: '#2f2f2f', padding: 1.5 }}
+                  onClick={handleOpen}
+                >
                   Add NEW CAR
                 </Button>
               </div>
@@ -247,7 +243,12 @@ const Car = () => {
                 aria-describedby="modal-modal-description"
               >
                 <Box sx={style}>
-                  <DialogTitle id="modal-modal-title" sx={{ textAlign: 'center' }}>Add Product</DialogTitle>
+                  <DialogTitle
+                    id="modal-modal-title"
+                    sx={{ textAlign: 'center' }}
+                  >
+                    Add Product
+                  </DialogTitle>
                   <form noValidate onSubmit={handleSubmit}>
                     <Grid container spacing={2}>
                       <Grid item xs={12}>
@@ -401,26 +402,35 @@ const Car = () => {
                           </Button>
                         </label>
                       </Grid>
-
                     </Grid>
                     <Grid container spacing={2}>
                       <Grid item xs={6}>
-                        <Button onClick={handleClose} variant="contained"
+                        <Button
+                          onClick={handleClose}
+                          variant="contained"
                           sx={{
-                            mt: 2, width: '100%',
-                            backgroundColor: theme => theme.palette.error.main,
-                            '&:hover': { backgroundColor: '#ff0000' }
-                          }}>
+                            mt: 2,
+                            width: '100%',
+                            backgroundColor: (theme) =>
+                              theme.palette.error.main,
+                            '&:hover': { backgroundColor: '#ff0000' },
+                          }}
+                        >
                           Cancel
                         </Button>
                       </Grid>
                       <Grid item xs={6}>
-                        <Button type="submit" variant="contained"
+                        <Button
+                          type="submit"
+                          variant="contained"
                           sx={{
-                            mt: 2, width: '100%',
-                            backgroundColor: theme => theme.palette.success.main,
-                            '&:hover': { backgroundColor: '#00cc00' }
-                          }}>
+                            mt: 2,
+                            width: '100%',
+                            backgroundColor: (theme) =>
+                              theme.palette.success.main,
+                            '&:hover': { backgroundColor: '#00cc00' },
+                          }}
+                        >
                           Add Product
                         </Button>
                       </Grid>
@@ -437,7 +447,12 @@ const Car = () => {
                 aria-describedby="modal-modal-description"
               >
                 <Box sx={style}>
-                  <DialogTitle id="modal-modal-title" sx={{ textAlign: 'center' }}>Edit Car Details</DialogTitle>
+                  <DialogTitle
+                    id="modal-modal-title"
+                    sx={{ textAlign: 'center' }}
+                  >
+                    Edit Car Details
+                  </DialogTitle>
                   <form noValidate onSubmit={handleEditSubmit}>
                     <Grid container spacing={2}>
                       <Grid item xs={12}>
@@ -446,7 +461,9 @@ const Car = () => {
                           label="Car Modelname"
                           name="modelname"
                           fullWidth
-                          defaultValue={editProduct ? editProduct.modelname : ''}
+                          defaultValue={
+                            editProduct ? editProduct.modelname : ''
+                          }
                           onChange={handleChange}
                         />
                       </Grid>
@@ -466,7 +483,9 @@ const Car = () => {
                           label="Chassis Number"
                           name="chassisno"
                           fullWidth
-                          defaultValue={editProduct ? editProduct.chassisno : ''}
+                          defaultValue={
+                            editProduct ? editProduct.chassisno : ''
+                          }
                           onChange={handleChange}
                         />
                       </Grid>
@@ -486,7 +505,9 @@ const Car = () => {
                           label="Car Description"
                           name="description"
                           fullWidth
-                          defaultValue={editProduct ? editProduct.description : ''}
+                          defaultValue={
+                            editProduct ? editProduct.description : ''
+                          }
                           onChange={handleChange}
                         />
                       </Grid>
@@ -523,22 +544,32 @@ const Car = () => {
                     </Grid>
                     <Grid container spacing={2}>
                       <Grid item xs={6}>
-                        <Button onClick={handleEditClose} variant="contained"
+                        <Button
+                          onClick={handleEditClose}
+                          variant="contained"
                           sx={{
-                            mt: 3, width: '100%',
-                            backgroundColor: theme => theme.palette.error.main,
-                            '&:hover': { backgroundColor: '#ff0000' }
-                          }}>
+                            mt: 3,
+                            width: '100%',
+                            backgroundColor: (theme) =>
+                              theme.palette.error.main,
+                            '&:hover': { backgroundColor: '#ff0000' },
+                          }}
+                        >
                           Cancel
                         </Button>
                       </Grid>
                       <Grid item xs={6}>
-                        <Button type="submit" variant="contained"
+                        <Button
+                          type="submit"
+                          variant="contained"
                           sx={{
-                            mt: 3, width: '100%',
-                            backgroundColor: theme => theme.palette.success.main,
-                            '&:hover': { backgroundColor: '#00cc00' }
-                          }}>
+                            mt: 3,
+                            width: '100%',
+                            backgroundColor: (theme) =>
+                              theme.palette.success.main,
+                            '&:hover': { backgroundColor: '#00cc00' },
+                          }}
+                        >
                           Save Changes
                         </Button>
                       </Grid>
@@ -553,11 +584,19 @@ const Car = () => {
                     <TableRow>
                       <StyledTableCell align="center">S.No</StyledTableCell>
                       <StyledTableCell align="center">Image</StyledTableCell>
-                      <StyledTableCell align="center">Model Name</StyledTableCell>
+                      <StyledTableCell align="center">
+                        Model Name
+                      </StyledTableCell>
                       <StyledTableCell align="center">Type</StyledTableCell>
-                      <StyledTableCell align="center">Chassis No</StyledTableCell>
-                      <StyledTableCell align="center">Engine No</StyledTableCell>
-                      <StyledTableCell align="center">Description</StyledTableCell>
+                      <StyledTableCell align="center">
+                        Chassis No
+                      </StyledTableCell>
+                      <StyledTableCell align="center">
+                        Engine No
+                      </StyledTableCell>
+                      <StyledTableCell align="center">
+                        Description
+                      </StyledTableCell>
                       <StyledTableCell align="center">Color</StyledTableCell>
                       <StyledTableCell align="center">Price</StyledTableCell>
                       <StyledTableCell align="center">Stock</StyledTableCell>
@@ -568,24 +607,58 @@ const Car = () => {
                   <TableBody>
                     {data.map((d, i) => (
                       <StyledTableRow key={i}>
-                        <StyledTableCell align="center">{i + 1}</StyledTableCell>
                         <StyledTableCell align="center">
-                          {d.carimage && <img src={`http://localhost:8081/images/${d.carimage}`} alt={d.modelname} style={{ width: '50px', height: '50px' }} />}
+                          {i + 1}
                         </StyledTableCell>
-                        <StyledTableCell align="center">{d.modelname}</StyledTableCell>
-                        <StyledTableCell align="center">{d.type}</StyledTableCell>
-                        <StyledTableCell align="center">{d.chassisno}</StyledTableCell>
-                        <StyledTableCell align="center">{d.engineno}</StyledTableCell>
-                        <StyledTableCell align="center">{d.description}</StyledTableCell>
-                        <StyledTableCell align="center">{d.color}</StyledTableCell>
-                        <StyledTableCell align="center">₹{d.price}</StyledTableCell>
-                        <StyledTableCell align="center">{d.stock}</StyledTableCell>
-                        <StyledTableCell align="center"><IconButton aria-label="delete" onClick={() => handleEditOpen(d)}>
-                          <EditIcon className="add-icon" />
-                        </IconButton></StyledTableCell>
-                        <StyledTableCell align="center"><IconButton aria-label="delete" onClick={e => handleDelete(d.id)}>
-                          <DeleteIcon className="delete-icon" />
-                        </IconButton></StyledTableCell>
+                        <StyledTableCell align="center">
+                          {d.carimage && (
+                            <img
+                              src={`http://localhost:8081/images/${d.carimage}`}
+                              alt={d.modelname}
+                              style={{ width: '50px', height: '50px' }}
+                            />
+                          )}
+                        </StyledTableCell>
+                        <StyledTableCell align="center">
+                          {d.modelname}
+                        </StyledTableCell>
+                        <StyledTableCell align="center">
+                          {d.type}
+                        </StyledTableCell>
+                        <StyledTableCell align="center">
+                          {d.chassisno}
+                        </StyledTableCell>
+                        <StyledTableCell align="center">
+                          {d.engineno}
+                        </StyledTableCell>
+                        <StyledTableCell align="center">
+                          {d.description}
+                        </StyledTableCell>
+                        <StyledTableCell align="center">
+                          {d.color}
+                        </StyledTableCell>
+                        <StyledTableCell align="center">
+                          ₹{d.price}
+                        </StyledTableCell>
+                        <StyledTableCell align="center">
+                          {d.stock}
+                        </StyledTableCell>
+                        <StyledTableCell align="center">
+                          <IconButton
+                            aria-label="delete"
+                            onClick={() => handleEditOpen(d)}
+                          >
+                            <EditIcon className="add-icon" />
+                          </IconButton>
+                        </StyledTableCell>
+                        <StyledTableCell align="center">
+                          <IconButton
+                            aria-label="delete"
+                            onClick={(e) => handleDelete(d.id)}
+                          >
+                            <DeleteIcon className="delete-icon" />
+                          </IconButton>
+                        </StyledTableCell>
                       </StyledTableRow>
                     ))}
                   </TableBody>
@@ -597,7 +670,7 @@ const Car = () => {
       </div>
       <Footer></Footer>
     </>
-  )
-}
+  );
+};
 
-export default Car
+export default Car;
