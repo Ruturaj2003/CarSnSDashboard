@@ -101,10 +101,10 @@ const SpecificCar = () => {
 
   // Provide The SRC values for Images Below
   const images = [
-    'https://stimg.cardekho.com/images/carexteriorimages/930x620/BMW/X7/10571/1689673096346/front-view-118.jpg',
-    'https://imgs.search.brave.com/vuxFiQe3Xoyq-FJDr51V0jmvY7eU_idm5APN1NjOApQ/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS56aWdjZG4uY29t/L21lZGlhL21vZGVs/LzIwMjMvSmFuL3Np/ZGUtdmlldy0xNTY2/NDU5Mjc2XzkzMHg2/MjAuanBn',
-    'https://imgs.search.brave.com/lfaYP_zOzxnKYiCYs6UNik6uNNlVcXeGQrV03UlCUFI/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9pbWdj/ZG4ub3RvLmNvbS9s/YXJnZS9nYWxsZXJ5/L2V4dGVyaW9yLzMv/MjE3NS9ibXcteDct/ZnVsbC1yZWFyLXZp/ZXctMzYyNTAzLmpw/Zw',
-    'https://imgs.search.brave.com/d9YsBZ0OCU5QdK6ZOwmtxBuU52-5gPsf22n6I-yA7Q0/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9jZG4u/Ym13YmxvZy5jb20v/d3AtY29udGVudC91/cGxvYWRzLzIwMjMv/MDUvQk1XLWk3LU03/MC14RHJpdmUtMi04/MzB4NTUzLmpwZw',
+    `http://localhost:8081/images/${carData.carimage}`,
+    `http://localhost:8081/images/${carData.sideview}`,
+    `http://localhost:8081/images/${carData.interior}`,
+    `http://localhost:8081/images/${carData.rearview}`,
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);

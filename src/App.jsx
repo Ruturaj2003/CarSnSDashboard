@@ -33,7 +33,7 @@ const queryClient = new QueryClient({
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <SpecificCar></SpecificCar>,
+    element: <BrowseCar></BrowseCar>,
     errorElement: <h3>sad</h3>,
   },
   { path: 'ulogin', element: <Login></Login>, errorElement: <h3>sad</h3> },
