@@ -1,4 +1,5 @@
 import axios from 'axios';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { globalUrl } from '../../App';
 import UserNavbar from '../UserNavbar';
@@ -18,12 +19,6 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const imgMap = {
-  Car_image_1708861269778: hero,
-  sideView_1708861269780: hero2,
-  interior_1708861269785: hero3,
-  rearView_1708861269790: hero4,
-};
 
 const style = {
   position: 'absolute',
@@ -39,7 +34,16 @@ const style = {
   p: 4,
 };
 
+const imgMap = {
+  Car_image_1708861269778: hero,
+  sideView_1708861269780: hero2,
+  interior_1708861269785: hero3,
+  rearView_1708861269790: hero4,
+};
+
 const SpecificCar = () => {
+  const url = globalUrl + '/car';
+  const id = useSelector((state) => state.common.value);
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -55,8 +59,38 @@ const SpecificCar = () => {
     setValues({ ...values, [event.target.name]: event.target.value });
   };
 
-  const url = globalUrl + '/car';
-  const id = useSelector((state) => state.common.value);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const currentDate = new Date().toISOString();
+
+    const formData = new FormData();
+    formData.append('carid', id);
+    formData.append('customername', values.name);
+    formData.append('phone', values.phone);
+    formData.append('bookingamount', values.amount);
+    formData.append('bookingdate', currentDate);
+
+    try {
+
+      console.log('Form Input Values:', {
+        carid: id,
+        customername: values.name,
+        phone: values.phone,
+        bookingamount: values.amount,
+        bookingdate: currentDate
+      });
+
+      await axios.post(`http://localhost:8081/booking`, formData);
+
+      console.log('Car booked successfully');
+      toast.success('Car booked successfully');
+      handleClose();
+    } catch (error) {
+      console.error('Error Car booking:', error);
+      toast.error('Error Car booking!');
+    }
+  };
 
   const [carData, setCarData] = useState({});
   const [mainImg, setMainImg] = useState('Car_image_1708861269778');
@@ -86,36 +120,6 @@ const SpecificCar = () => {
       } catch (error) {
         console.error('Error fetching car data:', error.message);
       }
-    };
-
-
-    const handleSubmit = async (event) => {
-      event.preventDefault();
-
-      const currentDate = new Date().toISOString();
-
-      const book = {
-        id: id,
-        name: values.name,
-        phone: values.phone,
-        amount: values.amount,
-        currentDate: currentDate
-      };
-
-      try {
-
-        await axios.put(`http://localhost:8081/booking`, book);
-
-        console.log('Car booked successfully');
-        toast.success('Car booked successfully');
-        handleClose();
-
-      } catch (error) {
-        console.error('Error Car booking:', error);
-        toast.error('Error Car booking!');
-
-      }
-
     };
 
     // // Example dummy data
@@ -166,7 +170,7 @@ const SpecificCar = () => {
   return (
     <>
 
-      <ToastContainer
+<ToastContainer
         position="top-center"
         autoClose={2000}
         hideProgressBar={false}
@@ -186,7 +190,7 @@ const SpecificCar = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <DialogTitle id="modal-modal-title" sx={{ textAlign: 'center' }}>Add Product</DialogTitle>
+          <DialogTitle id="modal-modal-title" sx={{ textAlign: 'center' }}>Car Booking</DialogTitle>
           <form noValidate onSubmit={ handleSubmit}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
@@ -235,13 +239,14 @@ const SpecificCar = () => {
                     backgroundColor: theme => theme.palette.success.main,
                     '&:hover': { backgroundColor: '#00cc00' }
                   }}>
-                  Add Product
+                  Book Car
                 </Button>
               </Grid>
             </Grid>
           </form>
         </Box>
       </Modal>
+
 
       <BlackNavBar></BlackNavBar>
       {/* Body */}
@@ -251,8 +256,9 @@ const SpecificCar = () => {
           {images.map((image, index) => (
             <div
               key={index}
-              className={`absolute left-0 top-0 w-full h-full transition-opacity duration-500 ${index === currentSlide ? 'opacity-100' : 'opacity-0'
-                }`}
+              className={`absolute left-0 top-0 w-full h-full transition-opacity duration-500 ${
+                index === currentSlide ? 'opacity-100' : 'opacity-0'
+              }`}
               style={{ zIndex: index === currentSlide ? 1 : 0 }}
             >
               <img
@@ -267,8 +273,9 @@ const SpecificCar = () => {
               <div
                 key={index}
                 onClick={() => showSlide(index)}
-                className={`h-2 w-2 mx-1 rounded-full cursor-pointer ${index === currentSlide ? 'bg-blue-500' : 'bg-gray-300'
-                  }`}
+                className={`h-2 w-2 mx-1 rounded-full cursor-pointer ${
+                  index === currentSlide ? 'bg-blue-500' : 'bg-gray-300'
+                }`}
               ></div>
             ))}
           </div>
@@ -390,7 +397,7 @@ const SpecificCar = () => {
           </div>
           {/* Button */}
           <div className="flex w-full items-center justify-end mb-10 pr-8">
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"  onClick={() => handleOpen()}>
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => handleOpen()}>
               Book Now
             </button>
           </div>
