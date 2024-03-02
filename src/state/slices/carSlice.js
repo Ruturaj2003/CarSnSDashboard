@@ -6,7 +6,7 @@ const initialState = {
 };
 
 export const fetchCars = createAsyncThunk(
-  'employee/fetchCars', // Change the action type to 'employee/fetchCars'
+  'car/fetchCars', // Change the action type to 'employee/fetchCars'
   async (url) => {
     try {
       const resp = await axios.get(url);
