@@ -2,14 +2,10 @@ import axios from 'axios';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { globalUrl } from '../../App';
-import UserNavbar from '../UserNavbar';
+
 import { useEffect, useState } from 'react';
 import BlackNavBar from '../BlackNavBar';
 import Footer from '../../components/Footer';
-import hero from '../assets/hero.jpg';
-import hero2 from '../assets/hero2.jpg';
-import hero3 from '../assets/hero3.jpg';
-import hero4 from '../assets/hero4.jpg';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
@@ -32,18 +28,11 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
-
-const imgMap = {
-  Car_image_1708861269778: hero,
-  sideView_1708861269780: hero2,
-  interior_1708861269785: hero3,
-  rearView_1708861269790: hero4,
-};
-
 const SpecificCar = () => {
   const url = globalUrl + '/car';
   const id = useSelector((state) => state.common.value);
 
+  const [carData, setCarData] = useState({});
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -93,80 +82,40 @@ const SpecificCar = () => {
       toast.error('Error Car booking!');
     }
   };
-  const [carData, setCarData] = useState({});
-  const [mainImg, setMainImg] = useState('Car_image_1708861269778');
-  const [sideView, setSideView] = useState('sideView_1708861269780');
-  const [interior, setInterior] = useState('interior_1708861269785');
-  const [rearView, setRearView] = useState('rearView_1708861269790');
 
   useEffect(() => {
     const fetchCar = async () => {
       try {
         const response = await axios.get(`${url}/${id}`);
         const receivedData = response.data;
-
-        // Remove '.png' from all properties in received data
-        const filteredData = Object.fromEntries(
-          Object.entries(receivedData).map(([key, value]) => [
-            key,
-            typeof value === 'string' ? value.replace('.png', '') : value,
-          ])
-        );
-
-        setCarData(filteredData);
-        setMainImg(filteredData.carimage);
-        setRearView(filteredData.rearview);
-        setInterior(filteredData.interior);
-        setSideView(filteredData.sideview);
+        setCarData(receivedData);
       } catch (error) {
         console.error('Error fetching car data:', error.message);
       }
     };
 
-    // // Example dummy data
-    // const dummy = {
-    //   id: 5,
-    //   chassisno: 'SB1280',
-    //   engineno: 9185,
-    //   cartype: 'SUV',
-    //   modelname: 'X7',
-    //   price: 9000000,
-    //   stock: 9,
-    //   carimage: 'Car_image_1708861269778.png',
-    //   sideview: 'sideView_1708861269780.png',
-    //   interior: 'interior_1708861269785.png',
-    //   rearview: 'rearView_1708861269790.png',
-    //   cardescription: 'fsdfhjdsgvfjkhsdvbfkjshfv',
-    //   color: 'Red',
-    // };
-
-    // // Remove '.png' from all properties
-    // const updatedDummy = Object.fromEntries(
-    //   Object.entries(dummy).map(([key, value]) => [
-    //     key,
-    //     typeof value === 'string' ? value.replace('.png', '') : value,
-    //   ])
-    // );
-    // Set dummy data
-
-    // Fetch car data (commented out for now)
     fetchCar();
   }, [id]);
 
-  const images = Object.values(imgMap);
-  const [currentSlide, setCurrentSlide] = useState(0);
+  // Car Images
+
+  // Provide The SRC values for Images Below
+  const images = [
+    'https://stimg.cardekho.com/images/carexteriorimages/930x620/BMW/X7/10571/1689673096346/front-view-118.jpg',
+    'https://imgs.search.brave.com/vuxFiQe3Xoyq-FJDr51V0jmvY7eU_idm5APN1NjOApQ/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS56aWdjZG4uY29t/L21lZGlhL21vZGVs/LzIwMjMvSmFuL3Np/ZGUtdmlldy0xNTY2/NDU5Mjc2XzkzMHg2/MjAuanBn',
+    'https://imgs.search.brave.com/lfaYP_zOzxnKYiCYs6UNik6uNNlVcXeGQrV03UlCUFI/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9pbWdj/ZG4ub3RvLmNvbS9s/YXJnZS9nYWxsZXJ5/L2V4dGVyaW9yLzMv/MjE3NS9ibXcteDct/ZnVsbC1yZWFyLXZp/ZXctMzYyNTAzLmpw/Zw',
+    'https://imgs.search.brave.com/d9YsBZ0OCU5QdK6ZOwmtxBuU52-5gPsf22n6I-yA7Q0/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9jZG4u/Ym13YmxvZy5jb20v/d3AtY29udGVudC91/cGxvYWRzLzIwMjMv/MDUvQk1XLWk3LU03/MC14RHJpdmUtMi04/MzB4NTUzLmpwZw',
+  ];
+
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prevSlide) => (prevSlide + 1) % images.length);
+    const intervalId = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
     }, 3000);
 
-    return () => clearInterval(interval);
-  }, [images]);
-
-  const showSlide = (index) => {
-    setCurrentSlide(index);
-  };
+    return () => clearInterval(intervalId); // Cleanup the interval on component unmount
+  }, [images.length]);
 
   return (
     <>
@@ -262,32 +211,16 @@ const SpecificCar = () => {
       <div className="mr-16 ml-16 mt-6">
         {/* Hero Container */}
         <div className="w-full h-[450px] pl-12 pr-12 pt-6 mb-3 relative">
-          {images.map((image, index) => (
-            <div
+          {images.map((src, index) => (
+            <img
               key={index}
-              className={`absolute left-0 top-0 w-full h-full transition-opacity duration-500 ${
-                index === currentSlide ? 'opacity-100' : 'opacity-0'
+              src={src}
+              alt=""
+              className={`object-cover w-full h-full ${
+                index === currentIndex ? '' : 'hidden'
               }`}
-              style={{ zIndex: index === currentSlide ? 1 : 0 }}
-            >
-              <img
-                src={image}
-                alt={`Slide ${index}`}
-                className="object-cover h-full rounded-md w-full"
-              />
-            </div>
+            />
           ))}
-          <div className="absolute bottom-0 left-0 right-0 flex justify-center mb-2">
-            {images.map((_, index) => (
-              <div
-                key={index}
-                onClick={() => showSlide(index)}
-                className={`h-2 w-2 mx-1 rounded-full cursor-pointer ${
-                  index === currentSlide ? 'bg-blue-500' : 'bg-gray-300'
-                }`}
-              ></div>
-            ))}
-          </div>
         </div>
         {/* INfo Container */}
         <div className="w-full">
