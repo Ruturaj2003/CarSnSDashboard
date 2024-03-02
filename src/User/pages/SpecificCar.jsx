@@ -19,7 +19,6 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
 const style = {
   position: 'absolute',
   top: '50%',
@@ -52,8 +51,8 @@ const SpecificCar = () => {
   const [values, setValues] = useState({
     name: '',
     phone: '',
-    amount: ''
-  })
+    amount: '',
+  });
 
   const handleChange = (event) => {
     setValues({ ...values, [event.target.name]: event.target.value });
@@ -72,16 +71,19 @@ const SpecificCar = () => {
     formData.append('bookingdate', currentDate);
 
     try {
-
       console.log('Form Input Values:', {
         carid: id,
         customername: values.name,
         phone: values.phone,
         bookingamount: values.amount,
-        bookingdate: currentDate
+        bookingdate: currentDate,
       });
 
-      await axios.post(`http://localhost:8081/booking`, formData);
+      await axios.post('http://localhost:8081/booking', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
 
       console.log('Car booked successfully');
       toast.success('Car booked successfully');
@@ -91,7 +93,6 @@ const SpecificCar = () => {
       toast.error('Error Car booking!');
     }
   };
-
   const [carData, setCarData] = useState({});
   const [mainImg, setMainImg] = useState('Car_image_1708861269778');
   const [sideView, setSideView] = useState('sideView_1708861269780');
@@ -169,8 +170,7 @@ const SpecificCar = () => {
 
   return (
     <>
-
-<ToastContainer
+      <ToastContainer
         position="top-center"
         autoClose={2000}
         hideProgressBar={false}
@@ -190,8 +190,10 @@ const SpecificCar = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <DialogTitle id="modal-modal-title" sx={{ textAlign: 'center' }}>Car Booking</DialogTitle>
-          <form noValidate onSubmit={ handleSubmit}>
+          <DialogTitle id="modal-modal-title" sx={{ textAlign: 'center' }}>
+            Car Booking
+          </DialogTitle>
+          <form noValidate onSubmit={handleSubmit}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
@@ -223,22 +225,30 @@ const SpecificCar = () => {
             </Grid>
             <Grid container spacing={2}>
               <Grid item xs={6}>
-                <Button onClick={handleClose} variant="contained"
+                <Button
+                  onClick={handleClose}
+                  variant="contained"
                   sx={{
-                    mt: 2, width: '100%',
-                    backgroundColor: theme => theme.palette.error.main,
-                    '&:hover': { backgroundColor: '#ff0000' }
-                  }}>
+                    mt: 2,
+                    width: '100%',
+                    backgroundColor: (theme) => theme.palette.error.main,
+                    '&:hover': { backgroundColor: '#ff0000' },
+                  }}
+                >
                   Cancel
                 </Button>
               </Grid>
               <Grid item xs={6}>
-                <Button type="submit" variant="contained"
+                <Button
+                  type="submit"
+                  variant="contained"
                   sx={{
-                    mt: 2, width: '100%',
-                    backgroundColor: theme => theme.palette.success.main,
-                    '&:hover': { backgroundColor: '#00cc00' }
-                  }}>
+                    mt: 2,
+                    width: '100%',
+                    backgroundColor: (theme) => theme.palette.success.main,
+                    '&:hover': { backgroundColor: '#00cc00' },
+                  }}
+                >
                   Book Car
                 </Button>
               </Grid>
@@ -246,7 +256,6 @@ const SpecificCar = () => {
           </form>
         </Box>
       </Modal>
-
 
       <BlackNavBar></BlackNavBar>
       {/* Body */}
@@ -397,7 +406,10 @@ const SpecificCar = () => {
           </div>
           {/* Button */}
           <div className="flex w-full items-center justify-end mb-10 pr-8">
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => handleOpen()}>
+            <button
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              onClick={() => handleOpen()}
+            >
               Book Now
             </button>
           </div>
