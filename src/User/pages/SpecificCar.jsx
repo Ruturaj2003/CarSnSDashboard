@@ -230,7 +230,7 @@ const SpecificCar = () => {
               {'BMW' + ' ' + carData.modelname}
             </h3>
             <h3 className="font-semibold text-2xl text-slate-500">
-              {'Starting From' + ' $' + carData.price + '*'}
+              {'Starting From' + ' ₹' + carData.price + '*'}
             </h3>
           </div>
           {/* Main Desc */}
