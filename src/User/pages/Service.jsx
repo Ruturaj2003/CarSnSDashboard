@@ -502,7 +502,6 @@ function Service() {
                 padding: 3,
                 textAlign: 'center',
                 backgroundColor: '#ECECEC',
-                borderRadius: 1,
               }}
               onClick={() => handleOn()}
             >
@@ -521,7 +520,6 @@ function Service() {
                 padding: 3,
                 textAlign: 'center',
                 backgroundColor: '#ECECEC',
-                borderRadius: 1,
               }}
               onClick={() => handleOn()}
             >
@@ -540,7 +538,6 @@ function Service() {
                 padding: 3,
                 textAlign: 'center',
                 backgroundColor: '#ECECEC',
-                borderRadius: 1,
               }}
               onClick={() => handleOn()}
             >
@@ -559,7 +556,6 @@ function Service() {
                 padding: 3,
                 textAlign: 'center',
                 backgroundColor: '#ECECEC',
-                borderRadius: 1,
               }}
               onClick={() => handleOn()}
             >
@@ -578,7 +574,6 @@ function Service() {
                 padding: 3,
                 textAlign: 'center',
                 backgroundColor: '#ECECEC',
-                borderRadius: 1,
               }}
               onClick={() => handleOn()}
             >
@@ -597,7 +592,6 @@ function Service() {
                 padding: 3,
                 textAlign: 'center',
                 backgroundColor: '#ECECEC',
-                borderRadius: 1,
               }}
               onClick={() => handleOn()}
             >
@@ -625,7 +619,6 @@ function Service() {
                 padding: 3,
                 textAlign: 'center',
                 backgroundColor: '#ECECEC',
-                borderRadius: 1,
               }}
               onClick={() => handleOn()}
             >
@@ -644,7 +637,6 @@ function Service() {
                 padding: 3,
                 textAlign: 'center',
                 backgroundColor: '#ECECEC',
-                borderRadius: 1,
               }}
               onClick={() => handleOn()}
             >
@@ -663,7 +655,6 @@ function Service() {
                 padding: 3,
                 textAlign: 'center',
                 backgroundColor: '#ECECEC',
-                borderRadius: 1,
               }}
               onClick={() => handleOn()}
             >
@@ -682,7 +673,6 @@ function Service() {
                 padding: 3,
                 textAlign: 'center',
                 backgroundColor: '#ECECEC',
-                borderRadius: 1,
               }}
               onClick={() => handleOn()}
             >
@@ -701,7 +691,6 @@ function Service() {
                 padding: 3,
                 textAlign: 'center',
                 backgroundColor: '#ECECEC',
-                borderRadius: 1,
               }}
               onClick={() => handleOn()}
             >
@@ -720,7 +709,6 @@ function Service() {
                 padding: 3,
                 textAlign: 'center',
                 backgroundColor: '#ECECEC',
-                borderRadius: 1,
               }}
               onClick={() => handleOn()}
             >

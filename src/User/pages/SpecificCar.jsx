@@ -9,6 +9,14 @@ import hero from '../assets/hero.jpg';
 import hero2 from '../assets/hero2.jpg';
 import hero3 from '../assets/hero3.jpg';
 import hero4 from '../assets/hero4.jpg';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Modal from '@mui/material/Modal';
+import Grid from '@mui/material/Grid';
+import TextField from '@mui/material/TextField';
+import DialogTitle from '@mui/material/DialogTitle';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const imgMap = {
   Car_image_1708861269778: hero,
@@ -17,7 +25,36 @@ const imgMap = {
   rearView_1708861269790: hero4,
 };
 
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  maxHeight: '85vh',
+  overflow: 'auto',
+  transform: 'translate(-50%, -50%)',
+  width: 550,
+  bgcolor: 'background.paper',
+  border: '3px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
+
 const SpecificCar = () => {
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  const [values, setValues] = useState({
+    name: '',
+    phone: '',
+    amount: ''
+  })
+
+  const handleChange = (event) => {
+    setValues({ ...values, [event.target.name]: event.target.value });
+  };
+
   const url = globalUrl + '/car';
   const id = useSelector((state) => state.common.value);
 
@@ -49,6 +86,36 @@ const SpecificCar = () => {
       } catch (error) {
         console.error('Error fetching car data:', error.message);
       }
+    };
+
+
+    const handleSubmit = async (event) => {
+      event.preventDefault();
+
+      const currentDate = new Date().toISOString();
+
+      const book = {
+        id: id,
+        name: values.name,
+        phone: values.phone,
+        amount: values.amount,
+        currentDate: currentDate
+      };
+
+      try {
+
+        await axios.put(`http://localhost:8081/booking`, book);
+
+        console.log('Car booked successfully');
+        toast.success('Car booked successfully');
+        handleClose();
+
+      } catch (error) {
+        console.error('Error Car booking:', error);
+        toast.error('Error Car booking!');
+
+      }
+
     };
 
     // // Example dummy data
@@ -98,6 +165,84 @@ const SpecificCar = () => {
 
   return (
     <>
+
+      <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+
+      {/* Booking modal */}
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <DialogTitle id="modal-modal-title" sx={{ textAlign: 'center' }}>Add Product</DialogTitle>
+          <form noValidate onSubmit={ handleSubmit}>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextField
+                  id="name"
+                  label="Name"
+                  name="name"
+                  fullWidth
+                  onChange={handleChange}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  id="phone"
+                  label="Phone Number"
+                  name="phone"
+                  fullWidth
+                  onChange={handleChange}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  id="amount"
+                  label="Booking Amount"
+                  name="amount"
+                  fullWidth
+                  onChange={handleChange}
+                />
+              </Grid>
+            </Grid>
+            <Grid container spacing={2}>
+              <Grid item xs={6}>
+                <Button onClick={handleClose} variant="contained"
+                  sx={{
+                    mt: 2, width: '100%',
+                    backgroundColor: theme => theme.palette.error.main,
+                    '&:hover': { backgroundColor: '#ff0000' }
+                  }}>
+                  Cancel
+                </Button>
+              </Grid>
+              <Grid item xs={6}>
+                <Button type="submit" variant="contained"
+                  sx={{
+                    mt: 2, width: '100%',
+                    backgroundColor: theme => theme.palette.success.main,
+                    '&:hover': { backgroundColor: '#00cc00' }
+                  }}>
+                  Add Product
+                </Button>
+              </Grid>
+            </Grid>
+          </form>
+        </Box>
+      </Modal>
+
       <BlackNavBar></BlackNavBar>
       {/* Body */}
       <div className="mr-16 ml-16 mt-6">
@@ -106,9 +251,8 @@ const SpecificCar = () => {
           {images.map((image, index) => (
             <div
               key={index}
-              className={`absolute left-0 top-0 w-full h-full transition-opacity duration-500 ${
-                index === currentSlide ? 'opacity-100' : 'opacity-0'
-              }`}
+              className={`absolute left-0 top-0 w-full h-full transition-opacity duration-500 ${index === currentSlide ? 'opacity-100' : 'opacity-0'
+                }`}
               style={{ zIndex: index === currentSlide ? 1 : 0 }}
             >
               <img
@@ -123,9 +267,8 @@ const SpecificCar = () => {
               <div
                 key={index}
                 onClick={() => showSlide(index)}
-                className={`h-2 w-2 mx-1 rounded-full cursor-pointer ${
-                  index === currentSlide ? 'bg-blue-500' : 'bg-gray-300'
-                }`}
+                className={`h-2 w-2 mx-1 rounded-full cursor-pointer ${index === currentSlide ? 'bg-blue-500' : 'bg-gray-300'
+                  }`}
               ></div>
             ))}
           </div>
@@ -247,7 +390,7 @@ const SpecificCar = () => {
           </div>
           {/* Button */}
           <div className="flex w-full items-center justify-end mb-10 pr-8">
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"  onClick={() => handleOpen()}>
               Book Now
             </button>
           </div>

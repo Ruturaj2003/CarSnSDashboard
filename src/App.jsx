@@ -28,7 +28,7 @@ const queryClient = new QueryClient({
 });
 
 const router = createBrowserRouter([
-  { path: '/', element: <Car></Car>, errorElement: <h3>sad</h3> },
+  { path: '/', element: <SpecificCar></SpecificCar>, errorElement: <h3>sad</h3> },
   { path: 'ulogin', element: <Login></Login>, errorElement: <h3>sad</h3> },
   { path: 'alogin', element: <Alogin></Alogin>, errorElement: <h3>sad</h3> },
 
