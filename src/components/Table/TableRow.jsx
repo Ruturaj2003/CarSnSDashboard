@@ -21,6 +21,16 @@ const TableRow = ({
 }) => {
   const dispatch = useDispatch();
 
+  function getCurrentDate() {
+    const currentDate = new Date();
+
+    const year = currentDate.getFullYear();
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+    const day = String(currentDate.getDate()).padStart(2, '0');
+
+    return `${year}-${month}-${day}`;
+  }
+
   const dota = (id) => {
     axios
       .delete(url + '/' + id)
@@ -31,25 +41,25 @@ const TableRow = ({
         console.log(error);
       });
   };
-
   const deliReq = async (id, data) => {
     axios
-      .put(url + '/' + id, data)
+      .patch(url + '/' + id, data) // Use PATCH instead of PUT
       .then((response) => {
-        console.log('PUT Request Successful:', response.data);
+        dispatch(fetchFn(url));
+        console.log('PATCH Request Successful:', response.data);
       })
       .catch((error) => {
-        console.error('Error making PUT request:', error);
+        console.error('Error making PATCH request:', error);
       });
   };
 
   const handleDelivered = (item) => {
-    const { status, employeeid } = item;
-    const currentTime = new Date().toISOString();
+    const { status } = item;
+    const currentDate = new Date().toISOString().split('T')[0];
     const requestData = {
-      date: currentTime,
+      deliverydate: currentDate,
       status,
-      emp: employeeid,
+      employeeid: (Math.random() * 10 + 1).toFixed(0),
     };
     deliReq(item.id, requestData);
   };
