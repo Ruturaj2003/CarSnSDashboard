@@ -601,8 +601,7 @@ const Car = () => {
                         <StyledTableCell align="center">Color</StyledTableCell>
                         <StyledTableCell align="center">Price</StyledTableCell>
                         <StyledTableCell align="center">Stock</StyledTableCell>
-                        <StyledTableCell align="center">Edit</StyledTableCell>
-                        <StyledTableCell align="center">Delete</StyledTableCell>
+                        <StyledTableCell align="center">Actions</StyledTableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
@@ -644,21 +643,21 @@ const Car = () => {
                           <StyledTableCell align="center">
                             {d.stock}
                           </StyledTableCell>
-                          <StyledTableCell align="center">
-                            <IconButton
-                              aria-label="delete"
-                              onClick={() => handleEditOpen(d)}
-                            >
-                              <EditIcon className="add-icon" />
-                            </IconButton>
-                          </StyledTableCell>
-                          <StyledTableCell align="center">
-                            <IconButton
-                              aria-label="delete"
-                              onClick={(e) => handleDelete(d.id)}
-                            >
-                              <DeleteIcon className="delete-icon" />
-                            </IconButton>
+                          <StyledTableCell align='center'>
+                            <div style={{ display: 'flex', marginRight: '15px' }}>
+                              <IconButton
+                                aria-label="edit"
+                                onClick={() => handleEditOpen(d)}
+                              >
+                                <EditIcon className="add-icon" />
+                              </IconButton>
+                              <IconButton
+                                aria-label="delete"
+                                onClick={(e) => handleDelete(d.id)}
+                              >
+                                <DeleteIcon className="delete-icon" />
+                              </IconButton>
+                            </div>
                           </StyledTableCell>
                         </StyledTableRow>
                       ))}
