@@ -75,6 +75,9 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   '&:last-child td, &:last-child th': {
     border: 0,
   },
+  '&:hover': {
+    backgroundColor: 'rgb(219 234 254)',
+  },
 }));
 
 const Car = () => {
