@@ -27,7 +27,7 @@ const BCCard = ({ data }) => {
       {/* Name of Image */}
       <div className="h-[10%]">
         <h3 className="text-3xl font-tableD text-center">
-          BMW {data.modelname}
+          Mercedes-benz {data.modelname}
         </h3>
       </div>
     </div>

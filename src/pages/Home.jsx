@@ -71,11 +71,11 @@ const Home = () => {
         <div className="w-full h-[270px]  bg-slate-50 p-5 flex items-center justify-evenly ">
           {/* Card 1  */}
           <Card desc={'Pending'} number={pending} apxString={''}>
-            <MdOutlinePendingActions className="text-8xl text-[#0066AD] mx-auto" />
+            <MdOutlinePendingActions className="text-8xl text-[#7360DF] mx-auto" />
           </Card>
           {/* Card 2 */}
           <Card desc={'Serviced'} number={serviced} apxString={''}>
-            <IoMdDoneAll className="text-8xl text-[#0066AD] mx-auto" />
+            <IoMdDoneAll className="text-8xl text-[#7360DF] mx-auto" />
           </Card>
         </div>
 
@@ -83,11 +83,11 @@ const Home = () => {
         <div className="w-full h-[270px]  bg-slate-50 p-5 flex items-center justify-evenly ">
           {/* Card 3  */}
           <Card desc={'Employees'} number={employee} apxString={''}>
-            <FaPeopleGroup className="text-8xl text-[#0066AD] mx-auto" />
+            <FaPeopleGroup className="text-8xl text-[#7360DF] mx-auto" />
           </Card>
           {/* Card 4 */}
           <Card desc={'Turn Over'} number={turnOver} apxString={'L'}>
-            <FaMoneyBillTrendUp className="text-8xl text-[#0066AD] mx-auto" />
+            <FaMoneyBillTrendUp className="text-8xl text-[#7360DF] mx-auto" />
           </Card>
         </div>
       </div>

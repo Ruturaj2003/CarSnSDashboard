@@ -227,7 +227,7 @@ const SpecificCar = () => {
           {/* Name And Price */}
           <div className="flex items-center justify-between pl-12 pr-12 mb-6">
             <h3 className="font-semibold text-4xl">
-              {'BMW' + ' ' + carData.modelname}
+              {'Mercedes-benz' + ' ' + carData.modelname}
             </h3>
             <h3 className="font-semibold text-2xl text-slate-500">
               {'Starting From' + ' ₹' + carData.price + '*'}
@@ -236,19 +236,20 @@ const SpecificCar = () => {
           {/* Main Desc */}
           <div className="w-full  bg-slate-200 mb-6 p-6">
             <h4 className="w-full text-xl font-homeT">
-              Performance is a cornerstone of BMW's identity, with all models
-              featuring powerful engines and responsive handling.<br></br>{' '}
-              <br></br> In addition to performance, BMW prioritizes cutting-edge
-              technology and innovation. all models come equipped with advanced
-              features such as infotainment systems, driver assistance
-              technologies, and connectivity options, enhancing comfort,
-              convenience, and safety for drivers and passengers alike. <br />
+              Performance is a cornerstone of Mercedes-benz's identity, with all
+              models featuring powerful engines and responsive handling.
+              <br></br> <br></br> In addition to performance, Mercedes-benz
+              prioritizes cutting-edge technology and innovation. all models
+              come equipped with advanced features such as infotainment systems,
+              driver assistance technologies, and connectivity options,
+              enhancing comfort, convenience, and safety for drivers and
+              passengers alike. <br />
               <br></br>Clearly structured design language on the exterior for a
               sporty and self-assured presence Available with combustion engine,
               in petrol and diesel The modern interior is equipped with
-              high-quality materials and innovations such as the BMW Curved{' '}
-              <br /> BMW {carData.modelname}: <br></br> Fuel consumption,
-              combined km/L: 20.37 <br />
+              high-quality materials and innovations such as the Mercedes-benz
+              Curved <br /> Mercedes-benz {carData.modelname}: <br></br> Fuel
+              consumption, combined km/L: 20.37 <br />
               CO2 emissions, combined in g/km: 130
             </h4>
           </div>
@@ -258,43 +259,45 @@ const SpecificCar = () => {
             <div className="flex w-full mb-10">
               <div className="w-[55%]  h-[500px] flex  flex-col items-start justify-center  ">
                 <h1 className="font-tableD text-4xl mb-3  text-ter-blue">
-                  Key Features of BMW {carData.modelname} <br></br>Interiors
+                  Key Features of Mercedes-benz {carData.modelname} <br></br>
+                  Interiors
                 </h1>
                 <p className="w-[96%] text-lg  font-tableD h-full text-ter-blue font-semibold">
                   <span className="font-bold text-2xl">
                     1. Premium Materials:
                   </span>{' '}
-                  BMW interiors are crafted using high-quality materials such as
-                  soft-touch surfaces, premium leather upholstery, and genuine
-                  wood or aluminum trim, creating a luxurious and refined
-                  ambiance. <br /> <br />
+                  Mercedes-benz interiors are crafted using high-quality
+                  materials such as soft-touch surfaces, premium leather
+                  upholstery, and genuine wood or aluminum trim, creating a
+                  luxurious and refined ambiance. <br /> <br />
                   <span className="font-bold text-2xl">
                     2. Driver-Oriented Cockpit:
                   </span>{' '}
-                  BMW's driver-centric design philosophy is evident in the
-                  layout of the cockpit, with controls positioned for easy reach
-                  and a focus on enhancing the driving experience. <br /> <br />
+                  Mercedes-benz's driver-centric design philosophy is evident in
+                  the layout of the cockpit, with controls positioned for easy
+                  reach and a focus on enhancing the driving experience. <br />{' '}
+                  <br />
                   <span className="font-bold text-2xl">
                     3. Advanced Technology:
                   </span>{' '}
-                  BMW cars are equipped with state-of-the-art technology
-                  features, including intuitive infotainment systems with
-                  touchscreen displays, digital instrument clusters, gesture
-                  control, and voice recognition, providing both convenience and
-                  entertainment. <br /> <br />
+                  Mercedes-benz cars are equipped with state-of-the-art
+                  technology features, including intuitive infotainment systems
+                  with touchscreen displays, digital instrument clusters,
+                  gesture control, and voice recognition, providing both
+                  convenience and entertainment. <br /> <br />
                   <span className="font-bold text-2xl">
                     4. Comfort and Ergonomics:
                   </span>{' '}
-                  BMW pays attention to comfort and ergonomics, offering
-                  supportive seats with various adjustment options, ample
-                  legroom and headroom for passengers, and thoughtful storage
-                  solutions throughout the cabin. <br /> <br />
+                  Mercedes-benz pays attention to comfort and ergonomics,
+                  offering supportive seats with various adjustment options,
+                  ample legroom and headroom for passengers, and thoughtful
+                  storage solutions throughout the cabin. <br /> <br />
                 </p>
               </div>
 
               <img
                 className=" w-[45%] h-[500px] rounded-2xl shadow-lg object-cover"
-                src="https://media.istockphoto.com/id/1366195990/photo/interior-of-the-luxury-motor-car-bmw-520d.jpg?s=612x612&w=0&k=20&c=c74ajHZ7krltxgJPKX4RLCCqzSnmoW0Eo3eaVJLOBWs="
+                src="https://w0.peakpx.com/wallpaper/916/147/HD-wallpaper-2022-mercedes-benz-eqs-interior-car.jpg"
                 alt=""
               />
             </div>
@@ -302,37 +305,40 @@ const SpecificCar = () => {
             <div className="flex w-full mt-6 mb-6">
               <img
                 className=" w-[45%] h-[500px] rounded-2xl shadow-lg object-cover"
-                src="https://images.unsplash.com/photo-1556189250-72ba954cfc2b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                src="https://wallpapers.com/images/high/4k-mercedes-benz-with-trees-1xffhdjq8nfhhrwz.webp"
                 alt=""
               />
               <div className="w-[55%]  h-[500px] flex pl-16 flex-col items-start justify-center  ">
                 <h1 className="font-tableD text-4xl mb-3 text-ter-blue ">
-                  BMW {carData.modelname}'s Distinctive Exterior <br /> Features
+                  Mercedes-benz {carData.modelname}'s Distinctive Exterior{' '}
+                  <br /> Features
                 </h1>
                 <p className="w-[96%] font-tableD text-lg font-semibold text-ter-blue">
                   <span className="font-semibold text-2xl">
                     1. Sleek and Aerodynamic:
                   </span>{' '}
-                  BMW vehicles often feature sleek lines and aerodynamic shapes,
-                  providing a sporty and elegant appearance. <br /> <br />
+                  Mercedes-benz vehicles often feature sleek lines and
+                  aerodynamic shapes, providing a sporty and elegant appearance.{' '}
+                  <br /> <br />
                   <span className="font-semibold text-2xl">
                     2. Iconic Kidney Grille:
                   </span>{' '}
-                  A signature element of BMW's exterior design, the kidney
-                  grille varies in size and shape across models but remains a
-                  defining feature. <br /> <br />
+                  A signature element of Mercedes-benz's exterior design, the
+                  kidney grille varies in size and shape across models but
+                  remains a defining feature. <br /> <br />
                   <span className="font-semibold text-2xl">
                     3. Distinctive Headlights:
                   </span>{' '}
-                  Many BMW models come with stylish LED headlights or optional
-                  adaptive LED headlights, enhancing visibility and adding to
-                  the car's aesthetic appeal. <br /> <br />
+                  Many Mercedes-benz models come with stylish LED headlights or
+                  optional adaptive LED headlights, enhancing visibility and
+                  adding to the car's aesthetic appeal. <br /> <br />
                   <span className="font-semibold text-2xl">
                     4. Dynamic Proportions:
                   </span>{' '}
-                  BMW cars typically have balanced proportions with a long hood,
-                  short front and rear overhangs, and a well-defined stance,
-                  reflecting dynamic performance capabilities. <br /> <br />
+                  Mercedes-benz cars typically have balanced proportions with a
+                  long hood, short front and rear overhangs, and a well-defined
+                  stance, reflecting dynamic performance capabilities. <br />{' '}
+                  <br />
                 </p>
               </div>
             </div>

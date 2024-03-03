@@ -3,7 +3,7 @@ const Reviews = () => {
     <div className="flex justify-evenly items-center h-[500px] w-full ">
       {/* Card 1 */}
       <div
-        className="w-[300px] h-[400px] shadow-md  bg-slate-100
+        className="w-[300px] h-[350px] shadow-md  bg-slate-100
       p-5
       rounded-3xl flex flex-col justify-between "
       >
@@ -16,7 +16,8 @@ const Reviews = () => {
             src="https://imgs.search.brave.com/23MrUl5yZuiV4JEO5ZucyIrbBAmQreLBMdL-j81dQWQ/rs:fit:500:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJzZXQuY29t/L3cvZnVsbC9kL2Iv/Zi80NTk3Ni5qcGc"
           ></img>
           <h3 className="w-full p-3 font-normal text-pri-blue">
-            My BMW M5 glides on the road, thanks to precision engineering!
+            My Mercedes-Benz S-Class gracefully cruises down the highway, a
+            testament to unparalleled engineering excellence
           </h3>
         </div>
         {/* Name */}
@@ -27,7 +28,7 @@ const Reviews = () => {
 
       {/* Card 2 */}
       <div
-        className="w-[300px] h-[400px] shadow-md   bg-slate-100
+        className="w-[300px]  h-[350px] shadow-md   bg-slate-100
       p-5
       rounded-3xl flex flex-col justify-between "
       >
@@ -38,8 +39,8 @@ const Reviews = () => {
             className="h-[50px] object-cover  ml-2 w-[50px]   mb-4 rounded-full"
           ></img>
           <h3 className="w-full p-3 font-normal  text-pri-blue">
-            Impressed with the amazing deals on BMW cars! Found my dream ride
-            without burning a hole in my pocket.
+            Thrilled with the incredible bargains on Mercedes-Benz vehicles!
+            Scored my dream car without breaking the bank.
           </h3>
         </div>
         {/* Name */}
@@ -50,7 +51,7 @@ const Reviews = () => {
 
       {/* Card 3*/}
       <div
-        className="w-[300px] h-[400px] shadow-md  bg-slate-100
+        className="w-[300px]  h-[350px] shadow-md  bg-slate-100
       p-5
       rounded-3xl  flex flex-col justify-between "
       >
@@ -61,7 +62,8 @@ const Reviews = () => {
             className="h-[50px] object-cover ml-2 w-[50px] rounded-full   mb-4 "
           ></img>
           <h3 className="w-full p-3  text-pri-blue font-normal">
-            Simply unmatched services! They supercharged my car’s performance.
+            Unrivaled services! They turbocharged my Mercedes-Benz, elevating
+            its performance to unparalleled heights.
           </h3>
         </div>
         {/* Name */}

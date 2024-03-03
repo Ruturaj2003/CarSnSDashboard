@@ -52,7 +52,7 @@ const style = {
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: '#0066AD',
+    backgroundColor: '#7360DF',
     color: theme.palette.common.white,
   },
   [`&.${tableCellClasses.body}`]: {
@@ -223,15 +223,25 @@ const Car = () => {
         pauseOnHover
       />
 
-      <div className="flex" style={{backgroundColor: 'rgb(226 232 240)', height: '620px'}}>
+      <div
+        className="flex"
+        style={{ backgroundColor: 'rgb(226 232 240)', height: '620px' }}
+      >
         <div>
           <Box sx={{ display: 'flex' }}>
-            <Box component="main" sx={{ flexGrow: 1, p: 3}}>
-              <div className="buttonAdd" style={{display: 'flex', justifyContent: 'flex-end', marginBottom: '20px'}}>
+            <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+              <div
+                className="buttonAdd"
+                style={{
+                  display: 'flex',
+                  justifyContent: 'flex-end',
+                  marginBottom: '20px',
+                }}
+              >
                 <Button
                   variant="contained"
                   startIcon={<AddIcon />}
-                  sx={{ backgroundColor: '#0066AD', padding: 1.5 }}
+                  sx={{ backgroundColor: '#7360DF', padding: 1.5 }}
                   onClick={handleOpen}
                 >
                   Add NEW CAR
@@ -581,7 +591,13 @@ const Car = () => {
                 </Box>
               </Modal>
 
-              <div style={{display: 'flex', maxHeight: '600px', overflow: 'auto'}}>
+              <div
+                style={{
+                  display: 'flex',
+                  maxHeight: '600px',
+                  overflow: 'auto',
+                }}
+              >
                 <TableContainer component={Paper}>
                   <Table sx={{ minWidth: 700 }} aria-label="customized table">
                     <TableHead>
@@ -604,7 +620,9 @@ const Car = () => {
                         <StyledTableCell align="center">Color</StyledTableCell>
                         <StyledTableCell align="center">Price</StyledTableCell>
                         <StyledTableCell align="center">Stock</StyledTableCell>
-                        <StyledTableCell align="center">Actions</StyledTableCell>
+                        <StyledTableCell align="center">
+                          Actions
+                        </StyledTableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
@@ -646,8 +664,10 @@ const Car = () => {
                           <StyledTableCell align="center">
                             {d.stock}
                           </StyledTableCell>
-                          <StyledTableCell align='center'>
-                            <div style={{ display: 'flex', marginRight: '15px' }}>
+                          <StyledTableCell align="center">
+                            <div
+                              style={{ display: 'flex', marginRight: '15px' }}
+                            >
                               <IconButton
                                 aria-label="edit"
                                 onClick={() => handleEditOpen(d)}

@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router';
-import logo from '../assets/bmw.svg';
+import logo from '../assets/mercLogo.png';
 
 const Navbar = () => {
   const navi = useNavigate();

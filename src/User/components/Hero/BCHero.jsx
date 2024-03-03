@@ -1,6 +1,6 @@
 import { FaQuoteLeft } from 'react-icons/fa';
 import { FaQuoteRight } from 'react-icons/fa';
-import hero from '../../assets/browCar.jpg';
+import hero from '../../assets/browCar.webp';
 const BCHero = () => {
   return (
     <>

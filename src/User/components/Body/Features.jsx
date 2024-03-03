@@ -16,7 +16,7 @@ const Features = () => {
 
         <img
           className=" w-[45%] h-[500px] rounded-2xl shadow-lg object-cover"
-          src="https://imgs.search.brave.com/beqid39Nadc2l0UAYOWt19GHvI9LSeaacHoXc1XnUyA/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzEzL2Nl/Lzk4LzEzY2U5ODNm/MWEyMGM5NzgyMGFh/NDg2ODhkMzdmNzQ1/LS1jYXItd2FsbHBh/cGVycy1oZC13YWxs/cGFwZXIuanBn"
+          src="https://imgs.search.brave.com/tOcqN4zkcdudVGTaWjT3zlAyTqPg94QTbWLE8SwQ82I/rs:fit:860:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJzLmNvbS9p/bWFnZXMvZmVhdHVy/ZWQvNGstbWVyY2Vk/ZXMtemNqNDd5eDlt/cTd0ZmplZC5qcGc"
           alt=""
         />
       </div>

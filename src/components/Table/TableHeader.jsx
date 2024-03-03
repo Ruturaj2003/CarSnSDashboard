@@ -5,7 +5,7 @@ const TableHeader = ({
   readOnly,
 }) => {
   return (
-    <thead className="font-tableH bg-[#0066AD] text-white sticky top-0">
+    <thead className="font-tableH bg-[#7360DF] text-white sticky top-0">
       <tr>
         {tableHeadings.map((thead, index) => (
           <th key={index} className="py-2 border-r text-center">
@@ -13,7 +13,7 @@ const TableHeader = ({
           </th>
         ))}
         {!readOnly && (
-          <th className="w-[140px] bg-[#0066AD] text-center">
+          <th className="w-[140px] bg-[#7360DF] text-center">
             {buttonData.createButton ? (
               <button onClick={handleModalOpen}>Create</button>
             ) : (

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import logo from './assets/logo.png';
+import logo from './assets/merLogo.svg';
 
 const UserNavbar = () => {
   const navLinks = ['Browse Cars', 'Book Service', 'About', 'Contact']; // Manually specified array
@@ -13,7 +13,7 @@ const UserNavbar = () => {
           <Link to={'/user'}>
             <img
               src={logo}
-              className="ml-4 mr-8 rounded-full h-[50px] w-[50px]"
+              className="ml-4 mr-8 rounded-full h-[60px] w-[60px]"
               alt="Logo"
             />
           </Link>
