@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 
 const EditModal = ({
   url,
@@ -52,6 +53,7 @@ const EditModal = ({
         return;
       }
       const response = await axios.put(path, formData);
+      toast.success('Update Successful');
       dispatch(fetchFn(url));
       console.log('Update successful:', response.data);
       closeAll();

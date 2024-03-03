@@ -2,7 +2,9 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const initialState = {
-  tdata: [],
+  t1data: [],
+  t2data: [],
+
   buttonData: {
     editButton: false,
     deleteButton: false,
@@ -41,8 +43,27 @@ const serviceSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(fetchServices.fulfilled, (state, action) => {
-      // Change to fetchServices
-      state.tdata = action.payload;
+      const preTableData = action.payload.map((item) => {
+        // Format the arrival date
+        const formattedArrivalDate = new Date(
+          item.arrivaldate
+        ).toLocaleDateString('en-GB');
+
+        // Format the delivery date
+        const formattedDeliveryDate = new Date(
+          item.deliverydate
+        ).toLocaleDateString('en-GB');
+
+        // Return the updated item
+        return {
+          ...item,
+          arrivaldate: formattedArrivalDate,
+          deliverydate: formattedDeliveryDate,
+        };
+      });
+
+      state.t1data = preTableData.filter((item) => item.status === 'false');
+      state.t2data = preTableData.filter((item) => item.status === 'true'); // Change to fetchServices
     });
   },
 });

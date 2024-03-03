@@ -6,7 +6,8 @@ import { MdDelete } from 'react-icons/md';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { assignServId } from '../../state/slices/serviceSlice';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 const TableRow = ({
@@ -21,20 +22,11 @@ const TableRow = ({
 }) => {
   const dispatch = useDispatch();
 
-  function getCurrentDate() {
-    const currentDate = new Date();
-
-    const year = currentDate.getFullYear();
-    const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Months are zero-based
-    const day = String(currentDate.getDate()).padStart(2, '0');
-
-    return `${year}-${month}-${day}`;
-  }
-
   const dota = (id) => {
     axios
       .delete(url + '/' + id)
       .then(() => {
+        toast.success('Deletion Sucessful ');
         dispatch(fetchFn(url));
       })
       .catch((error) => {
@@ -45,6 +37,7 @@ const TableRow = ({
     axios
       .patch(url + '/' + id, data) // Use PATCH instead of PUT
       .then((response) => {
+        toast.success('Car Delivered ');
         dispatch(fetchFn(url));
         console.log('PATCH Request Successful:', response.data);
       })
@@ -76,52 +69,56 @@ const TableRow = ({
   const nume = numOfCol;
 
   return (
-    <tr className="hover:bg-blue-100">
-      {Object.keys(item)
-        .slice(0, nume)
-        .map((key) => (
-          <td
-            key={nanoid()}
-            className="py-2 overflow-hidden overflow-ellipsis text-center font-tableD"
-          >
-            {item[key]}
-          </td>
-        ))}
-      {!readOnly && (
-        <td className="flex justify-evenly py-2 items-center">
-          {buttonData.editButton && (
-            <button key={nanoid()} onClick={() => handleRowClick(item)}>
-              <FaEdit className="text-[#797979] text-xl" />
-            </button>
-          )}
+    <>
+      <tr className="hover:bg-blue-100">
+        {Object.keys(item)
+          .slice(0, nume)
+          .map((key) => (
+            <td
+              key={nanoid()}
+              className="py-2 overflow-hidden overflow-ellipsis text-center font-tableD"
+            >
+              {item[key]}
+            </td>
+          ))}
+        {!readOnly && (
+          <td className="flex justify-evenly py-2 items-center">
+            {buttonData.editButton && (
+              <button key={nanoid()} onClick={() => handleRowClick(item)}>
+                <FaEdit className="text-[#797979] text-xl" />
+              </button>
+            )}
 
-          {buttonData.deleteButton && (
-            <button key={nanoid()} onClick={() => deleteItem(item.id)}>
-              <MdDelete className="text-xl text-[#797979]" />
-            </button>
-          )}
-          {buttonData.bookingButton &&
-            (item.status === 'delivered' ? (
-              <h2 className="text-xl font-tableD text-green-600">Delivered</h2>
-            ) : (
+            {buttonData.deleteButton && (
+              <button key={nanoid()} onClick={() => deleteItem(item.id)}>
+                <MdDelete className="text-xl text-[#797979]" />
+              </button>
+            )}
+            {buttonData.bookingButton &&
+              (item.status === 'delivered' ? (
+                <h2 className="text-xl font-tableD text-green-600">
+                  Delivered
+                </h2>
+              ) : (
+                <button
+                  onClick={() => handleDelivered(item)}
+                  className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+                >
+                  Deliver
+                </button>
+              ))}
+            {buttonData.serviceButton && (
               <button
-                onClick={() => handleDelivered(item)}
+                onClick={() => handleServiced(item)}
                 className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
               >
-                Deliver
+                Serviced
               </button>
-            ))}
-          {buttonData.serviceButton && (
-            <button
-              onClick={() => handleServiced(item)}
-              className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-            >
-              Serviced
-            </button>
-          )}
-        </td>
-      )}
-    </tr>
+            )}
+          </td>
+        )}
+      </tr>
+    </>
   );
 };
 

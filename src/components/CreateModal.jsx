@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { ToastContainer, toast } from 'react-toastify';
 
 const CreateModal = ({
   url,
@@ -57,7 +58,7 @@ const CreateModal = ({
 
       const response = await axios.post(url, formData);
       console.log('Save successful:', response.data);
-
+      toast.success('Save Successful ');
       dispatch(fetchFn(url));
 
       closeAll();
@@ -76,8 +77,6 @@ const CreateModal = ({
     console.log('Vehicle Id: ' + id + ' Serviced');
     serviceReq(id, requestData);
 
-    dispatch(fetchFn(url));
-
     closeAll();
   };
 
@@ -86,6 +85,7 @@ const CreateModal = ({
     axios
       .put(url + '/' + id, data)
       .then((response) => {
+        dispatch(fetchFn(url));
         console.log('PUT Request Successful:', response.data);
       })
       .catch((error) => {

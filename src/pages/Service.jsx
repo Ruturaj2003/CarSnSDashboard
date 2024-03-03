@@ -19,40 +19,41 @@ const Service = () => {
     'Phone',
     'Service Type',
     'Arrival Date',
+    'Delivery Date',
     'Service Description',
     'Cost',
-    'Delivery Date',
   ];
 
   const formName = 'Service';
-  const data = useSelector((state) => state.service.tdata);
+  const data1 = useSelector((state) => state.service.t1data);
   const buttonData = useSelector((state) => state.service.buttonData);
+  const data2 = useSelector((state) => state.service.t2data);
 
   const numOfCol1 = 5;
   const numOfCOl2 = 8;
   const dispatch = useDispatch();
 
-  const preTableData = data.map((item) => {
-    // Format the arrival date
-    const formattedArrivalDate = new Date(item.arrivaldate).toLocaleDateString(
-      'en-GB'
-    );
+  // const preTableData = data.map((item) => {
+  //   // Format the arrival date
+  //   const formattedArrivalDate = new Date(item.arrivaldate).toLocaleDateString(
+  //     'en-GB'
+  //   );
 
-    // Format the delivery date
-    const formattedDeliveryDate = new Date(
-      item.deliverydate
-    ).toLocaleDateString('en-GB');
+  //   // Format the delivery date
+  //   const formattedDeliveryDate = new Date(
+  //     item.deliverydate
+  //   ).toLocaleDateString('en-GB');
 
-    // Return the updated item
-    return {
-      ...item,
-      arrivaldate: formattedArrivalDate,
-      deliverydate: formattedDeliveryDate,
-    };
-  });
+  //   // Return the updated item
+  //   return {
+  //     ...item,
+  //     arrivaldate: formattedArrivalDate,
+  //     deliverydate: formattedDeliveryDate,
+  //   };
+  // });
 
-  const tableData1 = preTableData.filter((item) => item.status === 'true');
-  const tableData2 = preTableData.filter((item) => item.status === 'false');
+  // const tableData1 = preTableData.filter((item) => item.status === 'false');
+  // const tableData2 = preTableData.filter((item) => item.status === 'true');
 
   useEffect(() => {
     dispatch(fetchServices(url));
@@ -61,7 +62,7 @@ const Service = () => {
   return (
     <div className="flex flex-col">
       <TableFrame
-        tableData={tableData1}
+        tableData={data1}
         url={url}
         formName={formName}
         tableHeadings={tableHeadings1}
@@ -74,7 +75,7 @@ const Service = () => {
       <div className="mt-[-20px]">
         {' '}
         <TableFrame
-          tableData={tableData2}
+          tableData={data2}
           url={url}
           formName={formName}
           tableHeadings={tableHeadings2}
