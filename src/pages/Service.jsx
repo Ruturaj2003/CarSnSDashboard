@@ -51,8 +51,8 @@ const Service = () => {
     };
   });
 
-  const tableData1 = preTableData.filter((item) => item.Status === 'T');
-  const tableData2 = preTableData.filter((item) => item.Status === 'F');
+  const tableData1 = preTableData.filter((item) => item.status === 'true');
+  const tableData2 = preTableData.filter((item) => item.status === 'false');
 
   useEffect(() => {
     dispatch(fetchServices(url));
