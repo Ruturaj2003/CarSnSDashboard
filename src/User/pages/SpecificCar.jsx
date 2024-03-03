@@ -294,7 +294,7 @@ const SpecificCar = () => {
 
               <img
                 className=" w-[45%] h-[500px] rounded-2xl shadow-lg object-cover"
-                src="https://imgs.search.brave.com/beqid39Nadc2l0UAYOWt19GHvI9LSeaacHoXc1XnUyA/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzEzL2Nl/Lzk4LzEzY2U5ODNm/MWEyMGM5NzgyMGFh/NDg2ODhkMzdmNzQ1/LS1jYXItd2FsbHBh/cGVycy1oZC13YWxs/cGFwZXIuanBn"
+                src="https://media.istockphoto.com/id/1366195990/photo/interior-of-the-luxury-motor-car-bmw-520d.jpg?s=612x612&w=0&k=20&c=c74ajHZ7krltxgJPKX4RLCCqzSnmoW0Eo3eaVJLOBWs="
                 alt=""
               />
             </div>
@@ -302,7 +302,7 @@ const SpecificCar = () => {
             <div className="flex w-full mt-6 mb-6">
               <img
                 className=" w-[45%] h-[500px] rounded-2xl shadow-lg object-cover"
-                src="https://wallpapercave.com/wp/wp7374501.png"
+                src="https://images.unsplash.com/photo-1556189250-72ba954cfc2b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                 alt=""
               />
               <div className="w-[55%]  h-[500px] flex pl-16 flex-col items-start justify-center  ">
