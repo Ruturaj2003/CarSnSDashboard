@@ -220,7 +220,7 @@ const Car = () => {
         pauseOnHover
       />
 
-      <div className="flex">
+      <div className="flex" style={{backgroundColor: 'rgb(226 232 240)', height: '620px'}}>
         <div>
           <Box sx={{ display: 'flex' }}>
             <Box component="main" sx={{ flexGrow: 1, p: 3}}>
@@ -578,7 +578,7 @@ const Car = () => {
                 </Box>
               </Modal>
 
-              <div style={{display: 'flex', height: '600px', overflow: 'auto'}}>
+              <div style={{display: 'flex', maxHeight: '600px', overflow: 'auto'}}>
                 <TableContainer component={Paper}>
                   <Table sx={{ minWidth: 700 }} aria-label="customized table">
                     <TableHead>
