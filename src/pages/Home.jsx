@@ -22,6 +22,14 @@ const Home = () => {
       console.error('Error fetching total employees:', error);
     }
   };
+  const fetchServices = async () => {
+    try {
+      const response = await axios.get(`${url}/trueServices`);
+      setServiced(response.data[0].service);
+    } catch (error) {
+      console.error('Error fetching total employees:', error);
+    }
+  };
   const fetchPending = async () => {
     try {
       const response = await axios.get(`${url}/pendingBookings`);
@@ -45,6 +53,7 @@ const Home = () => {
     fetchTotalEmployee();
     fetchPending();
     fetchTurnOver();
+    fetchServices();
   }, []);
 
   return (

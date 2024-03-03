@@ -71,17 +71,20 @@ const Service = () => {
         readOnly={false}
         serviceModal={true}
       ></TableFrame>
-      <TableFrame
-        tableData={tableData2}
-        url={url}
-        formName={formName}
-        tableHeadings={tableHeadings2}
-        fetchFn={fetchServices}
-        numOfCol={numOfCOl2}
-        buttonData={buttonData}
-        readOnly={true}
-        serviceModal={false}
-      ></TableFrame>
+      <div className="mt-[-20px]">
+        {' '}
+        <TableFrame
+          tableData={tableData2}
+          url={url}
+          formName={formName}
+          tableHeadings={tableHeadings2}
+          fetchFn={fetchServices}
+          numOfCol={numOfCOl2}
+          buttonData={buttonData}
+          readOnly={true}
+          serviceModal={false}
+        ></TableFrame>
+      </div>
     </div>
   );
 };
