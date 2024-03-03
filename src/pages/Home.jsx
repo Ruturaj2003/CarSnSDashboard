@@ -6,6 +6,7 @@ import { FaMoneyBillTrendUp } from 'react-icons/fa6';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { globalUrl } from '../App';
+
 const Home = () => {
   const url = globalUrl;
   const [pending, setPending] = useState(0);
@@ -33,6 +34,8 @@ const Home = () => {
   const fetchTurnOver = async () => {
     try {
       const response = await axios.get(`${url}/turnOver`);
+      const earning = (response.data[0].total / 100000).toFixed(1);
+      setTurnOver(earning);
     } catch (error) {
       console.error('Error fetching total employees:', error);
     }
@@ -58,11 +61,11 @@ const Home = () => {
         {/* Card Col 1 */}
         <div className="w-full h-[270px]  bg-slate-50 p-5 flex items-center justify-evenly ">
           {/* Card 1  */}
-          <Card desc={'Pending'} number={pending}>
+          <Card desc={'Pending'} number={pending} apxString={''}>
             <MdOutlinePendingActions className="text-8xl text-[#0066AD] mx-auto" />
           </Card>
           {/* Card 2 */}
-          <Card desc={'Serviced'} number={serviced}>
+          <Card desc={'Serviced'} number={serviced} apxString={''}>
             <IoMdDoneAll className="text-8xl text-[#0066AD] mx-auto" />
           </Card>
         </div>
@@ -70,11 +73,11 @@ const Home = () => {
         {/* Card Col 2 */}
         <div className="w-full h-[270px]  bg-slate-50 p-5 flex items-center justify-evenly ">
           {/* Card 3  */}
-          <Card desc={'Employees'} number={employee}>
+          <Card desc={'Employees'} number={employee} apxString={''}>
             <FaPeopleGroup className="text-8xl text-[#0066AD] mx-auto" />
           </Card>
           {/* Card 4 */}
-          <Card desc={'Turn Over'} number={turnOver + 'K'}>
+          <Card desc={'Turn Over'} number={turnOver} apxString={'L'}>
             <FaMoneyBillTrendUp className="text-8xl text-[#0066AD] mx-auto" />
           </Card>
         </div>
