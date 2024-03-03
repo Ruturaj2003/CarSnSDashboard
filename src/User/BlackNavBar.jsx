@@ -1,9 +1,9 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from './assets/blogo.png';
 
 const BlackNavBar = () => {
   const navLinks = ['Browse Cars', 'Book Service', 'About', 'Contact']; // Manually specified array
-
+  const navi = useNavigate();
   return (
     <>
       <div className="h-16 mt-6 mr-16 ml-16 flex items-center justify-between">
@@ -41,6 +41,7 @@ const BlackNavBar = () => {
             className=" text-2xl text-black font-tableH my-auto   
           cursor-pointer
           mx-auto"
+            onClick={() => navi('/')}
           >
             Log Out
           </div>

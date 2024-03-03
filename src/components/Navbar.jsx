@@ -1,6 +1,8 @@
+import { useNavigate } from 'react-router';
 import logo from '../assets/bmw.svg';
 
 const Navbar = () => {
+  const navi = useNavigate();
   return (
     <>
       <div className="h-16 mt-[10px] mr-16 ml-16  flex items-center justify-between  ">
@@ -22,7 +24,10 @@ const Navbar = () => {
             <h2 className="text-3xl"> ADMIN PANEL</h2>
           </div>
         </div>
-        <div className=" w-[200px] h-full flex justify-center items-center cursor-pointer">
+        <div
+          onClick={() => navi('/')}
+          className=" w-[200px] h-full flex justify-center items-center cursor-pointer"
+        >
           <h2
             onClick={() => console.log('Logged Out')}
             className=" text-2xl font-tableD"
