@@ -297,7 +297,7 @@ const SpecificCar = () => {
 
               <img
                 className=" w-[45%] h-[500px] rounded-2xl shadow-lg object-cover"
-                src="https://w0.peakpx.com/wallpaper/916/147/HD-wallpaper-2022-mercedes-benz-eqs-interior-car.jpg"
+                src={ `http://localhost:8081/images/${carData.interior}`}
                 alt=""
               />
             </div>
@@ -305,8 +305,10 @@ const SpecificCar = () => {
             <div className="flex w-full mt-6 mb-6">
               <img
                 className=" w-[45%] h-[500px] rounded-2xl shadow-lg object-cover"
-                src="https://wallpapers.com/images/high/4k-mercedes-benz-with-trees-1xffhdjq8nfhhrwz.webp"
-                alt=""
+                src={
+                  `http://localhost:8081/images/${carData.carimage}`
+  
+                }              alt=""
               />
               <div className="w-[55%]  h-[500px] flex pl-16 flex-col items-start justify-center  ">
                 <h1 className="font-tableD text-4xl mb-3 text-ter-blue ">

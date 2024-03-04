@@ -28,7 +28,7 @@ const AboutUs = () => {
         <div className="container mx-auto p-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 justify-center">
             <a
-              href="#"
+              href="#QF"
               className="quick-fact bg-white rounded-lg p-4 flex flex-col justify-center items-center transition-colors duration-300 border-b-2 border-transparent hover:border-blue-500 hover:bg-gray-100"
             >
               <div className="text-center font-bold text-2xl mb-2">
@@ -39,10 +39,10 @@ const AboutUs = () => {
               </span>
             </a>
             <a
-              href="#"
+              href="#FD"
               className="quick-fact bg-white rounded-lg p-4 flex flex-col justify-center items-center transition-colors duration-300 border-b-2 border-transparent hover:border-blue-500 hover:bg-gray-100"
             >
-              <div className="text-center font-bold text-lg mb-2">
+              <div  className="text-center font-bold text-lg mb-2">
                 The First Driver
               </div>
               <span className="text-sm">
@@ -52,7 +52,7 @@ const AboutUs = () => {
           </div>
 
           <div className="text-lg mt-8 text-gray-700 leading-relaxed">
-            <h1 className="text-center text-2xl font-bold">Quick Facts</h1>
+            <h1 id='QF' className="text-center text-2xl font-bold">Quick Facts</h1>
             <p className="text-center font-semibold">
               For nearly a century, Mercedes-Benz has made it our mission to
               move the world. <br /> Through our employees and their
@@ -131,7 +131,7 @@ const AboutUs = () => {
           </div>
 
           <div className="border-t border-gray-500 text-center py-16">
-            <h1 className="font-bold text-4xl mb-4">The First Driver</h1>
+            <h1 id='FD' className="font-bold text-4xl mb-4">The First Driver</h1>
             <div className="max-w-screen-lg mx-auto">
               <iframe
                 src={Bertha}

@@ -4,6 +4,11 @@
   background-image: url(/images/home-screen.jpg);
   background-size: cover;
   background-position: center;
+  position: relative;
+  top:-100px;
+
+  z-index: -1;
+  
 }
 
 .serviceImages {

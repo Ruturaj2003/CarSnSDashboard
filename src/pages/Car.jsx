@@ -1,28 +1,18 @@
-import Footer from '../components/Footer';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Box from '@mui/material/Box';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { styled } from '@mui/material/styles';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
-import AddIcon from '@mui/icons-material/Add';
+import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import DialogTitle from '@mui/material/DialogTitle';
-import IconButton from '@mui/material/IconButton';
-
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import { FaEdit } from 'react-icons/fa';
+import { MdDelete } from 'react-icons/md';
+
 
 const VisuallyHiddenInput = styled('input')({
   clip: 'rect(0 0 0 0)',
@@ -49,36 +39,6 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
-
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: '#7360DF',
-    color: theme.palette.common.white,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-  },
-  [`& .add-icon:hover`]: {
-    color: '#00cc00',
-  },
-
-  [`& .delete-icon:hover`]: {
-    color: '#ff0000',
-  },
-}));
-
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  '&:nth-of-type(odd)': {
-    backgroundColor: 'white',
-  },
-
-  '&:last-child td, &:last-child th': {
-    border: 0,
-  },
-  '&:hover': {
-    backgroundColor: 'rgb(219 234 254)',
-  },
-}));
 
 const Car = () => {
   const [open, setOpen] = React.useState(false);
@@ -223,473 +183,409 @@ const Car = () => {
         pauseOnHover
       />
 
-      <div
-        className="flex"
-        style={{ backgroundColor: 'rgb(226 232 240)', height: '620px' }}
-      >
+      <div className="flex" style={{ backgroundColor: 'rgb(226 232 240)', height: '620px' }}>
         <div>
-          <Box sx={{ display: 'flex' }}>
-            <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-              <div
-                className="buttonAdd"
-                style={{
-                  display: 'flex',
-                  justifyContent: 'flex-end',
-                  marginBottom: '20px',
-                }}
+          <div className="flex justify-end mb-4 mt-4">
+            <button
+              className="bg-[#7360DF] text-white py-2 px-4 rounded hover:bg-[#8e7cf0]"
+              onClick={handleOpen}
+            >
+              Add CAR
+            </button>
+          </div>
+
+          {/* Add car modal */}
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={style}>
+              <DialogTitle
+                id="modal-modal-title"
+                sx={{ textAlign: 'center' }}
               >
-                <Button
-                  variant="contained"
-                  startIcon={<AddIcon />}
-                  sx={{ backgroundColor: '#7360DF', padding: 1.5 }}
-                  onClick={handleOpen}
-                >
-                  Add NEW CAR
-                </Button>
-              </div>
+                Add Product
+              </DialogTitle>
+              <form noValidate onSubmit={handleSubmit}>
+                <Grid container spacing={2}>
+                  <Grid item xs={12}>
+                    <TextField
+                      id="modelname"
+                      label="Car modelname"
+                      name="modelname"
+                      fullWidth
+                      onChange={handleChange}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      id="type"
+                      label="Car Type"
+                      name="type"
+                      fullWidth
+                      onChange={handleChange}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      id="chassisno"
+                      label="Chassis Number"
+                      name="chassisno"
+                      fullWidth
+                      onChange={handleChange}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      id="engineno"
+                      label="Engine Number"
+                      name="engineno"
+                      fullWidth
+                      onChange={handleChange}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      id="description"
+                      label="Car Description"
+                      name="description"
+                      fullWidth
+                      onChange={handleChange}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      id="color"
+                      label="Car Color"
+                      name="color"
+                      fullWidth
+                      onChange={handleChange}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      id="price"
+                      label="Car Price"
+                      name="price"
+                      fullWidth
+                      onChange={handleChange}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      id="stock"
+                      label="Car stock"
+                      name="stock"
+                      fullWidth
+                      onChange={handleChange}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <label htmlFor="carimage">
+                      <Button
+                        variant="contained"
+                        component="label"
+                        startIcon={<CloudUploadIcon />}
+                        sx={{ width: '100%' }}
+                      >
+                        Car Image
+                        <VisuallyHiddenInput
+                          accept="image/*"
+                          id="carimage"
+                          name="carimage"
+                          type="file"
+                          onChange={(e) => handleFileChange(e, 'carimage')}
+                        />
+                      </Button>
+                    </label>
+                  </Grid>
 
-              {/* Add car modal */}
-              <Modal
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-              >
-                <Box sx={style}>
-                  <DialogTitle
-                    id="modal-modal-title"
-                    sx={{ textAlign: 'center' }}
-                  >
-                    Add Product
-                  </DialogTitle>
-                  <form noValidate onSubmit={handleSubmit}>
-                    <Grid container spacing={2}>
-                      <Grid item xs={12}>
-                        <TextField
-                          id="modelname"
-                          label="Car modelname"
-                          name="modelname"
-                          fullWidth
-                          onChange={handleChange}
+                  <Grid item xs={12}>
+                    <label htmlFor="sideview">
+                      <Button
+                        variant="contained"
+                        component="label"
+                        startIcon={<CloudUploadIcon />}
+                        sx={{ width: '100%' }}
+                      >
+                        Side View
+                        <VisuallyHiddenInput
+                          accept="image/*"
+                          id="sideview"
+                          name="sideview"
+                          type="file"
+                          onChange={(e) => handleFileChange(e, 'sideview')}
                         />
-                      </Grid>
-                      <Grid item xs={12}>
-                        <TextField
-                          id="type"
-                          label="Car Type"
-                          name="type"
-                          fullWidth
-                          onChange={handleChange}
-                        />
-                      </Grid>
-                      <Grid item xs={12}>
-                        <TextField
-                          id="chassisno"
-                          label="Chassis Number"
-                          name="chassisno"
-                          fullWidth
-                          onChange={handleChange}
-                        />
-                      </Grid>
-                      <Grid item xs={12}>
-                        <TextField
-                          id="engineno"
-                          label="Engine Number"
-                          name="engineno"
-                          fullWidth
-                          onChange={handleChange}
-                        />
-                      </Grid>
-                      <Grid item xs={12}>
-                        <TextField
-                          id="description"
-                          label="Car Description"
-                          name="description"
-                          fullWidth
-                          onChange={handleChange}
-                        />
-                      </Grid>
-                      <Grid item xs={12}>
-                        <TextField
-                          id="color"
-                          label="Car Color"
-                          name="color"
-                          fullWidth
-                          onChange={handleChange}
-                        />
-                      </Grid>
-                      <Grid item xs={12}>
-                        <TextField
-                          id="price"
-                          label="Car Price"
-                          name="price"
-                          fullWidth
-                          onChange={handleChange}
-                        />
-                      </Grid>
-                      <Grid item xs={12}>
-                        <TextField
-                          id="stock"
-                          label="Car stock"
-                          name="stock"
-                          fullWidth
-                          onChange={handleChange}
-                        />
-                      </Grid>
-                      <Grid item xs={12}>
-                        <label htmlFor="carimage">
-                          <Button
-                            variant="contained"
-                            component="label"
-                            startIcon={<CloudUploadIcon />}
-                            sx={{ width: '100%' }}
-                          >
-                            Car Image
-                            <VisuallyHiddenInput
-                              accept="image/*"
-                              id="carimage"
-                              name="carimage"
-                              type="file"
-                              onChange={(e) => handleFileChange(e, 'carimage')}
-                            />
-                          </Button>
-                        </label>
-                      </Grid>
+                      </Button>
+                    </label>
+                  </Grid>
 
-                      <Grid item xs={12}>
-                        <label htmlFor="sideview">
-                          <Button
-                            variant="contained"
-                            component="label"
-                            startIcon={<CloudUploadIcon />}
-                            sx={{ width: '100%' }}
-                          >
-                            Side View
-                            <VisuallyHiddenInput
-                              accept="image/*"
-                              id="sideview"
-                              name="sideview"
-                              type="file"
-                              onChange={(e) => handleFileChange(e, 'sideview')}
-                            />
-                          </Button>
-                        </label>
-                      </Grid>
+                  <Grid item xs={12}>
+                    <label htmlFor="interior">
+                      <Button
+                        variant="contained"
+                        component="label"
+                        startIcon={<CloudUploadIcon />}
+                        sx={{ width: '100%' }}
+                      >
+                        Car Interior
+                        <VisuallyHiddenInput
+                          accept="image/*"
+                          id="interior"
+                          name="interior"
+                          type="file"
+                          onChange={(e) => handleFileChange(e, 'interior')}
+                        />
+                      </Button>
+                    </label>
+                  </Grid>
 
-                      <Grid item xs={12}>
-                        <label htmlFor="interior">
-                          <Button
-                            variant="contained"
-                            component="label"
-                            startIcon={<CloudUploadIcon />}
-                            sx={{ width: '100%' }}
-                          >
-                            Car Interior
-                            <VisuallyHiddenInput
-                              accept="image/*"
-                              id="interior"
-                              name="interior"
-                              type="file"
-                              onChange={(e) => handleFileChange(e, 'interior')}
-                            />
-                          </Button>
-                        </label>
-                      </Grid>
-
-                      <Grid item xs={12}>
-                        <label htmlFor="rearview">
-                          <Button
-                            variant="contained"
-                            component="label"
-                            startIcon={<CloudUploadIcon />}
-                            sx={{ width: '100%' }}
-                          >
-                            Rear View
-                            <VisuallyHiddenInput
-                              accept="image/*"
-                              id="rearview"
-                              name="rearview"
-                              type="file"
-                              onChange={(e) => handleFileChange(e, 'rearview')}
-                            />
-                          </Button>
-                        </label>
-                      </Grid>
-                    </Grid>
-                    <Grid container spacing={2}>
-                      <Grid item xs={6}>
-                        <Button
-                          onClick={handleClose}
-                          variant="contained"
-                          sx={{
-                            mt: 2,
-                            width: '100%',
-                            backgroundColor: (theme) =>
-                              theme.palette.error.main,
-                            '&:hover': { backgroundColor: '#ff0000' },
-                          }}
-                        >
-                          Cancel
-                        </Button>
-                      </Grid>
-                      <Grid item xs={6}>
-                        <Button
-                          type="submit"
-                          variant="contained"
-                          sx={{
-                            mt: 2,
-                            width: '100%',
-                            backgroundColor: (theme) =>
-                              theme.palette.success.main,
-                            '&:hover': { backgroundColor: '#00cc00' },
-                          }}
-                        >
-                          Add Product
-                        </Button>
-                      </Grid>
-                    </Grid>
-                  </form>
-                </Box>
-              </Modal>
-
-              {/* Edit Car modal */}
-              <Modal
-                open={editOpen}
-                onClose={handleEditClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-              >
-                <Box sx={style}>
-                  <DialogTitle
-                    id="modal-modal-title"
-                    sx={{ textAlign: 'center' }}
-                  >
-                    Edit Car Details
-                  </DialogTitle>
-                  <form noValidate onSubmit={handleEditSubmit}>
-                    <Grid container spacing={2}>
-                      <Grid item xs={12}>
-                        <TextField
-                          id="modelname"
-                          label="Car Modelname"
-                          name="modelname"
-                          fullWidth
-                          defaultValue={
-                            editProduct ? editProduct.modelname : ''
-                          }
-                          onChange={handleChange}
+                  <Grid item xs={12}>
+                    <label htmlFor="rearview">
+                      <Button
+                        variant="contained"
+                        component="label"
+                        startIcon={<CloudUploadIcon />}
+                        sx={{ width: '100%' }}
+                      >
+                        Rear View
+                        <VisuallyHiddenInput
+                          accept="image/*"
+                          id="rearview"
+                          name="rearview"
+                          type="file"
+                          onChange={(e) => handleFileChange(e, 'rearview')}
                         />
-                      </Grid>
-                      <Grid item xs={12}>
-                        <TextField
-                          id="type"
-                          label="Car Type"
-                          name="type"
-                          fullWidth
-                          defaultValue={editProduct ? editProduct.type : ''}
-                          onChange={handleChange}
-                        />
-                      </Grid>
-                      <Grid item xs={12}>
-                        <TextField
-                          id="chassisno"
-                          label="Chassis Number"
-                          name="chassisno"
-                          fullWidth
-                          defaultValue={
-                            editProduct ? editProduct.chassisno : ''
-                          }
-                          onChange={handleChange}
-                        />
-                      </Grid>
-                      <Grid item xs={12}>
-                        <TextField
-                          id="engineno"
-                          label="Engine Number"
-                          name="engineno"
-                          fullWidth
-                          defaultValue={editProduct ? editProduct.engineno : ''}
-                          onChange={handleChange}
-                        />
-                      </Grid>
-                      <Grid item xs={12}>
-                        <TextField
-                          id="description"
-                          label="Car Description"
-                          name="description"
-                          fullWidth
-                          defaultValue={
-                            editProduct ? editProduct.description : ''
-                          }
-                          onChange={handleChange}
-                        />
-                      </Grid>
-                      <Grid item xs={12}>
-                        <TextField
-                          id="color"
-                          label="Car Color"
-                          name="color"
-                          fullWidth
-                          defaultValue={editProduct ? editProduct.color : ''}
-                          onChange={handleChange}
-                        />
-                      </Grid>
-                      <Grid item xs={12}>
-                        <TextField
-                          id="price"
-                          label="Car Price"
-                          name="price"
-                          fullWidth
-                          defaultValue={editProduct ? editProduct.price : ''}
-                          onChange={handleChange}
-                        />
-                      </Grid>
-                      <Grid item xs={12}>
-                        <TextField
-                          id="stock"
-                          label="Car Price"
-                          name="stock"
-                          fullWidth
-                          defaultValue={editProduct ? editProduct.stock : ''}
-                          onChange={handleChange}
-                        />
-                      </Grid>
-                    </Grid>
-                    <Grid container spacing={2}>
-                      <Grid item xs={6}>
-                        <Button
-                          onClick={handleEditClose}
-                          variant="contained"
-                          sx={{
-                            mt: 3,
-                            width: '100%',
-                            backgroundColor: (theme) =>
-                              theme.palette.error.main,
-                            '&:hover': { backgroundColor: '#ff0000' },
-                          }}
-                        >
-                          Cancel
-                        </Button>
-                      </Grid>
-                      <Grid item xs={6}>
-                        <Button
-                          type="submit"
-                          variant="contained"
-                          sx={{
-                            mt: 3,
-                            width: '100%',
-                            backgroundColor: (theme) =>
-                              theme.palette.success.main,
-                            '&:hover': { backgroundColor: '#00cc00' },
-                          }}
-                        >
-                          Save Changes
-                        </Button>
-                      </Grid>
-                    </Grid>
-                  </form>
-                </Box>
-              </Modal>
-
-              <div
-                style={{
-                  display: 'flex',
-                  maxHeight: '600px',
-                  overflow: 'auto',
-                }}
-              >
-                <TableContainer component={Paper}>
-                  <Table sx={{ minWidth: 700 }} aria-label="customized table">
-                    <TableHead>
-                      <TableRow>
-                        <StyledTableCell align="center">S.No</StyledTableCell>
-                        <StyledTableCell align="center">Image</StyledTableCell>
-                        <StyledTableCell align="center">
-                          Model Name
-                        </StyledTableCell>
-                        <StyledTableCell align="center">Type</StyledTableCell>
-                        <StyledTableCell align="center">
-                          Chassis No
-                        </StyledTableCell>
-                        <StyledTableCell align="center">
-                          Engine No
-                        </StyledTableCell>
-                        <StyledTableCell align="center">
-                          Description
-                        </StyledTableCell>
-                        <StyledTableCell align="center">Color</StyledTableCell>
-                        <StyledTableCell align="center">Price</StyledTableCell>
-                        <StyledTableCell align="center">Stock</StyledTableCell>
-                        <StyledTableCell align="center">
-                          Actions
-                        </StyledTableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      {data.map((d, i) => (
-                        <StyledTableRow key={i}>
-                          <StyledTableCell align="center">
-                            {i + 1}
-                          </StyledTableCell>
-                          <StyledTableCell align="center">
-                            {d.carimage && (
-                              <img
-                                src={`http://localhost:8081/images/${d.carimage}`}
-                                alt={d.modelname}
-                                style={{ width: '50px', height: '50px' }}
-                              />
-                            )}
-                          </StyledTableCell>
-                          <StyledTableCell align="center">
-                            {d.modelname}
-                          </StyledTableCell>
-                          <StyledTableCell align="center">
-                            {d.type}
-                          </StyledTableCell>
-                          <StyledTableCell align="center">
-                            {d.chassisno}
-                          </StyledTableCell>
-                          <StyledTableCell align="center">
-                            {d.engineno}
-                          </StyledTableCell>
-                          <StyledTableCell align="center">
-                            {d.description}
-                          </StyledTableCell>
-                          <StyledTableCell align="center">
-                            {d.color}
-                          </StyledTableCell>
-                          <StyledTableCell align="center">
-                            ₹{d.price}
-                          </StyledTableCell>
-                          <StyledTableCell align="center">
-                            {d.stock}
-                          </StyledTableCell>
-                          <StyledTableCell align="center">
-                            <div
-                              style={{ display: 'flex', marginRight: '15px' }}
-                            >
-                              <IconButton
-                                aria-label="edit"
-                                onClick={() => handleEditOpen(d)}
-                              >
-                                <EditIcon className="add-icon" />
-                              </IconButton>
-                              <IconButton
-                                aria-label="delete"
-                                onClick={(e) => handleDelete(d.id)}
-                              >
-                                <DeleteIcon className="delete-icon" />
-                              </IconButton>
-                            </div>
-                          </StyledTableCell>
-                        </StyledTableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </TableContainer>
-              </div>
+                      </Button>
+                    </label>
+                  </Grid>
+                </Grid>
+                <Grid container spacing={2}>
+                  <Grid item xs={6}>
+                    <Button
+                      onClick={handleClose}
+                      variant="contained"
+                      sx={{
+                        mt: 2,
+                        width: '100%',
+                        backgroundColor: (theme) =>
+                          theme.palette.error.main,
+                        '&:hover': { backgroundColor: '#ff0000' },
+                      }}
+                    >
+                      Cancel
+                    </Button>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Button
+                      type="submit"
+                      variant="contained"
+                      sx={{
+                        mt: 2,
+                        width: '100%',
+                        backgroundColor: (theme) =>
+                          theme.palette.success.main,
+                        '&:hover': { backgroundColor: '#00cc00' },
+                      }}
+                    >
+                      Add Product
+                    </Button>
+                  </Grid>
+                </Grid>
+              </form>
             </Box>
-          </Box>
+          </Modal>
+
+          {/* Edit Car modal */}
+          <Modal
+            open={editOpen}
+            onClose={handleEditClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={style}>
+              <DialogTitle
+                id="modal-modal-title"
+                sx={{ textAlign: 'center' }}
+              >
+                Edit Car Details
+              </DialogTitle>
+              <form noValidate onSubmit={handleEditSubmit}>
+                <Grid container spacing={2}>
+                  <Grid item xs={12}>
+                    <TextField
+                      id="modelname"
+                      label="Car Modelname"
+                      name="modelname"
+                      fullWidth
+                      defaultValue={
+                        editProduct ? editProduct.modelname : ''
+                      }
+                      onChange={handleChange}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      id="type"
+                      label="Car Type"
+                      name="type"
+                      fullWidth
+                      defaultValue={editProduct ? editProduct.type : ''}
+                      onChange={handleChange}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      id="chassisno"
+                      label="Chassis Number"
+                      name="chassisno"
+                      fullWidth
+                      defaultValue={
+                        editProduct ? editProduct.chassisno : ''
+                      }
+                      onChange={handleChange}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      id="engineno"
+                      label="Engine Number"
+                      name="engineno"
+                      fullWidth
+                      defaultValue={editProduct ? editProduct.engineno : ''}
+                      onChange={handleChange}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      id="description"
+                      label="Car Description"
+                      name="description"
+                      fullWidth
+                      defaultValue={
+                        editProduct ? editProduct.description : ''
+                      }
+                      onChange={handleChange}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      id="color"
+                      label="Car Color"
+                      name="color"
+                      fullWidth
+                      defaultValue={editProduct ? editProduct.color : ''}
+                      onChange={handleChange}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      id="price"
+                      label="Car Price"
+                      name="price"
+                      fullWidth
+                      defaultValue={editProduct ? editProduct.price : ''}
+                      onChange={handleChange}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      id="stock"
+                      label="Car Price"
+                      name="stock"
+                      fullWidth
+                      defaultValue={editProduct ? editProduct.stock : ''}
+                      onChange={handleChange}
+                    />
+                  </Grid>
+                </Grid>
+                <Grid container spacing={2}>
+                  <Grid item xs={6}>
+                    <Button
+                      onClick={handleEditClose}
+                      variant="contained"
+                      sx={{
+                        mt: 3,
+                        width: '100%',
+                        backgroundColor: (theme) =>
+                          theme.palette.error.main,
+                        '&:hover': { backgroundColor: '#ff0000' },
+                      }}
+                    >
+                      Cancel
+                    </Button>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Button
+                      type="submit"
+                      variant="contained"
+                      sx={{
+                        mt: 3,
+                        width: '100%',
+                        backgroundColor: (theme) =>
+                          theme.palette.success.main,
+                        '&:hover': { backgroundColor: '#00cc00' },
+                      }}
+                    >
+                      Save Changes
+                    </Button>
+                  </Grid>
+                </Grid>
+              </form>
+            </Box>
+          </Modal>
+
+          <div className="w-full mx-auto overflow-auto max-h-520">
+            <table className="w-full border-collapse border">
+              <thead className="font-tableH bg-[#7360DF] text-white sticky top-0">
+                <tr className="bg-[#7360DF] text-white">
+                  <th className="w-[140px] bg-[#7360DF] text-center border-r">Image</th>
+                  <th className="w-[140px] bg-[#7360DF] text-center border-r">Model Name</th>
+                  <th className="w-[140px] bg-[#7360DF] text-center border-r">Type</th>
+                  <th className="w-[140px] bg-[#7360DF] text-center border-r">Chassis No</th>
+                  <th className="w-[140px] bg-[#7360DF] text-center border-r">Engine No</th>
+                  <th className="w-[140px] bg-[#7360DF] text-center border-r">Description</th>                 
+                  <th className="w-[140px] bg-[#7360DF] text-center border-r">Price</th>
+                  <th className="w-[140px] bg-[#7360DF] text-center border-r">Stock</th>
+                  <th className="p-2">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data.map((d, i) => (
+                  <tr key={i} className="hover:bg-blue-100 bg-white">
+                    <td className=" text-center p-1">
+                      {d.carimage && (
+                        <img
+                          src={`http://localhost:8081/images/${d.carimage}`}
+                          alt={d.modelname}
+                          className="w-14 h-14 mx-auto object-cover"
+                        />
+                      )}
+                    </td>
+                    <td className="p-2 text-center ">{d.modelname}</td>
+                    <td className="p-2 text-center ">{d.type}</td>
+                    <td className="p-2 text-center ">{d.chassisno}</td>
+                    <td className="p-2 text-center ">{d.engineno}</td>
+                    <td className="p-2 text-center ">{d.description}</td>
+                    <td className="p-2 text-center ">₹{d.price}</td>
+                    <td className="p-2 text-center ">{d.stock}</td>
+                    <td className="p-2 text-center">
+                      <div className="flex justify-evenly py-2 items-center">
+                        <button onClick={() => handleEditOpen(d)}>
+                          <FaEdit className="text-[#797979] text-xl" />
+                        </button>
+                        <button onClick={() => handleDelete(d.id)}>
+                          <MdDelete className="text-xl text-[#797979]" />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </>

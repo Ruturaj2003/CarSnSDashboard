@@ -15,6 +15,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Swal from 'sweetalert2';
 import BlackNavBar from '../BlackNavBar';
+import Navbar from '../../components/Navbar';
 
 const style = {
   position: 'fixed',
@@ -281,7 +282,7 @@ function Service() {
           </form>
         </Box>
       </Modal>
-      <BlackNavBar></BlackNavBar>
+      <UserNavbar></UserNavbar>
 
       {/* Modal box for categories*/}
 
@@ -378,8 +379,8 @@ function Service() {
         </Box>
       </Modal>
 
-      <div style={{ display: 'flex' }}>
-        <section style={{ display: 'flex', width: '100%' }} className="servBg">
+      <div  style={{ display: 'flex' }}>
+        <section  style={{ display: 'flex', width: '100%' }} className="servBg ">
           <div style={{ flex: '70%' }}></div>
           <div className="content" style={{ flex: '30%' }}>
             <Box sx={style}>
